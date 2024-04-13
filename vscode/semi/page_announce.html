@@ -24,7 +24,7 @@
                         <div class="lesson_detail">
                             <button class="lesson_sort">강습안내</button>
                             <div class="lesson_show">
-                                <a href="#" class="lesson_act">일일</a>
+                                <a href="#" class="lesson_act">일일강습(원데이체험)</a>
                                 <a href="#" class="lesson_act">평일</a>
                                 <a href="#" class="lesson_act">주말</a>
                             </div>
@@ -56,15 +56,48 @@
 
             </article>
             <article class="tbl table3" id="ann_price">
-                <h1>Hello 3</h1>
                 <div class="tbl3">
-                    <h1>1</h1>
+                    <div class="class_day">
+                        <h1>일일클래스</h1>
+                        <div>
+                            <div class="hd">일일 체험 강습 프로그램 진행과정</div>
+                            <img class="lesson_onedayiimg" src="/resource/lessson_img.jpg" alt="onedayclass">
+                        </div>
+                        <div class="divline"><hr></div>
+                        <div>
+                            <div class="hd">일일 체험 강습 예약하기</div>
+                            <table class="class_day_tbl" border="1">
+                            <tr>
+                                <th>준비물</th>
+                                <th>금액</th>
+                                <th>구성</th>
+                            </tr>
+                            <tr>
+                                <td>움직임 편안한 운동복</td>
+                                <td rowspan="3">30,000</td>
+                                <td>체험강습</td>
+                            </tr>
+                            <tr>
+                                <td>개인양말</td>
+                                <td>전용 암벽화 대여</td>
+                            </tr>
+                            <tr>
+                                <td>샤워시 개인 수건</td>
+                                <td>일일 자유이용권 포함</td>
+                            </tr>
+                            </table>
+                        </div>
+                    </div>
                 </div>
                 <div class="tbl3">
-                    <h1>2</h1>
+                    <div class="class_weekday">
+                        <h1>평일</h1>
+                    </div>
                 </div>
                 <div class="tbl3">
-                    <h1>3</h1>
+                    <div class="class_weekend">
+                        <h1>주말</h1>
+                    </div>
                 </div>
             </article>
         </section>
@@ -88,28 +121,53 @@
             $(".sidebar > ul >li").removeClass("activetab");
             $(this).addClass("activetab");
         });
-
-
+       
         // var lesson_b = $(".lesson_act");
         // var lesson_li = document.getElementsByClassName(".lesson_act");
         // var tbl3_li = document.getElementsByClassName(".tbl3");
-        // $(".lesson_act").each(function (index, item) {
+        $(".lesson_act").each(function (index, item) {
+            $(this).on("click", function() {
+                $(".tbl3").css("display", "none");
+                $(".tbl3").eq(index).css("display", "block");
+                console.log(index);
+                $(".lesson_sort").css("background-color","brown");
             // console.log(index);
             // console.log(item);
             // tbl3_li[index].addClass("active");
         // });
 
-        $(".lesson_act").each(function (index,item) {
-            $(this).on("click", function() {
-                $(".tbl3").hide();
-                console.log(index);
-                console.log(item);
-                // tbl3_li[index].addClass("active");
-                $(".table3 .tbl3").each(function(index_tbl,item_tbl){
-                    $(this).css("display","block");
-                })
-            })
+        // $(".lesson_act").each(index, function(){
+        //     console.log(index);
+            })   
         });
+
+        // ----------------------------------------------
+        // $(".lesson_act").each(function (index,item) {
+        //     $(this).on("click", function() {
+        //         $(".tlb3").eq(index).css("display", "block");
+                // $(".tlb3").eq(index).addclass("aa");
+        //         // $(".tbl3").hide();
+                // console.log(index);
+                // console.log($(".tbl3").eq(index));
+        //         console.log(item);
+
+
+                // $(".tbl3").each(idx,elem){
+                //     if(index == idx)
+
+                // }
+
+
+                // tbl3_li[index].addClass("active");
+                // $(this)[index].css("display","block")
+                
+                // $(".table3 .tbl3").prop(index, function(){
+                //     console.log(this);
+                //     $(this).css("display","block")
+                // })            
+            // })            
+        // });
+        // ----------------------------------------------
 
 
         // var sort = $(".lesson_sort");
@@ -148,6 +206,6 @@
 
 
     </script>
-</body>
 
+</body>
 </html>
