@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인</title>
+    
+    <link href="/resource/reset.css" rel="stylesheet">
+    <link href="/resource/page_home.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+</head>
+
+
+<body>
+    <div class="wrap">
+        <article class="desc">
+            <div>
+                <span>볼더링(영어: bouldering)이란 암벽 등반의 한 장르로 로프 없이 바위 덩어리(boulder)를 오르는 행위다. 
+                    안전을 위해서 크래쉬 패드(Crash pad, bouldering pad라고도 함)를 바닥에 깔아놓고 하는 것이 보통이다.</span>
+            </div>
+        </article>
+        <section class="content">
+            <img class="img1" src="/resource/img1.jpg" alt="1">
+        </section>
+    </div>
+
+    <script>
+        var tab = $(".banner > ul > li");
+
+        tab.click(function(){
+			$(".banner > ul >li").removeClass("activetab");
+			$(this).addClass("activetab");			
+		});
+    </script>
+</body>
+
+</html>

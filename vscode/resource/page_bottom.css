@@ -1,0 +1,13 @@
+/* common */
+a { text-decoration: none; }
+li { list-style: none; }
+.wrap {
+    width: 1200px;
+    margin: 0 auto;
+    border: 1px solid black;
+}
+/* ----------- */
+.com{
+    display: block;
+    margin: 0 auto;
+}

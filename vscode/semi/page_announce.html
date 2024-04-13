@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항</title>
+
+    <link href="/resource/reset.css" rel="stylesheet">
+    <link href="/resource/page_announce.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+</head>
+
+<body>
+    <div class="wrap">
+        <section>
+            <aside class="sidebar">
+                <ul>
+                    <li class="actlist activetab"><button>공지</button></li>
+                    <li class="actlist"><button>운영시간</button></li>
+                    <li class="actlist">
+                        <div class="lesson_detail">
+                            <button class="lesson_sort">강습안내</button>
+                            <div class="lesson_show">
+                                <a href="#" class="lesson_act">일일</a>
+                                <a href="#" class="lesson_act">평일</a>
+                                <a href="#" class="lesson_act">주말</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </aside>
+            <article class="tbl table1" id="ann_notice">
+                <h1>Hello 1</h1>
+            </article>
+            <article class="tbl table2" id="ann_openhour">
+                <img class="img_gym" src="/resource/img2_gangnam.jpg" alt="gym">
+                <div class="openhour_con">
+                    <h1>오시는 길</h1>
+                    <ul>
+                        <li>서울특별시 강남구 테헤란로8길 21 강남화인빌딩 지하 1층</li>
+                        <li>강남역 1번 출구 도보 4분 거리</li>
+                    </ul>
+                    <h1 id="openhour_gap">운영안내</h1>
+                    <ul>
+                        <li>평일</li>
+                        <li>토요일</li>
+                        <li>주말 & 공휴일</li>
+                    </ul>
+                </div>
+                <div class="loc_map">
+                    <img src="/resource/img1.jpg" alt="map">
+                </div>
+
+            </article>
+            <article class="tbl table3" id="ann_price">
+                <h1>Hello 3</h1>
+                <div class="tbl3">
+                    <h1>1</h1>
+                </div>
+                <div class="tbl3">
+                    <h1>2</h1>
+                </div>
+                <div class="tbl3">
+                    <h1>3</h1>
+                </div>
+            </article>
+        </section>
+    </div>
+
+
+    <script>
+        var tab = $(".sidebar > ul > li");
+        var chart = $("section > article");
+
+        $(".tbl").hide();
+        $(".tbl.table1").show();
+
+        tab.click(function () {
+            var target = $(this);
+            var indexNum = target.index();
+            var none = $(this)
+            chart.css("display", "none");
+            chart.eq(indexNum).css("display", "block");
+
+            $(".sidebar > ul >li").removeClass("activetab");
+            $(this).addClass("activetab");
+        });
+
+
+        // var lesson_b = $(".lesson_act");
+        // var lesson_li = document.getElementsByClassName(".lesson_act");
+        // var tbl3_li = document.getElementsByClassName(".tbl3");
+        // $(".lesson_act").each(function (index, item) {
+            // console.log(index);
+            // console.log(item);
+            // tbl3_li[index].addClass("active");
+        // });
+
+        $(".lesson_act").each(function (index,item) {
+            $(this).on("click", function() {
+                $(".tbl3").hide();
+                console.log(index);
+                console.log(item);
+                // tbl3_li[index].addClass("active");
+                $(".table3 .tbl3").each(function(index_tbl,item_tbl){
+                    $(this).css("display","block");
+                })
+            })
+        });
+
+
+        // var sort = $(".lesson_sort");
+        // var detail = $(".lesson_detail");
+        // var lesson_s = 0;
+        // var lesson_d = 1;
+
+        // sort.mouseenter(function () {
+        //     $(".lesson_detail").css("display", "block");
+        //     lesson_s = 1;
+        //     console.log("s: " + lesson_s);
+        //     console.log("d: " + lesson_d);
+        // });
+        // sort.mouseleave(function () {
+        //     lesson_s = 0;
+        //     console.log("s: " + lesson_s);
+        //     console.log("d: " + lesson_d);
+        //     if(lesson_d == 0){
+        //         $(".lesson_detail").css("display", "none");
+        //     }
+        // });
+        // detail.mouseenter(function(){
+        //     lesson_d = 1;
+        //     $(".lesson_detail").css("display", "block");
+        //     console.log("s: " + lesson_s);
+        //     console.log("d: " + lesson_d);
+        // });
+        // detail.mouseleave(function () {
+        //     lesson_d = 0;
+        //     if(lesson_s == 0){
+        //         $(".lesson_detail").css("display", "none");
+        //     }
+        //     console.log("s: " + lesson_s);
+        //     console.log("d: " + lesson_d);
+        // });
+
+
+    </script>
+</body>
+
+</html>

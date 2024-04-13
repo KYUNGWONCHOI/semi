@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인</title>
+    
+    <link href="/resource/reset.css" rel="stylesheet">
+    <link href="/resource/page_header.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+</head>
+
+
+<body>
+    <div class="wrap">
+        <header class="wrap-header">
+            <div class="showCurrPage">
+                <span class="pageLocation">Home</span>
+            </div>
+            <nav class="homeList">
+                <ul>
+                    <li><a href="#">로그인</a></li>
+                    <li><a href="#">회원가입</a></li>
+                    <li><a href="#">로그아웃</a></li>
+                    <li><a href="#">마이페이지</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="banner">
+            <ul class="bannerList">
+                <li class="actlist"><a href="/semi/page_announce.html"><button>공지사항</button></a></li>
+                <li class="actlist"><a href="/semi/page_notice.html"><button>게시판</button></a></li>
+                <li class="actlist"><a href="/semi/page_price.html"><button>요금안내</button></a></li>
+            </ul>
+        </div>       
+    </div>
+
+    <script>
+        var tab = $(".banner > ul > li>a");
+
+        tab.click(function(){
+			$(".banner > ul >li>a").removeClass("activetab");
+			$(this).addClass("activetab");			
+		});
+    </script>
+</body>
+
+</html>
