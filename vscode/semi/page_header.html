@@ -29,22 +29,37 @@
                 </ul>
             </nav>
         </header>
-        <div class="banner">
+       <!--  
+       <div class="banner">
             <ul class="bannerList">
                 <li class="actlist"><a href="/semi/page_announce.html"><button>공지사항</button></a></li>
                 <li class="actlist"><a href="/semi/page_notice.html"><button>게시판</button></a></li>
                 <li class="actlist"><a href="/semi/page_price.html"><button>요금안내</button></a></li>
             </ul>
-        </div>       
+       </div>
+       -->
+      <div class="banner">
+            <ul class="bannerList">
+                <li class="actlist"><button href="/semi/page_announce.html">공지사항</button></li>
+                <li class="actlist"><button href="/semi/page_notice.html">게시판</button></li>
+                <li class="actlist"><button href="/semi/page_price.html">요금안내</button></li>
+            </ul>
+      </div>
+        
     </div>
-
+    
     <script>
-        var tab = $(".banner > ul > li>a");
-
-        tab.click(function(){
+    $(loadedHandler);
+    function loadedHandler(){
+    	$(".banner > ul > li>button").on("click", btnClickHandler);
+    	
+    }
+        
+        function btnClickHandler(){
 			$(".banner > ul >li>a").removeClass("activetab");
+            console.log("A");
 			$(this).addClass("activetab");			
-		});
+		};
     </script>
 </body>
 
