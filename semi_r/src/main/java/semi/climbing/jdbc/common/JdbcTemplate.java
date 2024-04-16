@@ -40,6 +40,31 @@ public class JdbcTemplate {
 		return conn;
 	}
 	
+	public static Connection getConnection() {
+		Properties prop = new Properties();
+		Connection conn = null;
+		try {
+			String currentPath = JdbcTemplate.class.getResource("").getPath();
+			System.out.println(currentPath);
+			prop.load(new FileReader(currentPath + "driver.properties"));
+//			System.out.println(prop.getProperty("jdbc.url"));
+			Class.forName(prop.getProperty("jdbc.driver"));
+			conn = DriverManager.getConnection(prop.getProperty("jdbc.url"), prop.getProperty("jdbc.username"),
+					prop.getProperty("jdbc.password"));
+//			if(conn != null) System.out.println("생성성공"); 
+//			else if (conn == null) System.out.println("생성실패");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return conn;
+	}
+
 	public static void autoCommit(Connection conn, boolean autocommit) {
 		try {
 			if (conn != null)

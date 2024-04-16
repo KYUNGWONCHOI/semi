@@ -20,13 +20,13 @@
 
 <body>
 	<div>
-		<%@include file="/WEB-INF/view/semi/common/header.jsp" %>
+		<%@include file="/WEB-INF/views/semi/common/header.jsp" %>
 	</div>
 	<div>
-		<%@include file="/WEB-INF/view/semi/home.jsp" %>
+		<%@include file="/WEB-INF/views/semi/home.jsp" %>
 	</div>	
 	<div>
-		<%@include file="/WEB-INF/view/semi/common/footer.jsp" %>
+		<%@include file="/WEB-INF/views/semi/common/footer.jsp" %>
 	</div>
 </body>
 </html>
