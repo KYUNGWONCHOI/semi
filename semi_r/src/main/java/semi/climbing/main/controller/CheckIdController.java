@@ -27,15 +27,16 @@ public class CheckIdController extends HttpServlet {
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String k1 = request.getParameter("k1");
-		String k2 = request.getParameter("k2");
-		System.out.println(k1+","+k2);
+//		String k1 = request.getParameter("k1");
+//		String k2 = request.getParameter("k2");
+//		System.out.println(k1+","+k2);
 	
 		String memId = request.getParameter("cid");
 		System.out.println(memId);
 		//TODO DB 갔다올 예정
 		int result = new MemberService().selectCheckId(memId);
 		response.getWriter().append(String.valueOf(result));	
+		System.out.println("check result : " +result);
 	}
 
 }

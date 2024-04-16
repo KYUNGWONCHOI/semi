@@ -69,7 +69,7 @@ public class MemberDao {
 	//중복확인
 	public int selectCheckId(Connection conn, String memId) {
 		int result = 0;
-		String sql = " SELECT COUNT(*) c FROM MEMBER WHERE MEM_ID=? ";
+		String sql = " SELECT COUNT(*) c FROM MEMBER WHERE ID=? ";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
@@ -79,6 +79,7 @@ public class MemberDao {
 			//ResultSet 처리
 			if(rs.next()) {
 				result = rs.getInt("c");
+				System.out.println("rs : "+result);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -115,7 +116,7 @@ public class MemberDao {
 	//select one
 	public MemberDto selectOne(Connection conn, String memId) {
 		MemberDto result = null;
-		String sql = "SELECT ID, PWD, PHOTO, POINT FROM MEMBER WHERE MEM_ID=?";
+		String sql = "SELECT ID, PWD, PHOTO, POINT FROM MEMBER WHERE ID=?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
@@ -193,7 +194,7 @@ public class MemberDao {
 	//delete
 	public int delete(Connection conn, String memId) {
 		int result = 0;
-		String sql = "DELETE FROM MEMBER WHERE MEM_ID=?";
+		String sql = "DELETE FROM MEMBER WHERE ID=?";
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = conn.prepareStatement(sql);

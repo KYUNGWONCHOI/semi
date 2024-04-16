@@ -10,7 +10,7 @@
 </head>
 <body>
 <fieldset>
-	<legend>로그인 ajax</legend>
+	<legend>로그인</legend>
 	<form id="frm-login">
 		<div><label>아이디</label><input type="text" name="id"></div>
 		<div><label>패스워드</label><input type="password" name="pwd"></div>

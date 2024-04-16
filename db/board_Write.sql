@@ -27,3 +27,8 @@ INSERT INTO MEMBER VALUES ('KI', '123', 'PATH', 0, DEFAULT);
 SELECT ID, PWD, PHOTO, POINT FROM MEMBER;
 
 commit;
+
+SELECT COUNT(*) c FROM MEMBER WHERE ID='CHOI';
+select * from member;
+
+commit;
