@@ -1,62 +1,54 @@
-package semi.climbing.notice.dto;
+package semi.climbing.notice.model.dto;
 
-public class NoticeListDto {
+public class NoticeDto {
 //	NOTICE_NO      NOT NULL NUMBER         
 //	NOTICE_TYPE    NOT NULL NUMBER(1)      
 //	NOTICE_CONTENT          VARCHAR2(1000) 
 //	BOARD_DATE     NOT NULL TIMESTAMP(6)   
 //	BOARD_READ_NO  NOT NULL NUMBER 
 //	NOTICE_SUBJECT NOT NULL VARCHAR2(100)
+	
 	private Integer noticeNo;
+	private Integer noticeType;
 	private String noticeSubject;
+	private String noticeContent;
 	private String boardDate;
 	private Integer baordReadNo;
-	private Integer noticeType;
-	
-	
 	@Override
 	public String toString() {
-		return "NoticeListDto [noticeNo=" + noticeNo + ", noticeSubject=" + noticeSubject + ", boardDate=" + boardDate
-				+ ", baordReadNo=" + baordReadNo + ", noticeType=" + noticeType + "]";
+		return "NoticeDto [noticeNo=" + noticeNo + ", noticeType=" + noticeType + ", noticeSubject=" + noticeSubject
+				+ ", noticeContent=" + noticeContent + ", boardDate=" + boardDate + ", baordReadNo=" + baordReadNo
+				+ "]";
 	}
-
-
-	public NoticeListDto(Integer noticeNo, String noticeSubject, String boardDate, Integer baordReadNo,
-			Integer noticeType) {
+	public NoticeDto(Integer noticeNo, Integer noticeType, String noticeSubject, String noticeContent, String boardDate,
+			Integer baordReadNo) {
 		super();
 		this.noticeNo = noticeNo;
+		this.noticeType = noticeType;
 		this.noticeSubject = noticeSubject;
+		this.noticeContent = noticeContent;
 		this.boardDate = boardDate;
 		this.baordReadNo = baordReadNo;
-		this.noticeType = noticeType;
 	}
-
-
 	public Integer getNoticeNo() {
 		return noticeNo;
 	}
-
-
-	public String getNoticeSubject() {
-		return noticeSubject;
-	}
-
-
-	public String getBoardDate() {
-		return boardDate;
-	}
-
-
-	public Integer getBaordReadNo() {
-		return baordReadNo;
-	}
-
-
 	public Integer getNoticeType() {
 		return noticeType;
 	}
+	public String getNoticeSubject() {
+		return noticeSubject;
+	}
+	public String getNoticeContent() {
+		return noticeContent;
+	}
+	public String getBoardDate() {
+		return boardDate;
+	}
+	public Integer getBaordReadNo() {
+		return baordReadNo;
+	}
 	
 	
 	
-
 }

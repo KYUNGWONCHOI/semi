@@ -1,4 +1,4 @@
-package semi.climbing.notice.dto;
+package semi.climbing.notice.model.dto;
 
 public class FileReadDto {
 //	FILE_ORIGIN_NAME NOT NULL VARCHAR2(255) 

@@ -1,4 +1,4 @@
-package semi.climbing.notice.dao;
+package semi.climbing.notice.model.dao;
 
 import static semi.climbing.jdbc.common.JdbcTemplate.close;
 
@@ -9,12 +9,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import semi.climbing.notice.dto.FileReadDto;
-import semi.climbing.notice.dto.FileWriteDto;
-import semi.climbing.notice.dto.NoticeDto;
-import semi.climbing.notice.dto.NoticeInsertDto;
-import semi.climbing.notice.dto.NoticeListDto;
-import semi.climbing.notice.dto.NoticeReadDto;
+import semi.climbing.notice.model.dto.FileReadDto;
+import semi.climbing.notice.model.dto.FileWriteDto;
+import semi.climbing.notice.model.dto.NoticeDto;
+import semi.climbing.notice.model.dto.NoticeInsertDto;
+import semi.climbing.notice.model.dto.NoticeListDto;
+import semi.climbing.notice.model.dto.NoticeReadDto;
 
 
 public class NoticeDao {

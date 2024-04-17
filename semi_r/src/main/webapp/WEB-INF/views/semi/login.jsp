@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -9,6 +8,9 @@
 <jsp:include page="/WEB-INF/views/semi/common_function.jsp"/>
 </head>
 <body>
+	<div>
+		<%@include file="/WEB-INF/views/semi/common/header.jsp" %>
+	</div>
 <fieldset>
 	<legend>로그인</legend>
 	<form id="frm-login">
@@ -17,6 +19,9 @@
 		<div><input type="button" value="로그인" class="btn submit"></div>
 	</form>
 </fieldset>
+	<div>
+		<%@include file="/WEB-INF/views/semi/common/footer.jsp" %>
+	</div>
 
 <script>
 $(loadedHandler);

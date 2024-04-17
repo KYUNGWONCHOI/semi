@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -9,6 +8,9 @@
 <jsp:include page="/WEB-INF/views/semi/common_function.jsp" />
 </head>
 <body>
+	<div>
+		<%@include file="/WEB-INF/views/semi/common/header.jsp" %>
+	</div>
 	<form action="${pageContex.request.contextPath }/join" method="post">
 		<div>
 			ID : <input type="text" name="id" required>
@@ -24,6 +26,9 @@
 			<button type="submit">회원가입</button>
 		</div>
 	</form>
+	<div>
+		<%@include file="/WEB-INF/views/semi/common/footer.jsp" %>
+	</div>
 
 	<script>
 		$(loadedHandler);

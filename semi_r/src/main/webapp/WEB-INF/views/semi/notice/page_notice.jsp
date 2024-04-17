@@ -1,9 +1,8 @@
-    <link href="${pageContext.request.contextPath }/resource/css/reset.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath }/resource/css/page_announce.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resource/css/reset.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resource/css/page_announce.css" rel="stylesheet">
     
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -17,6 +16,9 @@
 </head>
 
 <body>
+	<div>
+		<%@include file="/WEB-INF/views/semi/common/header.jsp" %>
+	</div>
     <div class="wrap">
         <section>
             <aside class="sidebar">
@@ -36,10 +38,10 @@
                 </ul>
             </aside>
             <article class="tbl table1" id="ann_notice">
-                <h1>Hello 1</h1>
+                <%@include file="/WEB-INF/views/semi/notice/notice_list.jsp" %>
             </article>
             <article class="tbl table2" id="ann_openhour">
-                <img class="img_gym" src="/resource/img2_gangnam.jpg" alt="gym">
+                <img class="img_gym" src="/semi/resource/img/img2_gangnam.jpg" alt="gym">
                 <div class="openhour_con">
                     <h1>오시는 길</h1>
                     <ul>
@@ -54,7 +56,7 @@
                     </ul>
                 </div>
                 <div class="loc_map">
-                    <img src="/resource/img1.jpg" alt="map">
+                    <img src="/semi/resource/img/img1.jpg" alt="map">
                 </div>
 
             </article>
@@ -64,7 +66,7 @@
                         <h1>일일클래스</h1>
                         <div>
                             <div class="hd">일일 체험 강습 프로그램 진행과정</div>
-                            <img class="lesson_onedayiimg" src="/resource/lessson_img.jpg" alt="onedayclass">
+                            <img class="lesson_onedayiimg" src="/semi/resource/img/lessson_img.jpg" alt="onedayclass">
                         </div>
                         <div class="divline"><hr></div>
                         <div>
@@ -319,7 +321,9 @@
         </section>
     </div>
 
-
+	<div>
+		<%@include file="/WEB-INF/views/semi/common/footer.jsp" %>
+	</div>
     <script>
         var tab = $(".sidebar > ul > li");
         var chart = $("section > article");

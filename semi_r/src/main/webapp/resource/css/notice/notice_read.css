@@ -1,0 +1,42 @@
+@charset "UTF-8";
+.boardreply.grid{
+	display:grid;
+	grid-template-columns: 1fr 5fr 2fr 1fr 1fr;
+	max-width: 800px;
+}
+.boardreply.grid .rreplycontent.span{
+	grid-column : 1/-1;
+	display : none;
+}
+.board.grid{
+	display:grid;
+	grid-template-columns: 1fr;
+	max-width: 800px;
+}
+.board.grid > div{
+	border: 1px solid black;
+	padding : 10px;
+}
+.flex{
+	display: flex;
+	justify-content: space-between;
+}
+.flex > div{
+	border: 1px solid black;
+	padding : 10px;
+}
+.flex > div:nth-child(1), .flex > div:nth-child(4){
+	width:50px;
+	flex-shrink: 0;
+}
+.board > .subject{
+	text-align: center;
+	font-weight: 800;
+}
+.board > .subject{
+	text-align: center;
+	font-weight: 800;
+}
+.board [name=boardReplyContent] {
+	width:500px;
+}

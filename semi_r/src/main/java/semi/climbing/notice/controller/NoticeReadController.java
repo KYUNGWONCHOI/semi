@@ -7,12 +7,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import semi.climbing.notice.service.NoticeService;
+
 /**
  * Servlet implementation class BoardAnnReadController
  */
-@WebServlet("/BoardAnnReadController")
+@WebServlet("/board/read")
 public class NoticeReadController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private NoticeService service = new NoticeService();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -26,16 +29,14 @@ public class NoticeReadController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String noticeIdStr = request.getParameter("id");
+		try {
+			int noticeId = Integer.parseInt(noticeIdStr);
+			request.setAttribute("dto", service.selectOne(noticeId));
+			request.getRequestDispatcher("/WEB-INF/views/semi/board/read.jsp").forward(request, response);
+		}catch(NumberFormatException e) {
+			System.out.println("!!! NumberFormatException !!!!!!");
+			response.sendRedirect(request.getContextPath()+"notice/list");
+		}
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }

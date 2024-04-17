@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class noticeController
  */
 @WebServlet("/board")
-public class noticeController extends HttpServlet {
+public class BoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public noticeController() {
+    public BoardController() {
         super();
         // TODO Auto-generated constructor stub
     }

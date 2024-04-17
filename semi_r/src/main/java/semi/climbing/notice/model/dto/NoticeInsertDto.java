@@ -1,4 +1,4 @@
-package semi.climbing.notice.dto;
+package semi.climbing.notice.model.dto;
 
 import java.util.List;
 

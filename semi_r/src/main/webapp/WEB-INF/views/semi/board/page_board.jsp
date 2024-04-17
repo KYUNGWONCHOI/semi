@@ -3,7 +3,6 @@
     
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -17,6 +16,9 @@
 </head>
 
 <body>
+	<div>
+		<%@include file="/WEB-INF/views/semi/common/header.jsp" %>
+	</div>
     <div class="wrap">
         <section>
             <aside class="sidebar">
@@ -42,7 +44,9 @@
         </section>
     </div>
 
-
+	<div>
+		<%@include file="/WEB-INF/views/semi/common/footer.jsp" %>
+	</div>
     <script>
         var tab = $(".sidebar > ul > li");
         var chart = $("section > article");

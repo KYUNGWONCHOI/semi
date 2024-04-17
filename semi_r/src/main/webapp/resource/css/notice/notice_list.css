@@ -1,0 +1,17 @@
+@charset "UTF-8";
+.board.grid{
+	display:grid;
+	grid-template-columns: 1fr 5fr 3fr 2fr 1fr;
+}
+.board.grid > div{
+	display : flex;
+	border : 1px solid black;
+	text-align: center;
+}
+ul {
+list-style-type:none;
+}
+ul > li {
+display: inline-block;
+
+}

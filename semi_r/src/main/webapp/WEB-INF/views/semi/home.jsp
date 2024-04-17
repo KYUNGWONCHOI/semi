@@ -1,3 +1,7 @@
+<link href="${pageContext.request.contextPath}/resource/css/reset.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resource/css/common.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resource/css/page_home.css" rel="stylesheet">
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
