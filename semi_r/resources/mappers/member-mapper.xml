@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="memberns">
+	<select id="selectOne" parameterType="string" resultType="semi.climbing.member.model.dto.MemberDto">
+		SELECT ID, PWD, PHOTO, POINT FROM MEMBER WHERE ID=${memId}
+	</select>
+	<!-- 카멜기법으로 변수명이 작성되지 않았을 때 resultType 을 못 씀 > resultMap -->
+	<!-- 수동적으로 Mapping 을 함 -->
+	<resultMap type="semi.climbing.member.model.dto.MemberDto" id="MemberSelectOneDtoResultMap">
+		<id />
+		<result column="ID" property="memId"/>
+		<result column="PWD" property="memPwd"/>
+		<result column="PHOTO" property="memPhoto"/>
+		<result column="MEM_ADMIN" property="memAdmin"/>
+		<result column="POINT" property="memPoint"/>
+	</resultMap>
+	<select id="selectOne" parameterType="string" resultMap="MemberSelectOneDtoResultMap">
+		SELECT ID, PWD, PHOTO, POINT FROM MEMBER WHERE ID=${memId}
+	</select>
+
+</mapper>

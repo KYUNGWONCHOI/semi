@@ -18,8 +18,8 @@
         </header>
       <div class="banner">
             <ul class="bannerList">
-                <li class="actlist"><a href="${pageContext.request.contextPath}/announce"><button>공지사항</button></a></li>
-                <li class="actlist"><a href="${pageContext.request.contextPath}/notice"><button >게시판</button></a></li>
+                <li class="actlist"><a href="${pageContext.request.contextPath}/notice"><button>공지사항</button></a></li>
+                <li class="actlist"><a href="${pageContext.request.contextPath}/board"><button >게시판</button></a></li>
                 <li class="actlist"><a href="${pageContext.request.contextPath}/price"><button>요금안내</button></a></li>
             </ul>
       </div>

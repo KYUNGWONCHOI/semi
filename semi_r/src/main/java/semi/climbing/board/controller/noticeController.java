@@ -1,4 +1,4 @@
-package semi.climbing.board.notice.controller;
+package semi.climbing.board.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class noticeController
  */
-@WebServlet("/notice")
+@WebServlet("/board")
 public class noticeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -26,7 +26,7 @@ public class noticeController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/view/semi/notice/page_notice.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/semi/board/page_board.jsp").forward(request, response);
 	}
 
 }
