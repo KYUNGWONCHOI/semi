@@ -12,7 +12,7 @@ import semi.climbing.notice.service.NoticeService;
 /**
  * Servlet implementation class BoardAnnReadController
  */
-@WebServlet("/board/read")
+@WebServlet("/notice/read")
 public class NoticeReadController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private NoticeService service = new NoticeService();
@@ -33,7 +33,7 @@ public class NoticeReadController extends HttpServlet {
 		try {
 			int noticeId = Integer.parseInt(noticeIdStr);
 			request.setAttribute("dto", service.selectOne(noticeId));
-			request.getRequestDispatcher("/WEB-INF/views/semi/board/read.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/semi/notice/notice_read.jsp").forward(request, response);
 		}catch(NumberFormatException e) {
 			System.out.println("!!! NumberFormatException !!!!!!");
 			response.sendRedirect(request.getContextPath()+"notice/list");

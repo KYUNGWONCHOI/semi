@@ -28,11 +28,11 @@
 	</c:when>
 	<c:otherwise>
 		<c:forEach items="${map.dtolist }" var="vo" varStatus="vs">
-			<div>${vo.boardId }</div>
-			<div><a href="${pageContext.request.contextPath }/notice/read?id=${vo.boardId }">${vo.subject }</a></div>
-			<div>${vo.writeTime }</div>
-			<div>${vo.boardWriter }</div>
-			<div>${vo.readCount }</div>
+			<div>${vo.noticeNo }</div>
+			<div><a href="${pageContext.request.contextPath }/notice/read?id=${vo.noticeNo }">${vo.noticeSubject }</a></div>
+			<div>${vo.boardDate }</div>
+			<div>${vo.baordReadNo }</div>
+			<div>${vo.noticeType }</div>
 		</c:forEach>
 	</c:otherwise>
 </c:choose>
@@ -41,18 +41,18 @@
 <div >
 	<ul>
 	<c:if test="${map.startPageNum > 1}">
-		<li><a href="${pageContext.request.contextPath }/notice/list?page=${map.startPageNum-1 }">  &lt;&lt; </a></li>
+		<li><a href="${pageContext.request.contextPath }/notice?page=${map.startPageNum-1 }">  &lt;&lt; </a></li>
 	</c:if>
 	<c:forEach begin="${map.startPageNum }" end="${map.endPageNum }" var="page">
 		<c:if test="${map.currentPageNum == page }">
 		<li><strong>${page }</strong></li>
 		</c:if>
 		<c:if test="${map.currentPageNum != page }">
-		<li><a href="${pageContext.request.contextPath }/notice/list?page=${page }">${page }</a></li>
+		<li><a href="${pageContext.request.contextPath }/notice?page=${page }">${page }</a></li>
 		</c:if>
 	</c:forEach>
 	<c:if test="${map.endPageNum < map.totalPageCount }">
-		<li><a href="${pageContext.request.contextPath }/notice/list?page=${map.endPageNum+1 }">  &gt;&gt; </a></li>
+		<li><a href="${pageContext.request.contextPath }/notice?page=${map.endPageNum+1 }">  &gt;&gt; </a></li>
 	</c:if>
 	</ul>
 </div>
@@ -71,7 +71,7 @@ function btnWriteClickHandler(){
 		return;
 	}
 	
-	location.href="${pageContext.request.contextPath}/board/write";
+	location.href="${pageContext.request.contextPath}/notice/write";
 }
 </script>
 </html>

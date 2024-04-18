@@ -23,7 +23,7 @@ import semi.climbing.notice.service.NoticeService;
 /**
  * Servlet implementation class BoardAnnWriteController
  */
-@WebServlet("/board/write")
+@WebServlet("/notice/write")
 public class NoticeWriteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private NoticeService service = new NoticeService();
@@ -44,12 +44,12 @@ public class NoticeWriteController extends HttpServlet {
 		if(prePage!= null && prePage.equals("write")) {
 			request.getSession().removeAttribute("prePage");
 		}
-		request.getRequestDispatcher("/WEB-INF/views/semi/notice/write.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/semi/notice/notice_write.jsp").forward(request, response);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("/board/write doPost()");
+		System.out.println("/notice/write doPost()");
 		
 		String uploadPath = req.getServletContext().getRealPath("files");
 //uploadPath:C:\workspace\Java\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\31_web_project\

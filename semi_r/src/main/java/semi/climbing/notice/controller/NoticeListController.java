@@ -36,6 +36,7 @@ public class NoticeListController extends HttpServlet {
 //		-- 현재페이지
 		int currentPageNum = 1;  // 기본1
 		// 페이지지정하고 들어왔다면... 현재페이지를 그값으로 설정함
+		System.out.println("NoticeListController");
 		String pageNum = request.getParameter("page");
 		if(pageNum!= null && !pageNum.equals("")) {
 			try {
