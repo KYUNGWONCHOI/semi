@@ -1,9 +1,9 @@
 @charset "UTF-8";
-.notice.grid{
+.lesson.grid{
 	display:grid;
-	grid-template-columns: 1fr 5fr 3fr 2fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
 }
-.notice.grid > div{
+.lesson.grid > div{
 	display : flex;
 	border : 1px solid black;
 	text-align: center;
@@ -13,4 +13,7 @@ list-style-type:none;
 }
 ul > li {
 display: inline-block;
+}
+.colname{
+	background-color: skyblue;
 }

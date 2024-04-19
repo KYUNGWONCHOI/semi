@@ -1,11 +1,7 @@
-<link href="${pageContext.request.contextPath}/resource/css/reset.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resource/css/common.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resource/css/page_home.css" rel="stylesheet">
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<body>
 	<div class="wrap">
         <article class="desc">
             <div>
@@ -17,5 +13,3 @@
             <img class="img1" src="${pageContext.request.contextPath }/resource/img/img1.jpg" alt="1">
         </section>
     </div>
-</body>
-</html>

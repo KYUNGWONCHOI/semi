@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import semi.climbing.lesson.service.LessonService;
 import semi.climbing.notice.service.NoticeService;
 
 /**
@@ -15,7 +16,9 @@ import semi.climbing.notice.service.NoticeService;
 @WebServlet("/notice")
 public class NoticeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	NoticeService service = new NoticeService();
+	NoticeService serviceNotice = new NoticeService();
+	LessonService serviceLesson = new LessonService();
+	
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -29,8 +32,6 @@ public class NoticeController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		int noticeSort = (int)request.getAttribute("noticeSort");
-//		System.out.println("noticeSort : " +noticeSort);
 //		-- 한페이지당글수 5 씩
 		int pageSize = 5;
 //		-- 화면하단 나타날 페이지수 5 씩
@@ -48,27 +49,13 @@ public class NoticeController extends HttpServlet {
 				//e.printStackTrace();
 			}
 		}
-		request.setAttribute("map" , service.selectPageList(pageSize, pageBlockSize, currentPageNum));
-		
+		System.out.println("onedayList : "+serviceLesson.selectOnedayList());
+		request.setAttribute("mapNotice" , serviceNotice.selectPageList(pageSize, pageBlockSize, currentPageNum));
+		request.setAttribute("listLessonOneday", serviceLesson.selectOnedayList());
+		request.setAttribute("listLessonWeekday", serviceLesson.selectDayAllList());
+		request.setAttribute("listLessonWeekend", serviceLesson.selectEndAllList());
 		request.getRequestDispatcher("/WEB-INF/views/semi/notice/notice.jsp").forward(request, response);
-//		do{
-//			if (noticeSort == 1) {
-//			int pageSize = 5;
-//			int pageBlockSize = 5;
-//			int currentPageNum = 1;
-//			System.out.println("NoticeListController");
-//			String pageNum = request.getParameter("page");
-//			if(pageNum!= null && !pageNum.equals("")) {
-//				try {
-//					currentPageNum = Integer.parseInt(pageNum);
-//				}catch(NumberFormatException e) {
-//					System.out.println("!!!!!!!!!!!!!! NumberFormatException !!!!!!");
-//					//e.printStackTrace();
-//				}
-//			}
-//			request.setAttribute("map" , service.selectPageList(pageSize, pageBlockSize, currentPageNum));
-//			request.getRequestDispatcher("/WEB-INF/views/semi/notice/notice_list.jsp").forward(request, response);
-//			}
-//		} while(true);
+		
+
 	}
 }

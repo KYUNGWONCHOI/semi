@@ -1,5 +1,12 @@
+<link href="<%=request.getContextPath()%>/resource/css/reset.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/common.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/page_header.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/page_bottom.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/join.css" rel="stylesheet">
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -11,21 +18,25 @@
 	<div>
 		<%@include file="/WEB-INF/views/semi/common/header.jsp" %>
 	</div>
-	<form action="${pageContex.request.contextPath }/join" method="post">
-		<div>
-			ID : <input type="text" name="id" required>
-			<button type="button" class="btn checkid">중복확인</button>
-		</div>
-		<div>
-			PW : <input type="password" name="pwd" required>
-		</div>
-		<div>
-			<input type="file" name="memphoto" required class="btn file">
-		</div>
-		<div>
-			<button type="submit">회원가입</button>
-		</div>
-	</form>
+	<div class="wrap">
+	<div>
+		<form action="${pageContex.request.contextPath }/join" method="post" class="joinwindow">
+			<div>
+				ID : <input type="text" name="id" required>
+				<button type="button" class="btn checkid">중복확인</button>
+			</div>
+			<div>
+				PW : <input type="password" name="pwd" required>
+			</div>
+			<div>
+				<input type="file" name="memphoto" required class="btn file">
+			</div>
+			<div>
+				<button type="submit">회원가입</button>
+			</div>
+		</form>
+	</div>
+	</div>
 	<div>
 		<%@include file="/WEB-INF/views/semi/common/footer.jsp" %>
 	</div>

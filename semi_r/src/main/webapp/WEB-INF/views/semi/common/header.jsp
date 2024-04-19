@@ -1,15 +1,10 @@
-<link href="${pageContext.request.contextPath}/resource/css/reset.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resource/css/common.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resource/css/page_header.css" rel="stylesheet">
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<body>
     <div>
         <header class="wrap-header">
             <div class="showCurrPage">
-                <div class="pageLocation"><a href="${pageContext.request.contextPath }/main"> Home</a></div>
+                <div class="pageLocation"><a href="${pageContext.request.contextPath }/main"> Climbing</a></div>
             </div>
             <nav class="homeList">
                 <ul>
@@ -41,5 +36,3 @@
 			$(this).addClass("activetab");			
 	}
     </script>
-</body>
-</html>

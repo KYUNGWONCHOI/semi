@@ -1,7 +1,10 @@
-<link href="${pageContext.request.contextPath}/resource/css/reset.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resource/css/common.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/reset.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/common.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/page_header.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/page_home.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/page_bottom.css" rel="stylesheet">
 
-
+<!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <html>

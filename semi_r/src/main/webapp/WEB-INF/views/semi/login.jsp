@@ -1,9 +1,16 @@
+<link href="<%=request.getContextPath()%>/resource/css/reset.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/common.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/page_header.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/page_bottom.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/login.css" rel="stylesheet">
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Semim Login</title>
+<title>Login</title>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <jsp:include page="/WEB-INF/views/semi/common_function.jsp"/>
 </head>
@@ -11,18 +18,20 @@
 	<div>
 		<%@include file="/WEB-INF/views/semi/common/header.jsp" %>
 	</div>
-<fieldset>
-	<legend>로그인</legend>
-	<form id="frm-login">
-		<div><label>아이디</label><input type="text" name="id"></div>
-		<div><label>패스워드</label><input type="password" name="pwd"></div>
-		<div><input type="button" value="로그인" class="btn submit"></div>
-	</form>
-</fieldset>
+	<div class="wrap">
+		<fieldset class="loginwindow">
+			<legend>로그인</legend>
+			<form id="frm-login">
+				<div><label>아이디</label><input type="text" name="id"></div>
+				<div><label>패스워드</label><input type="password" name="pwd"></div>
+				<div><input type="button" value="로그인" class="btn submit"></div>
+			</form>
+		</fieldset>
+	</div>
 	<div>
 		<%@include file="/WEB-INF/views/semi/common/footer.jsp" %>
 	</div>
-
+	
 <script>
 $(loadedHandler);
 function loadedHandler(){
@@ -54,11 +63,8 @@ function frmClickHandler(){
 				$("[name=pwd]").val("");
 			}
 		}
-	});
-	
+	});	
 }
-
 </script>
-
 </body>
 </html>

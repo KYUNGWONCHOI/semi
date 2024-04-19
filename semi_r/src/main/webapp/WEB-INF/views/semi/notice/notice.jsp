@@ -1,8 +1,14 @@
-<link href="${pageContext.request.contextPath }/resource/css/reset.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath }/resource/css/page_announce.css" rel="stylesheet">
-    
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<link href="<%=request.getContextPath()%>/resource/css/reset.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/page_announce.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/notice/notice_list.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/page_header.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/page_bottom.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/lesson/lesson_oneday_list.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/lesson/lesson_weekend_list.css" rel="stylesheet">
+
+<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 
 <head>
@@ -10,8 +16,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>공지사항</title>
 
-
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <jsp:include page="/WEB-INF/views/semi/common_function.jsp"/>
+
 
 </head>
 
@@ -29,7 +36,7 @@
                         <div class="lesson_detail">
                             <button class="lesson_sort">강습안내</button>
                             <div class="lesson_show">
-                                <a href="#" class="lesson_act">일일강습(원데이체험)</a>
+                                <a href="#" class="lessonbtn lesson_act">일일강습(원데이체험)</a>
                                 <a href="#" class="lesson_act">평일</a>
                                 <a href="#" class="lesson_act">주말</a>
                             </div>
@@ -38,11 +45,7 @@
                 </ul>
             </aside>
             <article class="tbl table1" id="ann_notice">
-            	<%
-            		int noticeSort = 0;
-            		request.setAttribute("noticeSort", 1);
-            	%>
-                <%@include file="/WEB-INF/views/semi/notice/notice_list.jsp" %>
+            	<%@include file="/WEB-INF/views/semi/notice/notice_list.jsp" %>
             </article>
             <article class="tbl table2" id="ann_openhour">
                 <img class="img_gym" src="/semi/resource/img/img2_gangnam.jpg" alt="gym">
@@ -94,9 +97,10 @@
                                 <td>샤워시 개인 수건</td>
                                 <td>일일 자유이용권 포함</td>
                             </tr>
-                            </table>
-                            <button>예약하기</button>
+                            </table>                            
                         </div>
+                        <%@include file="/WEB-INF/views/semi/lesson/lesson_oneday.jsp" %>
+                        <button>예약하기</button>
                     </div>
                 </div>
                 <div class="tbl3">
@@ -107,107 +111,9 @@
                                 강습을 선택하세요!!</span>
                         </div>
                         <div>
-                            <table border="1">
-                                <tr>
-                                    <th>NO</th>
-                                    <th>요일</th>
-                                    <th>시간</th>
-                                    <th>레벨</th>
-                                    <th>강사</th>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>7</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>8</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>9</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>10</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>11</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>12</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>13</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </table>
+                            <%@include file="/WEB-INF/views/semi/lesson/lesson_list_weekday.jsp" %>
                         </div>
+                        <button>예약하기</button>
                     </div>
                 </div>
                 <div class="tbl3">
@@ -218,107 +124,9 @@
                                 강습을 선택하세요!!</span>
                         </div>
                         <div>
-                            <table border="1">
-                                <tr>
-                                    <th>NO</th>
-                                    <th>요일</th>
-                                    <th>시간</th>
-                                    <th>레벨</th>
-                                    <th>강사</th>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>7</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>8</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>9</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>10</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>11</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>12</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>13</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </table>
+                            <%@include file="/WEB-INF/views/semi/lesson/lesson_list_weekend.jsp" %>
                         </div>
+                        <button>예약하기</button>
                     </div>
                 </div>
             </article>

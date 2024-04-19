@@ -1,6 +1,5 @@
 @charset "UTF-8";
-body{
-    
+body{    
     box-sizing: border-box;
 }
 a { text-decoration: none; }
@@ -8,5 +7,4 @@ li { list-style: none; }
 .wrap {
     width: 1200px;
     margin: 0 auto;
-    height: 800px;
 }
