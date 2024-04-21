@@ -2,18 +2,17 @@
 
 <h1>Semim Board List</h1>
 	
-<div><button type="button" class="btn write" >글쓰기</button></div>
 <div class="notice grid">
 <c:choose>
 	<c:when test="${empty mapNotice.dtolist }">
 	글 없어요.
 	</c:when>
 	<c:otherwise>
-		<div>no</div>
-		<div>b</div>
-		<div>c</div>
-		<div>c</div>
-		<div>c</div>
+		<div class="colname">No</div>
+		<div class="colname">Subject</div>
+		<div class="colname">Date</div>
+		<div class="colname">ReadNo</div>
+		<div class="colname">Type</div>
 		<c:forEach items="${mapNotice.dtolist }" var="vo" varStatus="vs">
 			<div>${vo.noticeNo }</div>
 			<div><a href="${pageContext.request.contextPath }/notice/read?id=${vo.noticeNo }">${vo.noticeSubject }</a></div>
@@ -24,6 +23,7 @@
 	</c:otherwise>
 </c:choose>
 </div>
+<div><button type="button" class="btn write" >글쓰기</button></div>
 
 <div >
 	<ul>

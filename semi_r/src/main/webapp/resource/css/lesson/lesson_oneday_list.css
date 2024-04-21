@@ -8,12 +8,3 @@
 	border : 1px solid black;
 	text-align: center;
 }
-ul {
-list-style-type:none;
-}
-ul > li {
-display: inline-block;
-}
-.colname{
-	background-color: skyblue;
-}

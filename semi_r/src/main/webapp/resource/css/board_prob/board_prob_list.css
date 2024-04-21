@@ -1,9 +1,9 @@
 @charset "UTF-8";
-.notice.grid{
+.prob.grid{
 	display:grid;
-	grid-template-columns: 1fr 5fr 3fr 2fr 1fr;
+	grid-template-columns: 2fr 2fr 2fr 2fr 2fr 2fr;
 }
-.notice.grid > div{
+.prob.grid > div{
 	display : flex;
 	border : 1px solid black;
 	text-align: center;
@@ -17,4 +17,3 @@ display: inline-block;
 .colname{
 	background-color: skyblue;
 }
-

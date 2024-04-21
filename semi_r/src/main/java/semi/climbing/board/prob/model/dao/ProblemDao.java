@@ -9,16 +9,73 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import semi.climbing.lesson.model.dto.LessonInsertDto;
-import semi.climbing.lesson.model.dto.LessonListDto;
-import semi.climbing.lesson.model.dto.LessonOnedayDto;
+import semi.climbing.board.prob.model.dto.ProblemDto;
+import semi.climbing.board.prob.model.dto.ProblemListDto;
+import semi.climbing.board.prob.model.dto.ProblemReadDto;
+import semi.climbing.notice.model.dto.NoticeListDto;
 
 public class ProblemDao {
 
-	public List<LessonListDto> selectAllList(Connection conn){
-		List<LessonListDto> result = null;
-		String sql = "SELECT ROWNUM, LESSON_LEVEL, LESSON_START, LESSON_DURATION, LESSON_END, TEACHER_NAME, LESSON_TIME, LESSON_DAY\r\n"
-				+ "FROM( SELECT * FROM LESSON WHERE LESSON_TYPE=1 ORDER BY LESSON_START)";
+	//SELECT TOTAL COUNT
+	public int selectTotalCount(Connection conn) {
+		int result = 0;
+		String sql = "SELECT COUNT(*) CNT FROM BOARD_PROBLEM";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt("cnt");
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		close(rs);
+		close(pstmt);
+		return result;
+	}
+	
+	public List<ProblemListDto> selectPageList(Connection conn, int start, int end) {
+		List<ProblemListDto> result = null;
+		String sql = "SELECT T2.*\r\n"
+				+ "		FROM (SELECT T1.*, ROWNUM RN\r\n"
+				+ "				FROM (SELECT PROB_SUBJECT, PROB_SECTOR, PROB_LEVEL, BOARD_PROB_DATE, MEMBER_ID, BOARD_PROB_READ_NO FROM BOARD_PROBLEM ORDER BY BOARD_PROB_DATE DESC) T1 ) T2\r\n"
+				+ "				WHERE RN BETWEEN ? and ?"
+			    ;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			// ? 처리
+			pstmt.setInt(1, start);//한페이지당글수*(현재페이지-1)+1
+			pstmt.setInt(2, end);//한페이지당글수*(현재페이지)
+			rs = pstmt.executeQuery();
+			// ResetSet처리
+			if(rs.next()) {
+				result = new ArrayList<ProblemListDto>();
+				do {
+					ProblemListDto dto = new ProblemListDto(
+							rs.getString("PROB_SUBJECT"), rs.getString("PROB_SECTOR"), rs.getInt("PROB_LEVEL"), 
+							rs.getString("BOARD_PROB_DATE"), rs.getInt("BOARD_PROB_READ_NO"), rs.getString("MEMBER_ID")
+							);
+					result.add(dto);
+				}while (rs.next());
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		close(rs);
+		close(pstmt);
+		return result;
+	}
+	
+	
+	//SELECT ALL LIST
+	public List<ProblemListDto> selectAllList(Connection conn){
+		List<ProblemListDto> result = null;
+		String sql = "SELECT ROWNUM, PROB_SUBJECT, PROB_SECTOR, PROB_LEVEL, BOARD_PROB_DATE, MEMBER_ID, BOARD_PROB_READ_NO\r\n"
+				+ "    FROM (SELECT PROB_SUBJECT, PROB_SECTOR, PROB_LEVEL, BOARD_PROB_DATE, MEMBER_ID, BOARD_PROB_READ_NO FROM BOARD_PROBLEM ORDER BY BOARD_PROB_DATE DESC)";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
@@ -27,13 +84,11 @@ public class ProblemDao {
 			rs = pstmt.executeQuery();
 			// ResetSet처리
 			if(rs.next()) {
-				result = new ArrayList<LessonListDto>();
+				result = new ArrayList<ProblemListDto>();
 				do {
-					LessonListDto dto = new LessonListDto(	
-							rs.getInt("LESSON_LEVEL"),
-							rs.getString("LESSON_START"),rs.getInt("LESSON_DURATION"),
-							rs.getString("LESSON_END"),rs.getString("TEACHER_NAME"),
-							rs.getInt("LESSON_TIME"),rs.getString("LESSON_DAY")
+					ProblemListDto dto = new ProblemListDto(
+							rs.getString("PROB_SUBJECT"), rs.getString("PROB_SECTOR"), rs.getInt("PROB_LEVEL"), 
+							rs.getString("BOARD_PROB_DATE"), rs.getInt("BOARD_PROB_READ_NO"), rs.getString("MEMBER_ID")
 							);
 					result.add(dto);
 				}while (rs.next());
@@ -46,11 +101,11 @@ public class ProblemDao {
 		return result;	
 	}
 	
-	//select list - 강습-레벨업 LESSON_TYPE 1 평일반
-		public List<LessonListDto> selectDayAllList(Connection conn){
-			List<LessonListDto> result = null;
-			String sql = "SELECT ROWNUM, LESSON_LEVEL, LESSON_START, LESSON_DURATION, LESSON_END, TEACHER_NAME, LESSON_TIME, LESSON_DAY\r\n"
-					+ "    FROM (SELECT * FROM LESSON WHERE LESSON_TYPE=1 AND LESSON_DAY IN ('월,수,금', '화,목'))";
+	//SELECT ONE
+		public ProblemDto selectOne(Connection conn){
+			ProblemDto result = null;
+			String sql = "SELECT BOARD_PROB_NO, PROB_SUBJECT, PROB_SECTOR, PROB_LEVEL, PROB_CONTENT, BOARD_PROB_DATE, BOARD_PROB_READ_NO, MEMBER_ID, VIDEO_ORIGIN_NAME, VIDEO_SAVE_PATH\r\n"
+					+ "    FROM BOARD_PROBLEM";
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			try {
@@ -59,16 +114,14 @@ public class ProblemDao {
 				rs = pstmt.executeQuery();
 				// ResetSet처리
 				if(rs.next()) {
-					result = new ArrayList<LessonListDto>();
-					do {
-						LessonListDto dto = new LessonListDto(	
-								rs.getInt("LESSON_LEVEL"),
-								rs.getString("LESSON_START"),rs.getInt("LESSON_DURATION"),
-								rs.getString("LESSON_END"),rs.getString("TEACHER_NAME"),
-								rs.getInt("LESSON_TIME"),rs.getString("LESSON_DAY")
+					result =  new ProblemDto(	
+								rs.getInt("BOARD_PROB_NO"),
+								rs.getString("PROB_SUBJECT"),rs.getString("PROB_SECTOR"),
+								rs.getInt("PROB_LEVEL"),rs.getString("PROB_CONTENT"),
+								rs.getString("BOARD_PROB_DATE"),rs.getInt("BOARD_PROB_READ_NO"),
+								rs.getString("MEMBER_ID"),rs.getString("VIDEO_ORIGIN_NAME"),
+								rs.getString("VIDEO_SAVE_PATH")
 								);
-						result.add(dto);
-					}while (rs.next());
 				}	
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -77,147 +130,18 @@ public class ProblemDao {
 			close(pstmt);
 			return result;	
 		}
-		//select list - 강습-레벨업 LESSON_TYPE 1 주말반
-		public List<LessonListDto> selectEndAllList(Connection conn){
-			List<LessonListDto> result = null;
-			String sql = "SELECT ROWNUM, LESSON_LEVEL, LESSON_START, LESSON_DURATION, LESSON_END, TEACHER_NAME, LESSON_TIME, LESSON_DAY\r\n"
-					+ "    FROM (SELECT * FROM LESSON WHERE LESSON_TYPE=1 AND LESSON_DAY ='토,일')";
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			try {
-				pstmt = conn.prepareStatement(sql);
-				// ? 처리
-				rs = pstmt.executeQuery();
-				// ResetSet처리
-				if(rs.next()) {
-					result = new ArrayList<LessonListDto>();
-					do {
-						LessonListDto dto = new LessonListDto(	
-								rs.getInt("LESSON_LEVEL"),
-								rs.getString("LESSON_START"),rs.getInt("LESSON_DURATION"),
-								rs.getString("LESSON_END"),rs.getString("TEACHER_NAME"),
-								rs.getInt("LESSON_TIME"),rs.getString("LESSON_DAY")
-								);
-						result.add(dto);
-					}while (rs.next());
-				}	
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			close(rs);
-			close(pstmt);
-			return result;	
-		}
-		//select list - 강습-일일클래스 LESSON_TYPE 0
-		public List<LessonOnedayDto> selectOnedayList(Connection conn){
-			List<LessonOnedayDto> result = null;
-			String sql = "SELECT ROWNUM, LESSON_LEVEL, LESSON_TIME, LESSON_DAY"
-				    + " FROM (SELECT * FROM LESSON WHERE LESSON_TYPE = 0 ORDER BY LESSON_TIME)";
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			try {
-				pstmt = conn.prepareStatement(sql);
-				// ? 처리
-				rs = pstmt.executeQuery();
-				// ResetSet처리
-				if(rs.next()) {
-					result = new ArrayList<LessonOnedayDto>();
-					do {
-						LessonOnedayDto dto = new LessonOnedayDto(	
-								rs.getInt("LESSON_LEVEL"),
-								rs.getInt("LESSON_TIME"),rs.getString("LESSON_DAY")
-								);
-						result.add(dto);
-					}while (rs.next());
-				}	
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			close(rs);
-			close(pstmt);
-			return result;	
-		}
-		//insert - weekday
-		public int insertWeekday(Connection conn, LessonInsertDto dto) {
+		
+		//insert
+		public int insert(Connection conn, ProblemListDto dto) {
 			int result = 0;
-			String sql = "INSERT INTO LESSON VALUES (SEQ_LESSON_WEEKDAY, 1, ?, ?, ?, ?, ?, ?, ?)";
-			PreparedStatement pstmt = null;
-			try {
-				pstmt = conn.prepareStatement(sql);
-				// ? 처리
-				int i = 1;
-				pstmt.setInt(1, dto.getLessonLevel());
-				pstmt.setString(2, dto.getLessonStart());
-				pstmt.setInt(3, dto.getLessonDuration());
-				pstmt.setString(4, dto.getLessonEnd());
-				pstmt.setString(5, dto.getTeacherName());
-				pstmt.setInt(6, dto.getLessonTime());
-				pstmt.setString(7, dto.getLessonDay());
-				result = pstmt.executeUpdate();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			close(pstmt);
-			return result;
-		}
-		//insert - weekend
-		public int insertWeekend(Connection conn, LessonInsertDto dto) {
-			int result = 0;
-			String sql = "INSERT INTO LESSON VALUES (SEQ_LESSON_WEEKEND, 1, ?, ?, ?, ?, ?, ?, '토,일')";
-			PreparedStatement pstmt = null;
-			try {
-				pstmt = conn.prepareStatement(sql);
-				// ? 처리
-				int i = 1;
-				pstmt.setInt(1, dto.getLessonLevel());
-				pstmt.setString(2, dto.getLessonStart());
-				pstmt.setInt(3, dto.getLessonDuration());
-				pstmt.setString(4, dto.getLessonEnd());
-				pstmt.setString(5, dto.getTeacherName());
-				pstmt.setInt(6, dto.getLessonTime());
-				result = pstmt.executeUpdate();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			close(pstmt);
-			return result;
-		}
-		//insert - oneday
-		public int insertOneday(Connection conn, LessonInsertDto dto) {
-			int result = 0;
-			String sql = "INSERT INTO LESSON VALUES (SEQ_LESSON_ONEDAY, ?, ?, ?)";
-			PreparedStatement pstmt = null;
-			try {
-				pstmt = conn.prepareStatement(sql);
-				// ? 처리
-				int i = 1;
-				pstmt.setInt(1, dto.getLessonLevel());
-				pstmt.setInt(2, dto.getLessonTime());
-				pstmt.setString(3, dto.getLessonDay());
-				result = pstmt.executeUpdate();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			close(pstmt);
+			//TODO
 			return result;
 		}
 		//delete
-		public int deleteLesson(Connection conn, Integer lessonCode) {
+		public int deleteLesson(Connection conn, Integer boardProbNo) {
 			int result = 0;
-			String sql = "DELETE FROM LESSON WHERE LESSON_CODE = ?";
-			PreparedStatement pstmt = null;
-			try {
-				pstmt = conn.prepareStatement(sql);
-				// ? 처리
-				pstmt.setInt(1, lessonCode);
-				result = pstmt.executeUpdate();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			close(pstmt);
+			//TODO
 			return result;
 		}
 	
-}
-
 }

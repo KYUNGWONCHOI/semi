@@ -3,18 +3,19 @@
 <link href="<%=request.getContextPath()%>/resource/css/common.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resource/css/page_header.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resource/css/page_bottom.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/board_prob/board_prob_list.css" rel="stylesheet">
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>게시판</title>
-
-
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <jsp:include page="/WEB-INF/views/semi/common_function.jsp"/>
+    <title>게시판</title>
 
 </head>
 
@@ -33,7 +34,8 @@
                 </ul>
             </aside>
             <article class="tbl table1">
-                <h1>Hello 1</h1>
+            	<h1>문제 게시판</h1>
+                <%@include file="/WEB-INF/views/semi/board_prob/board_prob_list.jsp" %>
             </article>
             <article class="tbl table2">
                 <h1>Hello 2</h1>

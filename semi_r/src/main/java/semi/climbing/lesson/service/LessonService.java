@@ -69,6 +69,7 @@ public class LessonService {
 		return result;
 	}
 	
+	//delete
 	public int deleteLesson(Integer lessonCode) {
 		int result = 0;
 		Connection conn = null;
