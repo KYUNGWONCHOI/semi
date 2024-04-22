@@ -1,0 +1,12 @@
+@charset "UTF-8";
+.joinwindow{
+	border : 1px solid black;
+	width: 400px;
+	margin: 0 auto;
+	
+}
+.notice{
+	font-size: 8px;
+	display: none;
+	color: red;	
+}

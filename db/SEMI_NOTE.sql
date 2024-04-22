@@ -36,5 +36,6 @@ DESC RENT;
 --PAY_DATE    NOT NULL TIMESTAMP(6) DEFAULT SYSTIMESTAMP FK
 
 select * from user_tables;
+select * from member;
 
 

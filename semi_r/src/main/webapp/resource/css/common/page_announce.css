@@ -1,0 +1,124 @@
+@charset "UTF-8";
+/* common */
+a { text-decoration: none; }
+li { list-style: none; }
+.wrap {
+    width: 1200px;
+    margin: 0 auto;
+}
+/* ----------- */
+/* section */
+section {
+    width:100%;
+    /* height: 800px; */
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+button:hover{
+    background-color: blue;
+}
+
+
+/* aside */
+.sidebar{
+    float:left;
+    width:200px;
+    /* height: 800px; */
+    border:1px solid black;
+    box-sizing: border-box;
+}
+.sidebar .activetab > button{
+	/* border: 1px solid #503396; */
+    background-color: brown;
+}
+.actlist{
+    width: 200px;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+}
+.sidebar button{
+    width: 100%;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+    background-color: white;
+}
+
+/* article */
+.tbl{
+    float:left;
+    width:1000px;
+    border:1px solid black;
+    box-sizing: border-box;
+    /* height: 800px; */
+}
+
+#ann_openhour{
+    overflow: hidden;
+}
+#ann_openhour > .openhour_con > ul > li{
+    list-style-type: circle;
+}
+#openhour_gap{
+    margin-top: 20px;
+}
+#ann_openhour .img_gym{
+    display: inline-block;
+    width: 100%;
+    height: 320px;
+}
+#ann_openhour .openhour_con{
+    float: left;
+    width: 250px;
+    padding: 0 30px;  
+
+}
+#ann_openhour .loc_map{
+    float: left;
+}
+.ann_price{
+    clear: both;
+}
+
+.lesson_detail{
+    width: 200px;
+}
+.lesson_detail:hover .lesson_show{
+    display: block;
+}
+.lesson_show{
+    display: none;
+}
+.lesson_show a{
+    width: 200px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    display: block;
+    border: 1px solid black;
+    background-color: aquamarine;
+}
+.tbl3{
+    display:none;
+}
+.class_day{
+    text-align: center;
+}
+.lesson_onedayiimg{
+    width: 600px;
+}
+.class_day .hd{
+    font-size: 30px;
+    text-align: center;
+}
+.class_day_tbl{
+    margin: 0 auto;
+}
+.divline hr{
+	width: 600px;
+    border: 1px;
+    border-style: dashed;
+    border-color: gray;    
+}
