@@ -39,9 +39,9 @@ public class ProblemDao {
 	public List<ProblemListDto> selectPageList(Connection conn, int start, int end) {
 		List<ProblemListDto> result = null;
 		String sql = "SELECT T2.*\r\n"
-				+ "		FROM (SELECT T1.*, ROWNUM RN\r\n"
-				+ "				FROM (SELECT PROB_SUBJECT, PROB_SECTOR, PROB_LEVEL, BOARD_PROB_DATE, MEMBER_ID, BOARD_PROB_READ_NO FROM BOARD_PROBLEM ORDER BY BOARD_PROB_DATE DESC) T1 ) T2\r\n"
-				+ "				WHERE RN BETWEEN ? and ?"
+				+ "	FROM (SELECT T1.*, ROWNUM RN\r\n"
+				+ "		FROM (SELECT BOARD_PROB_NO, PROB_SUBJECT, PROB_SECTOR, PROB_LEVEL, BOARD_PROB_DATE, MEMBER_ID, BOARD_PROB_READ_NO FROM BOARD_PROBLEM ORDER BY BOARD_PROB_NO DESC) T1 ) T2\r\n"
+				+ "		WHERE RN BETWEEN ? and ?"
 			    ;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

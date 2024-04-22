@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import semi.climbing.board.any.service.AnyService;
+import semi.climbing.board.ask.service.AskService;
+import semi.climbing.board.lost.service.LostService;
 import semi.climbing.board.prob.service.ProblemService;
 
 /**
@@ -16,6 +19,10 @@ import semi.climbing.board.prob.service.ProblemService;
 public class BoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ProblemService serviceProb = new ProblemService();
+	AnyService serviceAny = new AnyService();
+	AskService serviceAsk = new AskService();
+	LostService serviceLost = new LostService();
+	
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -41,8 +48,11 @@ public class BoardController extends HttpServlet {
 			}
 		}
 		request.setAttribute("mapBoardProb" , serviceProb.selectPageList(pageSize, pageBlockSize, currentPageNum));
+		request.setAttribute("mapBoardAny", serviceAny.selectPageList(pageSize, pageBlockSize, currentPageNum));
+		request.setAttribute("mapBoardAsk", serviceAsk.selectPageList(pageSize, pageBlockSize, currentPageNum));
+		request.setAttribute("mapBoardLost", serviceLost.selectPageList(pageSize, pageBlockSize, currentPageNum));
 //		request.setAttribute("boardProbList", serviceProb.selectAllList());
-		request.getRequestDispatcher("/WEB-INF/views/semi/board_prob/page_board.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/semi/board/page_board.jsp").forward(request, response);
 	}
 
 }

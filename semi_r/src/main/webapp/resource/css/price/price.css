@@ -1,0 +1,70 @@
+/* section */
+section {
+    width:100%;
+    /* height: 800px; */
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* aside */
+.sidebar{
+    float:left;
+    width:200px;
+    /* height: 800px; */
+    border:1px solid black;
+    box-sizing: border-box;
+}
+.sidebar .activetab > button{
+    background-color: brown;
+}
+.actlist{
+    width: 200px;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+}
+.sidebar button{
+    width: 100%;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+    background-color: white;
+}
+
+/* article */
+.tbl{
+    float:left;
+    width:1000px;
+    border:1px solid black;
+    box-sizing: border-box;
+    /* height: 800px; */
+}
+.pricetab .pricelist{
+	overflow: hidden;
+	float: left;
+	box-sizing: border-box;
+}
+.pricetab .pricelist > button{
+	
+	width: 150px;
+	height: 30px;
+	background-color: white;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+
+}
+.pricetab .activetab {
+	border: 1px solid skyblue;
+	box-sizing: border-box;
+}
+.pricechart{
+	clear: both;
+}
+.purchase {
+	background-color: white;
+}
+
+
+

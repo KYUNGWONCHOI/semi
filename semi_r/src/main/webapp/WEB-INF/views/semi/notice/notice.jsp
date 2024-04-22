@@ -154,89 +154,14 @@
             $(this).addClass("activetab");
         });
        
-        // var lesson_b = $(".lesson_act");
-        // var lesson_li = document.getElementsByClassName(".lesson_act");
-        // var tbl3_li = document.getElementsByClassName(".tbl3");
         $(".lesson_act").each(function (index, item) {
             $(this).on("click", function() {
                 $(".tbl3").css("display", "none");
                 $(".tbl3").eq(index).css("display", "block");
                 console.log(index);
                 $(".lesson_sort").css("background-color","brown");
-            // console.log(index);
-            // console.log(item);
-            // tbl3_li[index].addClass("active");
-        // });
-
-        // $(".lesson_act").each(index, function(){
-        //     console.log(index);
-            })   
+               })   
         });
-
-        // ----------------------------------------------
-        // $(".lesson_act").each(function (index,item) {
-        //     $(this).on("click", function() {
-        //         $(".tlb3").eq(index).css("display", "block");
-                // $(".tlb3").eq(index).addclass("aa");
-        //         // $(".tbl3").hide();
-                // console.log(index);
-                // console.log($(".tbl3").eq(index));
-        //         console.log(item);
-
-
-                // $(".tbl3").each(idx,elem){
-                //     if(index == idx)
-
-                // }
-
-
-                // tbl3_li[index].addClass("active");
-                // $(this)[index].css("display","block")
-                
-                // $(".table3 .tbl3").prop(index, function(){
-                //     console.log(this);
-                //     $(this).css("display","block")
-                // })            
-            // })            
-        // });
-        // ----------------------------------------------
-
-
-        // var sort = $(".lesson_sort");
-        // var detail = $(".lesson_detail");
-        // var lesson_s = 0;
-        // var lesson_d = 1;
-
-        // sort.mouseenter(function () {
-        //     $(".lesson_detail").css("display", "block");
-        //     lesson_s = 1;
-        //     console.log("s: " + lesson_s);
-        //     console.log("d: " + lesson_d);
-        // });
-        // sort.mouseleave(function () {
-        //     lesson_s = 0;
-        //     console.log("s: " + lesson_s);
-        //     console.log("d: " + lesson_d);
-        //     if(lesson_d == 0){
-        //         $(".lesson_detail").css("display", "none");
-        //     }
-        // });
-        // detail.mouseenter(function(){
-        //     lesson_d = 1;
-        //     $(".lesson_detail").css("display", "block");
-        //     console.log("s: " + lesson_s);
-        //     console.log("d: " + lesson_d);
-        // });
-        // detail.mouseleave(function () {
-        //     lesson_d = 0;
-        //     if(lesson_s == 0){
-        //         $(".lesson_detail").css("display", "none");
-        //     }
-        //     console.log("s: " + lesson_s);
-        //     console.log("d: " + lesson_d);
-        // });
-
-
     </script>
 
 </body>

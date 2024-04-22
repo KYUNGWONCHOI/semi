@@ -3,7 +3,10 @@
 <link href="<%=request.getContextPath()%>/resource/css/common.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resource/css/page_header.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resource/css/page_bottom.css" rel="stylesheet">
-<link href="<%=request.getContextPath()%>/resource/css/board_prob/board_prob_list.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/board/board_prob_list.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/board/board_any_list.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/board/board_ask_list.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/board/board_lost_list.css" rel="stylesheet">
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -35,16 +38,19 @@
             </aside>
             <article class="tbl table1">
             	<h1>문제 게시판</h1>
-                <%@include file="/WEB-INF/views/semi/board_prob/board_prob_list.jsp" %>
+                <%@include file="/WEB-INF/views/semi/board/board_prob_list.jsp" %>
             </article>
             <article class="tbl table2">
-                <h1>Hello 2</h1>
+                <h1>자유게시판</h1>
+                <%@include file="/WEB-INF/views/semi/board/board_any_list.jsp" %>
             </article>
             <article class="tbl table3">
-                <h1>Hello 3</h1>
+                <h1>문의</h1>
+                <%@include file="/WEB-INF/views/semi/board/board_ask_list.jsp" %>
             </article>
             <article class="tbl table4">
-                <h1>Hello 4</h1>
+                <h1>분실물</h1>
+                <%@include file="/WEB-INF/views/semi/board/board_lost_list.jsp" %>
             </article>
         </section>
     </div>

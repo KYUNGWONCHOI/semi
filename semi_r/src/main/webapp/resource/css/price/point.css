@@ -1,0 +1,15 @@
+@charset "UTF-8";
+.btn{
+	backgound-color: white;
+	height: 30px;
+	border-radius: 5px;
+}
+.point.grid{
+	display:grid;
+	grid-template-columns: 2fr 2fr 2fr 2fr;
+}
+.point.grid > div{
+	display : flex;
+	border : 1px solid black;
+	text-align: center;
+}

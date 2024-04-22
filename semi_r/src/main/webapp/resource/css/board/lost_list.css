@@ -1,0 +1,10 @@
+@charset "UTF-8";
+.any.grid{
+	display:grid;
+	grid-template-columns: 2fr 2fr 2fr 2fr 2fr;
+}
+.any.grid > div{
+	display : flex;
+	border : 1px solid black;
+	text-align: center;
+}

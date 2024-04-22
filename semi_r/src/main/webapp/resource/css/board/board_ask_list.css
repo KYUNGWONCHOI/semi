@@ -1,0 +1,10 @@
+@charset "UTF-8";
+.ask.grid{
+	display:grid;
+	grid-template-columns: 2fr 2fr 2fr 2fr 2fr 2fr;
+}
+.ask.grid > div{
+	display : flex;
+	border : 1px solid black;
+	text-align: center;
+}
