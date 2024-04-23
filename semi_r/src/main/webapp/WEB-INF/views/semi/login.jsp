@@ -50,7 +50,7 @@ function frmClickHandler(){
 		, data : $("#frm-login").serialize()
 		, error : ajaxErrorHandler
 		, success : function(result){
-			console.log(result);
+			console.log("@@@@@@result : "+ result);
 			if(result == 1 ){
 				alert("반갑습니다.");
 				var prePage = "${prePage}";

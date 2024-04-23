@@ -1,4 +1,11 @@
+<link href="<%=request.getContextPath()%>/resource/css/common/reset.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/common/page_announce.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/common/page_header.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/common/page_bottom.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/common/common.css" rel="stylesheet">
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,16 +14,29 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <jsp:include page="/WEB-INF/views/semi/common_function.jsp"/>
 </head>
+
+
 <body>
+<div>
+	<%@include file="/WEB-INF/views/semi/common/header.jsp" %>
+</div>
 <h1>Semim Board Write</h1>
+${sssLogin.memId }
+${sssLogin.memAdmin }
 <form id="frm-write">
+	<div>
+		<label>고정<input type="radio" name="pos" value=1></label>
+		<label>기본<input type="radio" name="pos" value=2 checked></label>
+	</div>
 	<div><label>제목</label><input type="text" name="subject" required></div>
-	<div><label>내용</label><textarea name="content" required>여기여기</textarea></div>
-	<div><button type="button" class="btn file">파일추가</button></div>
-	
+	<div><label>내용</label><textarea name="content" required></textarea></div>
+	<div><button type="button" class="btn file">파일추가</button></div>	
 	<!-- event click 시 추가됨 -->
 	<div><button type="button" class="btn write" >글쓰기</button></div>
 </form>
+<div>
+	<%@include file="/WEB-INF/views/semi/common/footer.jsp" %>
+</div>
 
 <script>
 $(loadedHandler);
@@ -42,14 +62,9 @@ function btnFileCancleClickHandler(){
 function btnWriteClickHandler(){
 	
 	//Login 페이지로 이동
-	if(checkLogin("로그인되어야 글쓰기가 가능합니다.\n로그인페이지로 이동하시겠습니까?","write")){
-		return;
-	}
-	
+
 	console.log($("[name=content]").val().length);  // 사용자 입력값은 value가 진짜임.
 	console.log($("[name=content]").val().trim().length);
-	//console.log($("[name=content]").html());
-	//console.log($("[name=content]").text());
 	
 	if($("[name=subject]").val().trim().length == 0){
 	   alert("빈문자열만 입력할 수 없습니다. 제목을 작성해주세요.");
@@ -63,9 +78,10 @@ function btnWriteClickHandler(){
 	// 중요!
 	var frm = document.getElementById("frm-write");
 	frm.method="post";  // content 길이 길거라..
-	frm.action = "${pageContext.request.contextPath}/board/write";
+	frm.action = "${pageContext.request.contextPath}/notice/write";
 	frm.enctype="multipart/form-data";  // form 태그 내부에 input type="file"이 있다면
 	frm.submit();	
 }
 </script>
+</body>
 </html>

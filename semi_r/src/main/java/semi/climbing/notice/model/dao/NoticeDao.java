@@ -184,12 +184,12 @@ public class NoticeDao {
 	public int insert(Connection conn, NoticeInsertDto dto) {
 		int result = 0;
 		String sql = "INSERT ALL ";
-		sql+="	INTO NOTICE (NOTICE_NO, NOTICE_SUBJECT, NOTICE_CONTENT, BOARD_DATE, BOARD_READ_NO) ";
-		sql+="		VALUES (SEQ_BOARD_ID.nextval, ?, ?, default, default) ";
+		sql+="	INTO NOTICE (NOTICE_NO, NOTICE_SUBJECT, NOTICE_CONTENT, BOARD_DATE, BOARD_READ_NO, NOTICE_TYPE) ";
+		sql+="		VALUES (SEQ_NOTICE_NO.NEXTVAL, ?, ?, SYSTIMESTAMP, DEFAULT, DEFAULT) ";
 		if(dto.getFileList()!= null && dto.getFileList().size()>0) {
-			for(FileWriteDto filedto :dto.getFileList()) {
-		sql+="	INTO BOARD_FILE (NOTICE_NO, FILE_ORIGIN_NAME, FILE_SAVE_PATH) ";
-		sql+="		VALUES (SEQ_BOARD_ID.nextval, ?, ?) ";
+			for(FileWriteDto filedto : dto.getFileList()) {
+		sql+="	INTO NOTICE_FILE (NOTICE_NO, FILE_NAME, FILE_SAVE_PATH) ";
+		sql+="		VALUES (SEQ_NOTICE_NO.NEXTVAL, ?, ?) ";
 			}
 		} 
 		sql+="	SELECT * FROM DUAL ";
@@ -198,14 +198,12 @@ public class NoticeDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			// ? 처리
-			int i = 1;
-			pstmt.setString(i++, dto.getNoticeSubject());
-			pstmt.setString(i++, dto.getNoticeContent());
+			pstmt.setString(1, dto.getNoticeSubject());
+			pstmt.setString(2, dto.getNoticeContent());
 			if(dto.getFileList()!= null && dto.getFileList().size()>0) {
-				int fileId = 1;
 				for(FileWriteDto filedto :dto.getFileList()) {
-					pstmt.setString(i++, filedto.getOrginalFileName());
-					pstmt.setString(i++, filedto.getFilePath());					
+					pstmt.setString(3, filedto.getFilePath());
+					pstmt.setString(4, filedto.getOrginalFileName());					
 				}
 			}
 			result = pstmt.executeUpdate();

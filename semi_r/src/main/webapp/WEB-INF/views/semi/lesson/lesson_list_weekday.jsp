@@ -1,7 +1,6 @@
 <link href="<%=request.getContextPath()%>/resource/css/lesson/lesson_weekday_list.css" rel="stylesheet">
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<body>
 <%-- [[${listLessonOneday }]] --%>
 <div class="lessonday grid">
 <c:choose>
@@ -30,5 +29,3 @@
 	</c:otherwise>
 </c:choose>
 </div>
-</body>
-</html>

@@ -57,16 +57,16 @@ public class LoginController extends HttpServlet {
 		int result = 0;
 		// session 에 저장해 다닐 값에 따라 
 		//int result = service.login(dto);
-		MemberInfoDto resultInfo = service.loginGetInfo(id);
+		MemberDto memdto = service.selectOne(id);
 		
-		if(resultInfo != null) {
+		if(dto != null) {
 			//성공
 //			request.getSession().setAttribute("sssLogin", id);
-			request.getSession().setAttribute("sssLogin", resultInfo);
+			request.getSession().setAttribute("sssLogin", memdto);
 			request.setAttribute("loginInfo" , service.loginGetInfo(id));
 			result = 1;
 
-			System.out.println("@@@@@@@resultInfo : " +resultInfo);
+			System.out.println("@@@@@@@resultInfo : " +memdto);
 			System.out.println("@@#!"+service.loginGetInfo(id));
 		}
 		response.getWriter().append(String.valueOf(result));

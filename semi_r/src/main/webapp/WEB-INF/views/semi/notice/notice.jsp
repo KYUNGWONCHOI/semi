@@ -16,7 +16,7 @@
 <head>
     <meta charset="UTF-8">
     <title>공지사항</title>
-
+   
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <jsp:include page="/WEB-INF/views/semi/common_function.jsp"/>
 
@@ -101,7 +101,10 @@
                             </table>                            
                         </div>
                         <%@include file="/WEB-INF/views/semi/lesson/lesson_oneday.jsp" %>
-                        <button>예약하기</button>
+                        <c:if test="${sssLogin.memAdmin eq 0 }">
+							<div><button type="button" class="btn write" >글쓰기</button></div>
+						</c:if>
+                        <button type="button" class="btn book">예약하기</button>
                     </div>
                 </div>
                 <div class="tbl3">
@@ -114,7 +117,10 @@
                         <div>
                             <%@include file="/WEB-INF/views/semi/lesson/lesson_list_weekday.jsp" %>
                         </div>
-                        <button>예약하기</button>
+                        <c:if test="${sssLogin.memAdmin eq 0 }">
+							<div><button type="button" class="btn write" >글쓰기</button></div>
+						</c:if>
+                        <button type="button" class="btn book">예약하기</button>
                     </div>
                 </div>
                 <div class="tbl3">
@@ -127,7 +133,10 @@
                         <div>
                             <%@include file="/WEB-INF/views/semi/lesson/lesson_list_weekend.jsp" %>
                         </div>
-                        <button>예약하기</button>
+                        <c:if test="${sssLogin.memAdmin eq 0 }">
+							<div><button type="button" class="btn write" >글쓰기</button></div>
+						</c:if>
+                        <button type="button" class="btn book">예약하기</button>
                     </div>
                 </div>
             </article>
@@ -138,6 +147,18 @@
 		<%@include file="/WEB-INF/views/semi/common/footer.jsp" %>
 	</div>
     <script>
+    $(loadedHandler);
+	function loadedHandler() {
+		$(".btn.write").on("click", btnWriteClickHandler);
+	}
+	
+	function btnWriteClickHandler(){
+		if(checkLogin("로그인되어야 글쓰기가 가능합니다.\n로그인페이지로 이동하시겠습니까?","write")){
+			return;
+		}		
+		location.href="${pageContext.request.contextPath}/notice/write";
+	}
+	
         var tab = $(".sidebar > ul > li");
         var chart = $("section > article");
 

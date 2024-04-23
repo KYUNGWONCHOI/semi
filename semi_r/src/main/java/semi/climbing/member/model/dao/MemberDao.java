@@ -81,7 +81,6 @@ public class MemberDao {
 			//ResultSet 처리
 			if(rs.next()) {
 				result = rs.getInt("c");
-				System.out.println("rs : "+result);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -118,7 +117,7 @@ public class MemberDao {
 //	//select one - admin 제외
 	public MemberDto selectOne(Connection conn, String memId) {
 		MemberDto result = null;
-		String sql = "SELECT ID, PWD, POINT, EMAIL FROM MEMBER WHERE ID=?";
+		String sql = " SELECT ID, PWD, MEM_ADMIN, POINT, EMAIL FROM MEMBER WHERE ID=? ";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
@@ -127,7 +126,7 @@ public class MemberDao {
 			rs = pstmt.executeQuery();
 			//ResultSet 처리
 			if(rs.next()) {
-				result = new MemberDto(rs.getString("ID"),rs.getString("PWD"),rs.getInt("MEM_ADMIN"),
+				result = new MemberDto(rs.getString("ID"), rs.getString("PWD"), rs.getInt("MEM_ADMIN"),
 						rs.getInt("POINT"), rs.getString("EMAIL"));
 			}
 		} catch (SQLException e) {
@@ -148,13 +147,7 @@ public class MemberDao {
 		sql += "    VALUES (LOWER(?), ?, ?) ";
 		sql += " SELECT * FROM DUAL ";
 		PreparedStatement pstmt = null;
-		System.out.println("Insert");
-		System.out.println("getMemId : "+ dto.getMemId());
-		System.out.println("getMemPwd : "+ dto.getMemPwd());
-		System.out.println("getMemEmail : "+ dto.getMemEmail());
-		System.out.println("getFilePath : "+ fdto.getFilePath());
-		System.out.println("getOriginalFileName : "+ fdto.getOrginalFileName());
-		
+				
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getMemId());

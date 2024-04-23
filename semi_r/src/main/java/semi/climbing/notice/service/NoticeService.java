@@ -67,7 +67,6 @@ public class NoticeService {
 	public int insert(NoticeInsertDto dto) {
 		int result = 0;
 		Connection conn = getSemiConnection(true);
-//		int sequencNum = dao.getSequenceNum(conn);
 		result = dao.insert(conn, dto);
 		close(conn);
 		return result;

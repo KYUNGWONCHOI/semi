@@ -16,13 +16,13 @@
 		        </c:when>
 		        <c:otherwise>
 		            <div class="homeList">
-		            <span>아이디 : ${sssLogin.memId }</span>
-		            <span>보유 포인트 : ${sssLogin.memPoint }</span>
-		            	<button class="mem charge">충전</button>
-		            <form id="frm-logout">
-		            	<button class="mem logout">로그아웃</button>
-		            </form>
-		            	<button class="mem mypage">마이페이지</button>              
+				            <span>아이디 : ${sssLogin.memId }</span>
+				            <span>보유 포인트 : ${sssLogin.memPoint }</span>
+				            <button class="mem charge">충전</button>
+			            <form id="frm-logout">
+			            	<button class="mem logout">로그아웃</button>
+			            </form>
+			            <button class="mem mypage">마이페이지</button>              
 		            </div>
 		        </c:otherwise>
             </c:choose>

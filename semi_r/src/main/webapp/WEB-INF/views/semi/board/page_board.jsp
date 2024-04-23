@@ -6,7 +6,7 @@
 <link href="<%=request.getContextPath()%>/resource/css/board/board_prob_list.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resource/css/board/board_any_list.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resource/css/board/board_ask_list.css" rel="stylesheet">
-<link href="<%=request.getContextPath()%>/resource/css/board/board_lost_list.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/board/lost_list.css" rel="stylesheet">
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
