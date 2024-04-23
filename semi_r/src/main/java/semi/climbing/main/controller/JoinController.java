@@ -17,6 +17,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import semi.climbing.common.file.FileWriteDto;
 import semi.climbing.member.model.dto.MemberDto;
+import semi.climbing.member.model.dto.MemberJoinDto;
 import semi.climbing.member.model.service.MemberService;
 
 
@@ -49,14 +50,15 @@ public class JoinController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String memId = request.getParameter("id");
 		String memPwd = request.getParameter("pwd");
-		String memPhoto = request.getParameter("photo");
-		int memPoint = Integer.parseInt(request.getParameter("point"));
+		String memEmail = request.getParameter("memmail");
+		String memPhoto = request.getParameter("memphoto");
 		
 		String uploadPath = request.getServletContext().getRealPath("files");
 		System.out.println("uploadPath:"+uploadPath);
 		File uploadPathFile = new File(uploadPath);
 		if(!uploadPathFile.exists()) {
 			uploadPathFile.mkdirs();
+			System.out.println("path만들기");
 		}
 		int uploadFileLimit = 10 * 1024 *1024; // 10M제한
 		MultipartRequest multiReq = new MultipartRequest(request,  // jsp->controll로 전달된 객체 
@@ -74,8 +76,6 @@ public class JoinController extends HttpServlet {
 			String fileName = multiReq.getFilesystemName(name);  // 서버에 저장된 파일이름
 			String orginFileName = multiReq.getOriginalFileName(name);
 			String type = multiReq.getContentType(name);  // 전송된 파일의 타입
-			System.out.println(type);
-//			System.out.println(type);
 			File f1= multiReq.getFile(name);  // name을 이용해서 파일 객체 생성 여부 확인 작업.
 			if (f1==null) {  // name을 이용해서 파일 객체 생성에 실패하면
 				System.out.println("파일 업로드 실패");   // 실패 오류메시지  
@@ -93,7 +93,7 @@ public class JoinController extends HttpServlet {
 		}
 		
 		
-		MemberDto dto = new MemberDto(memId, memPwd, memPhoto, memPoint); 
+		MemberJoinDto dto = new MemberJoinDto(memId, memPwd, memEmail, memPhoto); 
 		int result = new MemberService().insert(dto);
 		if(result < 0) {
 			//오류사항 작성-회원가입 실패 시

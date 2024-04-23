@@ -10,6 +10,7 @@ import java.util.List;
 import static semi.climbing.jdbc.common.JdbcTemplate.close;
 import semi.climbing.member.model.dto.MemberDto;
 import semi.climbing.member.model.dto.MemberInfoDto;
+import semi.climbing.member.model.dto.MemberJoinDto;
 import semi.climbing.member.model.dto.MemberLoginDto;
 import semi.climbing.member.model.dto.MemberPointUpdateDto;
 import semi.climbing.member.model.dto.MemberUpdateDto;
@@ -92,7 +93,7 @@ public class MemberDao {
 	//select All - admin 정보 제외 모든 정보
 	public List<MemberDto> selectAllList(Connection conn){
 		List<MemberDto> result = null;
-		String sql = " SELECT ID, PWD, PHOTO, POINT FROM MEMBER ";
+		String sql = " SELECT ID, PWD, PHOTO, POINT, EMAIL FROM MEMBER ";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
@@ -101,7 +102,7 @@ public class MemberDao {
 			if(rs.next()) {
 				result = new ArrayList<MemberDto>();
 				do {
-					MemberDto dto = new MemberDto(rs.getString("ID"),rs.getString("PWD"),rs.getString("PHOTO"), rs.getInt("POINT"));
+					MemberDto dto = new MemberDto(rs.getString("ID"),rs.getString("PWD"),rs.getString("PHOTO"), rs.getInt("POINT"), rs.getString("EMAIL"));
 					result.add(dto);
 				}while (rs.next());
 			}
@@ -113,10 +114,10 @@ public class MemberDao {
 		return result;
 	}
 	
-	//select one
+	//select one - admin 제외
 	public MemberDto selectOne(Connection conn, String memId) {
 		MemberDto result = null;
-		String sql = "SELECT ID, PWD, PHOTO, POINT FROM MEMBER WHERE ID=?";
+		String sql = "SELECT ID, PWD, PHOTO, POINT, EMAIL FROM MEMBER WHERE ID=?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
@@ -125,7 +126,7 @@ public class MemberDao {
 			rs = pstmt.executeQuery();
 			//ResultSet 처리
 			if(rs.next()) {
-				result = new MemberDto(rs.getString("ID"),rs.getString("PWD"),rs.getString("PHOTO"), rs.getInt("POINT"));
+				result = new MemberDto(rs.getString("ID"),rs.getString("PWD"),rs.getString("PHOTO"), rs.getInt("POINT"), rs.getString("EMAIL"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -135,18 +136,18 @@ public class MemberDao {
 		return result;
 	}
 	
-	//insert
-	public int insert(Connection conn, MemberDto dto) {
+	//insert - join
+	public int insert(Connection conn, MemberJoinDto dto) {
 		int result = 0;
-		String sql = " INSERT INTO MEMBER (ID, PWD, PHOTO, POINT) VALUES (?, ?, ?, ?) ";
+		String sql = " INSERT INTO MEMBER (ID, PWD, EMAIL, PHOTO) VALUES (?, ?, ?, ?) ";
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
 			//?처리
 			pstmt.setString(1, dto.getMemId());
 			pstmt.setString(2, dto.getMemPwd());
-			pstmt.setString(3, dto.getMemPhoto());
-			pstmt.setInt(4, dto.getMemPoint());
+			pstmt.setString(3, dto.getMemEmail());
+			pstmt.setString(4, dto.getMemPhoto());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

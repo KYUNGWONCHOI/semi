@@ -8,6 +8,7 @@ import java.util.List;
 import semi.climbing.member.model.dao.MemberDao;
 import semi.climbing.member.model.dto.MemberDto;
 import semi.climbing.member.model.dto.MemberInfoDto;
+import semi.climbing.member.model.dto.MemberJoinDto;
 import semi.climbing.member.model.dto.MemberLoginDto;
 import semi.climbing.member.model.dto.MemberPointUpdateDto;
 import semi.climbing.member.model.dto.MemberUpdateDto;
@@ -62,7 +63,7 @@ public class MemberService {
 	}
 		
 	//insert
-	public int insert(MemberDto dto) {
+	public int insert(MemberJoinDto dto) {
 		int result = 0;
 		Connection conn= getSemiConnection(true);
 		result = dao.insert(conn, dto);

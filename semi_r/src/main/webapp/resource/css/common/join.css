@@ -1,12 +1,34 @@
 @charset "UTF-8";
 .joinwindow{
 	border : 1px solid black;
-	width: 400px;
+	width: 450px;
 	margin: 0 auto;
-	
+	height: 300px;
+	line-height: 50px;	
 }
 .notice{
-	font-size: 8px;
+	font-size: 9px;
 	display: none;
 	color: red;	
+}
+.btn.join{
+	text-align: center;
+}
+.joinbtn{
+	margin-top: 50px;
+	text-align: center;
+}
+.inputline{
+	margin: 10px 0;
+	width: 180px;
+}
+.iputdiv{
+	width: 180px;
+}
+.inputdesc{
+	text-align: center;
+}
+table{
+	margin-top: 10px;
+	margin-left: 10px;
 }
