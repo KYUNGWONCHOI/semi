@@ -37,5 +37,27 @@ DESC RENT;
 
 select * from user_tables;
 select * from member;
+SELECT * FROM PHOTO;
+desc member;
+ALTER TABLE MEMBER MODIFY (POINT NULL);
+DESC PHOTO;
+INSERT ALL
+    INTO MEMBER (ID, PWD, EMAIL) 
+        VALUES (?, ?, ?)
+    INTO PHOTO (ID, PHOTO_NAME, PHOTO_SAVE_PATH)
+        VALUES (?, ?, ?)
+    SELECT * FROM DUAL;
+        
+INSERT ALL
+    INTO MEMBER (ID, PWD, EMAIL, POINT, MEM_ADMIN) 
+        VALUES ('abc', '123', 'eamil', DEFAULT, DEFAULT)
+    INTO PHOTO (ID, PHOTO_NAME, PHOTO_SAVE_PATH)
+        VALUES ('abc', 'photo', 'path')
+    SELECT * FROM DUAL;
+    
+commit;
+select * from member;
+select * from photo;
+SELECT COUNT(*) c FROM MEMBER WHERE ID=lower('CHOI');
 
 

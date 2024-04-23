@@ -1,8 +1,8 @@
-<link href="<%=request.getContextPath()%>/resource/css/reset.css" rel="stylesheet">
-<link href="<%=request.getContextPath()%>/resource/css/page_header.css" rel="stylesheet">
-<link href="<%=request.getContextPath()%>/resource/css/page_bottom.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/common/reset.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/common/page_header.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/common/page_bottom.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resource/css/price/price.css" rel="stylesheet">
-<link href="<%=request.getContextPath()%>/resource/css/common.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/common/common.css" rel="stylesheet">
 
 <link href="<%=request.getContextPath()%>/resource/css/price/point.css" rel="stylesheet">
 

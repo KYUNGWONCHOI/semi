@@ -43,10 +43,10 @@ public class LoginController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<MemberDto> temp = service.selectAllList();
-		System.out.println(temp);
+//		List<MemberDto> temp = service.selectAllList();
+//		System.out.println(temp);
 		String id = request.getParameter("id");
-		String pwd = request.getParameter("pwd");
+		String pwd = request.getParameter("pwd");		
 		MemberLoginDto dto = new MemberLoginDto(id, pwd);
 		System.out.println("/login doPost dto: "+ dto);
 //		/login doPost dto: MemberDto [memId=aaa, memPwd=bbb]
@@ -57,14 +57,17 @@ public class LoginController extends HttpServlet {
 		int result = 0;
 		// session 에 저장해 다닐 값에 따라 
 		//int result = service.login(dto);
-		MemberInfoDto resultInfo = service.loginGetInfo(dto);
-		System.out.println(resultInfo);
+		MemberInfoDto resultInfo = service.loginGetInfo(id);
 		
 		if(resultInfo != null) {
 			//성공
 //			request.getSession().setAttribute("sssLogin", id);
 			request.getSession().setAttribute("sssLogin", resultInfo);
+			request.setAttribute("loginInfo" , service.loginGetInfo(id));
 			result = 1;
+
+			System.out.println("@@@@@@@resultInfo : " +resultInfo);
+			System.out.println("@@#!"+service.loginGetInfo(id));
 		}
 		response.getWriter().append(String.valueOf(result));
 	}

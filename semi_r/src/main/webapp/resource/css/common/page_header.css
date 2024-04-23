@@ -16,11 +16,6 @@
     right:20px;
     bottom:10px;
 }
-.homeList>ul>li {
-    display: inline-block;
-    margin-left: 20px;
-    line-height: 30px;
-}
 
 .banner {
     width: 1200px;
@@ -54,6 +49,7 @@
 }
 .bannerList button:hover{
     cursor: pointer;
+    background-color: gray;
 }
 .banner .activetab > button{
 	/* border: 1px solid #503396; */
@@ -69,5 +65,13 @@
 .img1{
     width: 720px;
     margin: 0 auto;
+}
+.homeList > button{
+	display: inline-block;
+	margin-left: 30px;
+	background-color: white;
+}
+.mem{
+	display: inline-block;
 }
 

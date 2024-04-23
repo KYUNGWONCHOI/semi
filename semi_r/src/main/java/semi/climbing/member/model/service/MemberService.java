@@ -5,6 +5,7 @@ import static semi.climbing.jdbc.common.JdbcTemplate.*;
 import java.sql.Connection;
 import java.util.List;
 
+import semi.climbing.common.file.FileWriteDto;
 import semi.climbing.member.model.dao.MemberDao;
 import semi.climbing.member.model.dto.MemberDto;
 import semi.climbing.member.model.dto.MemberInfoDto;
@@ -18,10 +19,10 @@ public class MemberService {
 	private MemberDao dao = new MemberDao();
 
 	//member info - id, point 
-	public MemberInfoDto loginGetInfo(MemberLoginDto dto) {
+	public MemberInfoDto loginGetInfo(String memId) {
 		MemberInfoDto result = null;
 		Connection conn= getSemiConnection(true);
-		result = dao.loginGetInfo(conn, dto);
+		result = dao.loginGetInfo(conn, memId);
 		close(conn);
 		return result;
 	}
@@ -45,13 +46,13 @@ public class MemberService {
 	}
 	
 	//select All - admin 정보 제외 모든 정보
-	public List<MemberDto> selectAllList(){
-		List<MemberDto> result = null;
-		Connection conn= getSemiConnection(true);
-		result = dao.selectAllList(conn);
-		close(conn);
-		return result;
-	}
+//	public List<MemberDto> selectAllList(){
+//		List<MemberDto> result = null;
+//		Connection conn= getSemiConnection(true);
+//		result = dao.selectAllList(conn);
+//		close(conn);
+//		return result;
+//	}
 	
 	//select one
 	public MemberDto selectOne(String memId) {
@@ -62,23 +63,23 @@ public class MemberService {
 		return result;
 	}
 		
-	//insert
-	public int insert(MemberJoinDto dto) {
+	//insert join
+	public int insert(MemberJoinDto dto, FileWriteDto fdto) {
 		int result = 0;
 		Connection conn= getSemiConnection(true);
-		result = dao.insert(conn, dto);
+		result = dao.insert(conn, dto, fdto);
 		close(conn);
 		return result;
 	}
 	
 	//update pwd, photo
-	public int update(MemberUpdateDto dto) {
-		int result = 0;
-		Connection conn= getSemiConnection(true);
-		result = dao.update(conn, dto);
-		close(conn);
-		return result;	
-	}
+//	public int update(MemberUpdateDto dto) {
+//		int result = 0;
+//		Connection conn= getSemiConnection(true);
+//		result = dao.update(conn, dto);
+//		close(conn);
+//		return result;	
+//	}
 		
 	//update point
 	public int updatePoint(MemberPointUpdateDto dto) {

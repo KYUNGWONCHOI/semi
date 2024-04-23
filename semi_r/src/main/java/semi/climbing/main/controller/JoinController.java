@@ -48,12 +48,7 @@ public class JoinController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String memId = request.getParameter("id");
-		String memPwd = request.getParameter("pwd");
-		String memEmail = request.getParameter("memmail");
-		String memPhoto = request.getParameter("memphoto");
-		
-		String uploadPath = request.getServletContext().getRealPath("files");
+		String uploadPath = request.getServletContext().getRealPath("member_photo");
 		System.out.println("uploadPath:"+uploadPath);
 		File uploadPathFile = new File(uploadPath);
 		if(!uploadPathFile.exists()) {
@@ -68,13 +63,24 @@ public class JoinController extends HttpServlet {
 				new DefaultFileRenamePolicy() // was 서버에 저장할 디렉토리에 동일이름이 존재할때 새로운 이름 부여방식 
 				);
 		
+		String memId = multiReq.getParameter("id");
+		System.out.println("@@@@@@: "+memId);
+		String memPwd = multiReq.getParameter("pwd");
+		String memEmail = multiReq.getParameter("memmail");
+		String memPhoto = multiReq.getParameter("memphoto");
+		System.out.println("memphoto : " +memPhoto);		
+		
 		List<FileWriteDto> fileList = new ArrayList<FileWriteDto>();
 		
 		Enumeration<?> fileNames = multiReq.getFileNames();
+		String name = null;
+		String fileName = null;
+		String orginFileName = null;
+		FileWriteDto filedto = null;
 		while(fileNames.hasMoreElements()) {
-			String name = (String)fileNames.nextElement();   // input type="file" name="xxx", xxx_0, xxx_1
-			String fileName = multiReq.getFilesystemName(name);  // 서버에 저장된 파일이름
-			String orginFileName = multiReq.getOriginalFileName(name);
+			name = (String)fileNames.nextElement();   // input type="file" name="xxx", xxx_0, xxx_1
+			fileName = multiReq.getFilesystemName(name);  // 서버에 저장된 파일이름
+			orginFileName = multiReq.getOriginalFileName(name);
 			String type = multiReq.getContentType(name);  // 전송된 파일의 타입
 			File f1= multiReq.getFile(name);  // name을 이용해서 파일 객체 생성 여부 확인 작업.
 			if (f1==null) {  // name을 이용해서 파일 객체 생성에 실패하면
@@ -84,17 +90,12 @@ public class JoinController extends HttpServlet {
 //				System.out.println(f1.length());   // 그 파일의 크기 
 			}
 			System.out.println(name + "  :  "+ fileName+"  :  "+orginFileName);
-//			System.out.println(name + "  :  "+ fileName+"  :  "+orginFileName);
-//			uploadfiles: SQL실습과제5.jpg : SQL실습과제.jpg
-//			uploadfiles_0: t7.PNG : t.PNG
-//			uploadfiles_1: 캡처6.PNG : 캡처.PNG
-			FileWriteDto filedto = new FileWriteDto(fileName, orginFileName);
+			filedto = new FileWriteDto(fileName, orginFileName);
 			fileList.add(filedto);			
 		}
 		
-		
-		MemberJoinDto dto = new MemberJoinDto(memId, memPwd, memEmail, memPhoto); 
-		int result = new MemberService().insert(dto);
+		MemberJoinDto dto = new MemberJoinDto(memId, memPwd, memEmail);
+		int result = new MemberService().insert(dto, filedto);
 		if(result < 0) {
 			//오류사항 작성-회원가입 실패 시
 			response.sendRedirect(request.getContextPath()+"/main");

@@ -1,9 +1,5 @@
 package semi.climbing.member.model.dto;
 
-import java.util.List;
-
-import semi.climbing.common.file.FileWriteDto;
-
 public class MemberJoinDto {
 //	ID        NOT NULL VARCHAR2(20)  
 //	PWD       NOT NULL VARCHAR2(20)  
@@ -14,18 +10,15 @@ public class MemberJoinDto {
 	private String memId;
 	private String memPwd;
 	private String memEmail;
-	private String memPhoto;
 	@Override
 	public String toString() {
-		return "MemberJoinDto [memId=" + memId + ", memPwd=" + memPwd + ", memEmail=" + memEmail + ", memPhoto="
-				+ memPhoto + "]";
+		return "MemberJoinDto [memId=" + memId + ", memPwd=" + memPwd + ", memEmail=" + memEmail + "]";
 	}
-	public MemberJoinDto(String memId, String memPwd, String memEmail, String memPhoto) {
+	public MemberJoinDto(String memId, String memPwd, String memEmail) {
 		super();
 		this.memId = memId;
 		this.memPwd = memPwd;
 		this.memEmail = memEmail;
-		this.memPhoto = memPhoto;
 	}
 	public final String getMemId() {
 		return memId;
@@ -36,9 +29,5 @@ public class MemberJoinDto {
 	public final String getMemEmail() {
 		return memEmail;
 	}
-	public final String getMemPhoto() {
-		return memPhoto;
-	}
-	
-	
+		
 }
