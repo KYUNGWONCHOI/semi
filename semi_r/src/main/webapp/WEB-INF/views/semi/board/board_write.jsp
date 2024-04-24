@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Semim Notice Write</title>
+<title>Semim Board Write</title>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <jsp:include page="/WEB-INF/views/semi/common_function.jsp"/>
 </head>
@@ -20,16 +20,19 @@
 <div>
 	<%@include file="/WEB-INF/views/semi/common/header.jsp" %>
 </div>
-<h1>Semim Notice Write</h1>
+<h1>Semim Board Write</h1>
 ${sssLogin.memId }
-${sssLogin.memAdmin }
-<form id="frm-write">
+<form id="frm-write">	
 	<div>
-		<label>고정<input type="radio" name="pos" value=1></label>
-		<label>기본<input type="radio" name="pos" value=2 checked></label>
+		<label>문제<input type="radio" name="pos" value=0 checked></label>
+		<label>자유<input type="radio" name="pos" value=1></label>
+		<label>문의<input type="radio" name="pos" value=2></label>
 	</div>
+	<div><input></div>
 	<div><label>제목</label><input type="text" name="subject" required></div>
 	<div><label>내용</label><textarea name="content" required></textarea></div>
+	<div><label>섹터</label><input type="text" name="sector" required></div>
+	<div><label>난이도</label><input type="text" name="level" required></div>
 	<div><button type="button" class="btn file">파일추가</button></div>	
 	<!-- event click 시 추가됨 -->
 	<div><button type="button" class="btn write" >글쓰기</button></div>

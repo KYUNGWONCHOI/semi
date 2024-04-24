@@ -35,7 +35,7 @@
 </c:choose>
 </div>
 <c:if test="${sssLogin.memAdmin eq 0 }">
-	<div><button type="button" class="btn write" >글쓰기</button></div>
+	<div><button type="button" class="btn writeNotice" >글쓰기</button></div>
 </c:if>
 
 
@@ -62,10 +62,10 @@
 $(loadedHandler);
 function loadedHandler(){
 	//event 등록
-	$(".btn.write").on("click", btnWriteClickHandler);
+	$(".btn.writeNotice").on("click", btnWriteNoticeClickHandler);
 }
 
-function btnWriteClickHandler(){
+function btnWriteNoticeClickHandler(){
 	
 	//Login 페이지로 이동
 	if(checkLogin("로그인되어야 글쓰기가 가능합니다.\n로그인페이지로 이동하시겠습니까?","write")){

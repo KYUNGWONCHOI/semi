@@ -42,7 +42,7 @@
 				</ul>
 			</aside>
 			 -->
-			<div><button id="back"><img src="#" alt="back"></button></div>
+			<div><button class="btn back"><img src="#" alt="back"></button></div>
 			<article class="tbl table1" id="ann_notice">
 				<h1>Semi Notice Read</h1>
 				<div class="board grid">
@@ -84,10 +84,14 @@
      $(loadedHandler);
  	function loadedHandler() {
  		tab.on("click", btnClickHandler);
+ 		$(".btn.back").on("click", btnBackClickHandler);
  	}
  	
  	function btnClickHandler(){
  		location.href="${pageContext.request.contextPath}/notice";
+ 	}
+ 	function btnBackClickHandler(){
+ 		location.href = document.referrer;
  	}
      
      

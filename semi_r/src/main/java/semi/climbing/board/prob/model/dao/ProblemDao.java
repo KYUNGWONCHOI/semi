@@ -9,10 +9,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import semi.climbing.board.prob.model.dto.FileWriteDto;
 import semi.climbing.board.prob.model.dto.ProblemDto;
+import semi.climbing.board.prob.model.dto.ProblemInsertDto;
 import semi.climbing.board.prob.model.dto.ProblemListDto;
-import semi.climbing.board.prob.model.dto.ProblemReadDto;
-import semi.climbing.notice.model.dto.NoticeListDto;
 
 public class ProblemDao {
 
@@ -40,7 +40,7 @@ public class ProblemDao {
 		List<ProblemListDto> result = null;
 		String sql = "SELECT T2.*\r\n"
 				+ "	FROM (SELECT T1.*, ROWNUM RN\r\n"
-				+ "		FROM (SELECT BOARD_PROB_NO, PROB_SUBJECT, PROB_SECTOR, PROB_LEVEL, BOARD_PROB_DATE, MEMBER_ID, BOARD_PROB_READ_NO FROM BOARD_PROBLEM ORDER BY BOARD_PROB_NO DESC) T1 ) T2\r\n"
+				+ "		FROM (SELECT BOARD_PROB_NO, PROB_SUBJECT, PROB_SECTOR, PROB_LEVEL, BOARD_PROB_DATE, MEMBER_ID, BOARD_PROB_READ_NO, BOARD_TYPE FROM BOARD_PROBLEM ORDER BY BOARD_PROB_NO DESC) T1 ) T2\r\n"
 				+ "		WHERE RN BETWEEN ? and ?"
 			    ;
 		PreparedStatement pstmt = null;
@@ -57,7 +57,7 @@ public class ProblemDao {
 				do {
 					ProblemListDto dto = new ProblemListDto(
 							rs.getString("PROB_SUBJECT"), rs.getString("PROB_SECTOR"), rs.getInt("PROB_LEVEL"), 
-							rs.getString("BOARD_PROB_DATE"), rs.getInt("BOARD_PROB_READ_NO"), rs.getString("MEMBER_ID")
+							rs.getString("BOARD_PROB_DATE"), rs.getInt("BOARD_PROB_READ_NO"), rs.getString("MEMBER_ID"), rs.getInt("BOARD_TYPE")
 							);
 					result.add(dto);
 				}while (rs.next());
@@ -74,8 +74,8 @@ public class ProblemDao {
 	//SELECT ALL LIST
 	public List<ProblemListDto> selectAllList(Connection conn){
 		List<ProblemListDto> result = null;
-		String sql = "SELECT ROWNUM, PROB_SUBJECT, PROB_SECTOR, PROB_LEVEL, BOARD_PROB_DATE, MEMBER_ID, BOARD_PROB_READ_NO\r\n"
-				+ "    FROM (SELECT PROB_SUBJECT, PROB_SECTOR, PROB_LEVEL, BOARD_PROB_DATE, MEMBER_ID, BOARD_PROB_READ_NO FROM BOARD_PROBLEM ORDER BY BOARD_PROB_DATE DESC)";
+		String sql = "SELECT ROWNUM, PROB_SUBJECT, PROB_SECTOR, PROB_LEVEL, BOARD_PROB_DATE, MEMBER_ID, BOARD_PROB_READ_NO, BOARD_TYPE \r\n"
+				+ "    FROM (SELECT PROB_SUBJECT, PROB_SECTOR, PROB_LEVEL, BOARD_PROB_DATE, MEMBER_ID, BOARD_PROB_READ_NO, BOARD_TYPE FROM BOARD_PROBLEM ORDER BY BOARD_PROB_DATE DESC)";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
@@ -88,7 +88,7 @@ public class ProblemDao {
 				do {
 					ProblemListDto dto = new ProblemListDto(
 							rs.getString("PROB_SUBJECT"), rs.getString("PROB_SECTOR"), rs.getInt("PROB_LEVEL"), 
-							rs.getString("BOARD_PROB_DATE"), rs.getInt("BOARD_PROB_READ_NO"), rs.getString("MEMBER_ID")
+							rs.getString("BOARD_PROB_DATE"), rs.getInt("BOARD_PROB_READ_NO"), rs.getString("MEMBER_ID"), rs.getInt("BOARD_TYPE")
 							);
 					result.add(dto);
 				}while (rs.next());
@@ -105,7 +105,7 @@ public class ProblemDao {
 		public ProblemDto selectOne(Connection conn){
 			ProblemDto result = null;
 			String sql = "SELECT BOARD_PROB_NO, PROB_SUBJECT, PROB_SECTOR, PROB_LEVEL, PROB_CONTENT, BOARD_PROB_DATE, BOARD_PROB_READ_NO, MEMBER_ID, VIDEO_ORIGIN_NAME, VIDEO_SAVE_PATH\r\n"
-					+ "    FROM BOARD_PROBLEM";
+					+ "    , BOARD_TYPE FROM BOARD_PROBLEM";
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			try {
@@ -119,8 +119,7 @@ public class ProblemDao {
 								rs.getString("PROB_SUBJECT"),rs.getString("PROB_SECTOR"),
 								rs.getInt("PROB_LEVEL"),rs.getString("PROB_CONTENT"),
 								rs.getString("BOARD_PROB_DATE"),rs.getInt("BOARD_PROB_READ_NO"),
-								rs.getString("MEMBER_ID"),rs.getString("VIDEO_ORIGIN_NAME"),
-								rs.getString("VIDEO_SAVE_PATH")
+								rs.getString("MEMBER_ID"), rs.getInt("BOARD_TYPE")
 								);
 				}	
 			} catch (SQLException e) {
@@ -132,9 +131,43 @@ public class ProblemDao {
 		}
 		
 		//insert
-		public int insert(Connection conn, ProblemListDto dto) {
+		public int insert(Connection conn, ProblemInsertDto dto) {
 			int result = 0;
-			//TODO
+			String sql = "INSERT ALL ";
+			sql+="	INTO BOARD_PROBLEM (BOARD_PROB_NO, PROB_SUBJECT, PROB_SECTOR, PROB_LEVEL, PROB_CONTENT, BOARD_PROB_DATE, BOARD_PROB_READ_NO, MEMBER_ID, BOARD_TYPE ) ";
+			sql+="		VALUES (SEQ_BOARD_PROBLEM.NEXTVAL, ?, ?, ?, ?, DEFAULT, DEFAULT, ?, ?) ";
+			if(dto.getFileList()!= null && dto.getFileList().size()>0) {
+				for(FileWriteDto filedto : dto.getFileList()) {
+			sql+="	INTO BOARD_PROB_VIDEO (BOARD_PROB_NO, VIDEO_SAVE_PATH, VIDEO_NAME) ";
+			sql+="		VALUES (SEQ_BOARD_PROBLEM.NEXTVAL, ?, ?) ";
+				}
+			} 
+			sql+="	SELECT * FROM DUAL ";
+			System.out.println("sql: "+ sql);
+			PreparedStatement pstmt = null;
+			try {
+				pstmt = conn.prepareStatement(sql);
+				// ? 처리
+				int i = 1;
+				pstmt.setString(i++, dto.getProbSubject());
+				pstmt.setString(i++, dto.getProbSector());
+				pstmt.setInt(i++, dto.getProbLevel());
+				pstmt.setString(i++, dto.getProbContent());
+				pstmt.setString(i++, dto.getMemberId());
+				pstmt.setInt(i++, dto.getBoardType());
+				if(dto.getFileList()!= null && dto.getFileList().size()>0) {
+					for(FileWriteDto filedto :dto.getFileList()) {
+						System.out.println("dto.getFileList : "+dto.getFileList());
+						pstmt.setString(i++, filedto.getFileSavePath());
+						pstmt.setString(i++, filedto.getFileOriginName());					
+					}
+				}
+				i = 0;
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			close(pstmt);
 			return result;
 		}
 		//delete

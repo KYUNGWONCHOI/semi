@@ -68,7 +68,22 @@ public class LessonService {
 //		close(conn);
 //		return result;
 //	}
-	
+	// update oneday
+//	public int insertOneday(String memId, int lessonCode) {
+//		int result = 0;
+//		Connection conn = getSemiConnection(true);
+//		result = dao.insertOneday(conn, memId, lessonCode);
+//		close(conn);
+//		return result;
+//	}
+	// update
+//	public int update(String dto) {
+//		int result = 0;
+//		Connection conn = getSemiConnection(true);
+//		result = dao.update(conn, dto);
+//		close(conn);
+//		return result;
+//	}
 	//delete
 	public int deleteLesson(Integer lessonCode) {
 		int result = 0;

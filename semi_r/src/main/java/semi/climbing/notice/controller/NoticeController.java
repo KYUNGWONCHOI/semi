@@ -46,17 +46,13 @@ public class NoticeController extends HttpServlet {
 				currentPageNum = Integer.parseInt(pageNum);
 			}catch(NumberFormatException e) {
 				System.out.println("!!!!!!!!!!!!!! NumberFormatException !!!!!!");
-				//e.printStackTrace();
 			}
 		}
 
-		System.out.println("onedayList : "+serviceLesson.selectOnedayList());
 		request.setAttribute("mapNotice" , serviceNotice.selectPageList(pageSize, pageBlockSize, currentPageNum));
 		request.setAttribute("listLessonOneday", serviceLesson.selectOnedayList());
 		request.setAttribute("listLessonWeekday", serviceLesson.selectDayAllList());
 		request.setAttribute("listLessonWeekend", serviceLesson.selectEndAllList());
 		request.getRequestDispatcher("/WEB-INF/views/semi/notice/notice.jsp").forward(request, response);
-		
-
 	}
 }

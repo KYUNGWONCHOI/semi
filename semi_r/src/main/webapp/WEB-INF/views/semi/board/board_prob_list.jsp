@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
 <div class="prob grid">
 <c:choose>
@@ -24,7 +25,7 @@
 	</c:otherwise>
 </c:choose>
 </div>
-<div><button type="button" class="btn write" >글쓰기</button></div>
+<div><button type="button" class="btn writeBoard" >글쓰기</button></div>
 
 <div >
 	<ul>
@@ -49,16 +50,15 @@
 $(loadedHandler);
 function loadedHandler(){
 	//event 등록
-	$(".btn.write").on("click", btnWriteClickHandler);
+	$(".btn.writeBoard").on("click", btnWriteBoardClickHandler);
 }
 
-function btnWriteClickHandler(){
+function btnWriteBoardClickHandler(){
 	
 	//Login 페이지로 이동
 	if(checkLogin("로그인되어야 글쓰기가 가능합니다.\n로그인페이지로 이동하시겠습니까?","write")){
 		return;
 	}
-	
-	location.href="${pageContext.request.contextPath}/notice/write";
+	location.href="${pageContext.request.contextPath}/board/write";
 }
 </script>

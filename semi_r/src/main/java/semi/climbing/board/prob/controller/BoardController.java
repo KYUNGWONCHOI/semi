@@ -51,7 +51,6 @@ public class BoardController extends HttpServlet {
 		request.setAttribute("mapBoardAny", serviceAny.selectPageList(pageSize, pageBlockSize, currentPageNum));
 		request.setAttribute("mapBoardAsk", serviceAsk.selectPageList(pageSize, pageBlockSize, currentPageNum));
 		request.setAttribute("mapBoardLost", serviceLost.selectPageList(pageSize, pageBlockSize, currentPageNum));
-//		request.setAttribute("boardProbList", serviceProb.selectAllList());
 		request.getRequestDispatcher("/WEB-INF/views/semi/board/page_board.jsp").forward(request, response);
 	}
 

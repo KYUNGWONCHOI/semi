@@ -84,14 +84,15 @@ public class NoticeService {
 		close(conn);
 		return result;
 	}
+
 	// update
-	public int update(NoticeDto dto) {
-		int result = 0;
-		Connection conn = getSemiConnection(true);
-		result = dao.update(conn, dto);
-		close(conn);
-		return result;
-	}
+//	public int update(NoticeDto dto) {
+//		int result = 0;
+//		Connection conn = getSemiConnection(true);
+//		result = dao.update(conn, dto);
+//		close(conn);
+//		return result;
+//	}
 	// delete
 	public int delete(Integer noticeNo) {
 		int result = 0;

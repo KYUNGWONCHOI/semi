@@ -20,12 +20,10 @@ public class ProblemService {
 		Map<String, Object> result = null;
 	
 		Connection conn = getSemiConnection(true);
-		System.out.println("currentPageNum: " +currentPageNum);
 		int start = pageSize*(currentPageNum-1)+1;
 		int end = pageSize*currentPageNum;
 		
 		int totalCount = dao.selectTotalCount(conn);
-		System.out.println("totalCount:"+totalCount);
 		
 		int totalPageCount = (totalCount % pageSize == 0)? totalCount/pageSize :  totalCount/pageSize+1;
 		
@@ -43,7 +41,6 @@ public class ProblemService {
 		result.put("startPageNum", startPageNum);
 		result.put("endPageNum", endPageNum);
 		result.put("currentPageNum", currentPageNum);
-		System.out.println("selectPageList() : "+result);
 		return result;
 	}
 	//select all
@@ -67,6 +64,9 @@ public class ProblemService {
 	//insert
 	public int insert(ProblemInsertDto dto) {
 		int result = 0;
+		Connection conn = getSemiConnection(true);
+		result = dao.insert(conn, dto);
+		close(conn);
 		return result;
 	}
 	

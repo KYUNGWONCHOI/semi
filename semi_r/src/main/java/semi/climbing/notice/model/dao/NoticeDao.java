@@ -237,20 +237,20 @@ public class NoticeDao {
 	}
 	
 	// update
-	public int update(Connection conn, NoticeDto dto) {
-		int result = 0;
-		String sql = "";  //TODO
-		PreparedStatement pstmt = null;
-		try {
-			pstmt = conn.prepareStatement(sql);
-			// ? 처리
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		close(pstmt);
-		return result;
-	}
+//	public int update(Connection conn, String memId) {
+//		int result = 0;
+//		String sql = "";  //TODO
+//		PreparedStatement pstmt = null;
+//		try {
+//			pstmt = conn.prepareStatement(sql);
+//			// ? 처리
+//			result = pstmt.executeUpdate();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		close(pstmt);
+//		return result;
+//	}
 	
 	// delete
 	public int delete(Connection conn, Integer noticeNo) {
