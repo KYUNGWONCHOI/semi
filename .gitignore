@@ -12,7 +12,7 @@
 
 # Package Files #
 .properties
-*.jar
+#*.jar
 *.war
 *.nar
 *.ear
