@@ -26,13 +26,13 @@ public class JdbcTemplate {
 			Class.forName(prop.getProperty("jdbc.driver"));
 
 			if(isLocalHost) {
-				conn = DriverManager.getConnection(prop.getProperty("jdbc.url")
-						, prop.getProperty("jdbc.semi.username")
-						, prop.getProperty("jdbc.semi.password"));
+				conn = DriverManager.getConnection(prop.getProperty("jdbc.localhost.url")
+						, prop.getProperty("jdbc.username")
+						, prop.getProperty("jdbc.password"));
 			} else {
-				conn = DriverManager.getConnection(prop.getProperty("jdbc.semi.dbserver.url")
-						, prop.getProperty("jdbc.semi.username")
-						, prop.getProperty("jdbc.semi.password"));
+				conn = DriverManager.getConnection(prop.getProperty("jdbc.dbserver.url")
+						, prop.getProperty("jdbc.username")
+						, prop.getProperty("jdbc.password"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

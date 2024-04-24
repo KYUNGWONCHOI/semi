@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<h1>Semim Notice List</h1>
+<h1>Semi Notice List</h1>
 <div>${sssLogin.memId }</div>
 <div>${sssLogin.memAdmin }</div>
 	
@@ -17,7 +17,7 @@
 		<div class="colname">ReadNo</div>
 		<c:forEach items="${mapNotice.dtolist }" var="vo" varStatus="vs">
 			<c:if test="${vo.noticeType eq 1 }"> 
-				<div>공지</div>
+				<div>*</div>				
 				<div><a href="${pageContext.request.contextPath }/notice/read?id=${vo.noticeNo }">${vo.noticeSubject }</a></div>
 				<div>${vo.boardDate }</div>
 				<div>${vo.baordReadNo }</div>

@@ -45,29 +45,29 @@ public class LessonService {
 		return result;
 	}
 	//insert weekday
-	public int insertWeekday(LessonInsertDto dto) {
-		int result = 0;
-		Connection conn = getSemiConnection(true);
-		result = dao.insertWeekday(conn, dto);
-		close(conn);
-		return result;		
-	}
+//	public int insertWeekday(LessonInsertDto dto) {
+//		int result = 0;
+//		Connection conn = getSemiConnection(true);
+//		result = dao.insertWeekday(conn, dto);
+//		close(conn);
+//		return result;		
+//	}
 	//insert weekend
-	public int insertWeekend(LessonInsertDto dto) {
-		int result = 0;
-		Connection conn = getSemiConnection(true);
-		result = dao.insertWeekend(conn, dto);
-		close(conn);
-		return result;
-	}
+//	public int insertWeekend(LessonInsertDto dto) {
+//		int result = 0;
+//		Connection conn = getSemiConnection(true);
+//		result = dao.insertWeekend(conn, dto);
+//		close(conn);
+//		return result;
+//	}
 	//insert oneday
-	public int insertOneday(LessonInsertDto dto) {
-		int result = 0;
-		Connection conn = getSemiConnection(true);
-		result = dao.insertOneday(conn, dto);
-		close(conn);
-		return result;
-	}
+//	public int insertOneday(LessonInsertDto dto) {
+//		int result = 0;
+//		Connection conn = getSemiConnection(true);
+//		result = dao.insertOneday(conn, dto);
+//		close(conn);
+//		return result;
+//	}
 	
 	//delete
 	public int deleteLesson(Integer lessonCode) {

@@ -1,22 +1,23 @@
 package semi.climbing.notice.model.dto;
 
 public class FileWriteDto {
-	private String filePath;
-	private String orginalFileName;
+	private String fileSavePath;
+	private String fileOriginName;
 	@Override
 	public String toString() {
-		return "FileWriteDto [filePath=" + filePath + ", orginalFileName=" + orginalFileName + "]";
+		return "FileWriteDto [fileSavePath=" + fileSavePath + ", fileOriginName=" + fileOriginName + "]";
 	}
-	public FileWriteDto(String filePath, String orginalFileName) {
+	public FileWriteDto(String fileSavePath, String fileOriginName) {
 		super();
-		this.filePath = filePath;
-		this.orginalFileName = orginalFileName;
+		this.fileSavePath = fileSavePath;
+		this.fileOriginName = fileOriginName;
 	}
-	public String getFilePath() {
-		return filePath;
+	public String getFileSavePath() {
+		return fileSavePath;
 	}
-	public String getOrginalFileName() {
-		return orginalFileName;
+	public String getFileOriginName() {
+		return fileOriginName;
 	}
+	
 	
 }

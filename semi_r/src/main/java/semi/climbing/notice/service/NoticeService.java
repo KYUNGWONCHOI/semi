@@ -7,7 +7,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 import semi.climbing.notice.model.dao.NoticeDao;
+import semi.climbing.notice.model.dto.FileReadDto;
 import semi.climbing.notice.model.dto.NoticeDto;
 import semi.climbing.notice.model.dto.NoticeInsertDto;
 import semi.climbing.notice.model.dto.NoticeListDto;
@@ -48,6 +50,14 @@ public class NoticeService {
 		return result;
 	}
 	
+	public List<FileReadDto> selectFileList(Integer noticeNo){
+		List<FileReadDto> result = null;
+		Connection conn = getSemiConnection(true);
+		result = dao.selectFileList(conn, noticeNo);
+		close(conn);
+		return result;
+	}
+	
 	public List<NoticeListDto> selectAllList() {
 		List<NoticeListDto> result = null;
 		Connection conn = getSemiConnection(true);
@@ -60,6 +70,9 @@ public class NoticeService {
 		NoticeReadDto result = null;
 		Connection conn = getSemiConnection(true);
 		result = dao.selectOne(conn, noticeNo);
+		List<FileReadDto> filelist = dao.selectFileList(conn, noticeNo);
+		System.out.println("filelist : "+filelist);
+		result.setFileDtoList(filelist);
 		close(conn);
 		return result;
 	}

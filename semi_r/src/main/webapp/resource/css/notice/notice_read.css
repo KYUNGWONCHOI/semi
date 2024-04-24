@@ -1,16 +1,8 @@
 @charset "UTF-8";
-.boardreply.grid{
-	display:grid;
-	grid-template-columns: 1fr 5fr 2fr 1fr 1fr;
-	max-width: 800px;
-}
-.boardreply.grid .rreplycontent.span{
-	grid-column : 1/-1;
-	display : none;
-}
+
 .board.grid{
 	display:grid;
-	grid-template-columns: 1fr;
+	grid-template-columns: 1fr 4fr 2fr 1fr;
 	max-width: 800px;
 }
 .board.grid > div{
@@ -21,7 +13,7 @@
 	display: flex;
 	justify-content: space-between;
 }
-.flex > div{
+.flex > div, content{
 	border: 1px solid black;
 	padding : 10px;
 }
@@ -39,4 +31,12 @@
 }
 .board [name=boardReplyContent] {
 	width:500px;
+}
+.flag{
+	position: relative;
+}
+#back{
+	position: absolute;
+	top: 10px;
+	right: 10px;
 }

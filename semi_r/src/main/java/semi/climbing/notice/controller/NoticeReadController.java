@@ -29,10 +29,13 @@ public class NoticeReadController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String noticeIdStr = request.getParameter("id");
 		try {
-			int noticeId = Integer.parseInt(noticeIdStr);
-			request.setAttribute("dto", service.selectOne(noticeId));
+			int noticeNo = Integer.parseInt(noticeIdStr);
+			request.setAttribute("dto", service.selectOne(noticeNo));
+			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@"+service.selectOne(noticeNo));
+//			request.setAttribute("fdto", service.selectFileList(noticeNo));
 			request.getRequestDispatcher("/WEB-INF/views/semi/notice/notice_read.jsp").forward(request, response);
 		}catch(NumberFormatException e) {
 			System.out.println("!!! NumberFormatException !!!!!!");

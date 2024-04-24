@@ -1,34 +1,31 @@
 package semi.climbing.notice.model.dto;
 
 public class FileReadDto {
-//	FILE_ORIGIN_NAME NOT NULL VARCHAR2(255) 
-//	FILE_SAVE_PATH   NOT NULL VARCHAR2(255) 
-//	BOARD_PROB_NO             NUMBER        
-//	BOARD_ASK_NO              NUMBER        
-//	BOARD_ANY_NO              NUMBER        
-//	NOTICE_NO                 NUMBER  
+//	NOTICE_NO        NOT NULL NUMBER        
+//	FILE_SAVE_PATH            VARCHAR2(100) 
+//	FILE_ORIGIN_NAME          VARCHAR2(200) 
 	private Integer noticeNo;
-	private String fileOriginName;
 	private String fileSavePath;
+	private String fileOriginName;
 	@Override
 	public String toString() {
-		return "FileReadDto [noticeNo=" + noticeNo + ", fileOriginName=" + fileOriginName + ", fileSavePath="
-				+ fileSavePath + "]";
+		return "FileReadDto [noticeNo=" + noticeNo + ", fileSavePath=" + fileSavePath + ", fileOriginName="
+				+ fileOriginName + "]";
 	}
-	public FileReadDto(Integer noticeNo, String fileOriginName, String fileSavePath) {
+	public FileReadDto(Integer noticeNo, String fileSavePath, String fileOriginName) {
 		super();
 		this.noticeNo = noticeNo;
-		this.fileOriginName = fileOriginName;
 		this.fileSavePath = fileSavePath;
+		this.fileOriginName = fileOriginName;
 	}
-	public Integer getNoticeNo() {
+	public final Integer getNoticeNo() {
 		return noticeNo;
 	}
-	public String getFileOriginName() {
-		return fileOriginName;
-	}
-	public String getFileSavePath() {
+	public final String getFileSavePath() {
 		return fileSavePath;
+	}
+	public final String getFileOriginName() {
+		return fileOriginName;
 	}
 	
 	
