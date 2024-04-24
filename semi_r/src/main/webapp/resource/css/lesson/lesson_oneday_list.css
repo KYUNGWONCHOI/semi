@@ -1,10 +1,11 @@
 @charset "UTF-8";
 .lesson.grid{
 	display:grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+	width: 800px;
+	margin: 0 auto;
 }
 .lesson.grid > div{
-	display : flex;
+	display : grid;
 	border : 1px solid black;
-	text-align: center;
 }

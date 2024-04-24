@@ -105,7 +105,6 @@
                         <c:if test="${sssLogin.memAdmin eq 0 }">
 							<div><button type="button" class="btn write" >글쓰기</button></div>
 						</c:if>
-                        <button type="button" class="btn book">예약하기</button>
                     </div>
                 </div>
                 <div class="tbl3">

@@ -2,37 +2,44 @@ package semi.climbing.lesson.model.dto;
 
 
 public class LessonOnedayDto {
-//	LESSON_CODE  NOT NULL NUMBER       
-//	LESSON_TYPE  NOT NULL CHAR(1)      
-//	LESSON_LEVEL NOT NULL NUMBER       
-//	LESSON_START NOT NULL DATE         
-//	LESSON_END   NOT NULL DATE         
-//	TEACHER_NAME NOT NULL VARCHAR2(20) 
-//	LESSON_TIME  NOT NULL NUMBER       
-//	LESSON_DAY   NOT NULL VARCHAR2(20) 
+//	LESSON_CODE     NOT NULL NUMBER       
+//	LESSON_TYPE     NOT NULL CHAR(1)      
+//	LESSON_LEVEL             NUMBER       
+//	LESSON_START             DATE         
+//	LESSON_END               DATE         
+//	TEACHER_NAME             VARCHAR2(20) 
+//	LESSON_TIME              NUMBER       
+//	LESSON_DAY               VARCHAR2(40) 
+//	LESSON_DURATION          NUMBER       
+//	LESSON_CAPACITY          NUMBER 
 	
-	private Integer lessonLevel;	
+	private Integer lessonCode;
 	private Integer lessonTime;
 	private String lessonDay;
+	private Integer lessonCapacity;
 	@Override
 	public String toString() {
-		return "LessonOnedayDto [lessonLevel=" + lessonLevel + ", lessonTime=" + lessonTime + ", lessonDay=" + lessonDay
-				+ "]";
+		return "LessonOnedayDto [lessonCode=" + lessonCode + ", lessonTime=" + lessonTime + ", lessonDay=" + lessonDay
+				+ ", lessonCapacity=" + lessonCapacity + "]";
 	}
-	public LessonOnedayDto(Integer lessonLevel, Integer lessonTime, String lessonDay) {
+	public LessonOnedayDto(Integer lessonCode, Integer lessonTime, String lessonDay, Integer lessonCapacity) {
 		super();
-		this.lessonLevel = lessonLevel;
+		this.lessonCode = lessonCode;
 		this.lessonTime = lessonTime;
 		this.lessonDay = lessonDay;
+		this.lessonCapacity = lessonCapacity;
 	}
-	public Integer getLessonLevel() {
-		return lessonLevel;
+	public Integer getLessonCode() {
+		return lessonCode;
 	}
 	public Integer getLessonTime() {
 		return lessonTime;
 	}
 	public String getLessonDay() {
 		return lessonDay;
+	}
+	public Integer getLessonCapacity() {
+		return lessonCapacity;
 	}
 	
 	
