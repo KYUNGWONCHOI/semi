@@ -29,8 +29,10 @@ public class NoticeListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		String prePage = request.getHeader("Referer");
+//		session.setAttribute("prePageURL", prePage);
 //		-- 한페이지당글수 5 씩
-		int pageSize = 5;
+		int pageSize = 10;
 //		-- 화면하단 나타날 페이지수 5 씩
 		int pageBlockSize = 5;
 //		-- 현재페이지

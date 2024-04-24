@@ -5,6 +5,7 @@
 <link href="<%=request.getContextPath()%>/resource/css/common/page_bottom.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resource/css/lesson/lesson_oneday_list.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resource/css/lesson/lesson_weekend_list.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/lesson/lesson_weekday_list.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resource/css/common/common.css" rel="stylesheet">
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"

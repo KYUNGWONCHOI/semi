@@ -17,7 +17,7 @@
 		<div class="colname">ReadNo</div>
 		<c:forEach items="${mapNotice.dtolist }" var="vo" varStatus="vs">
 			<c:if test="${vo.noticeType eq 1 }"> 
-				<div>공지</div>
+				<div>*</div>				
 				<div><a href="${pageContext.request.contextPath }/notice/read?id=${vo.noticeNo }">${vo.noticeSubject }</a></div>
 				<div>${vo.boardDate }</div>
 				<div>${vo.baordReadNo }</div>

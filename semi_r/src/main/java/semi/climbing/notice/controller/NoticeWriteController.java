@@ -78,6 +78,7 @@ public class NoticeWriteController extends HttpServlet {
 		String subject = multiReq.getParameter("subject");
 		String content = multiReq.getParameter("content");
 		int noticeType = Integer.parseInt(multiReq.getParameter("pos"));
+		System.out.println("@@@@@@@@@@@"+noticeType);
 		NoticeInsertDto dto = new NoticeInsertDto(subject, content, noticeType, fileList);
 		int result = service.insert(dto);
 		resp.sendRedirect(req.getContextPath()+"/notice");

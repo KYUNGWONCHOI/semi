@@ -21,7 +21,7 @@ public class NoticeDao {
 	// 파일 읽기
 	public List<FileReadDto> selectFileList(Connection conn, Integer noticeNo) {
 		List<FileReadDto> result = null;
-		String sql = "SELECT NOTICE_NO, FILE_ORIGIN_NAME, FILE_SAVE_PATH FROM NOTICE WHERE NOTICE_NO=?";
+		String sql = "SELECT NOTICE_NO, FILE_SAVE_PATH, FILE_ORIGIN_NAME FROM NOTICE_FILE WHERE NOTICE_NO=?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
@@ -32,9 +32,10 @@ public class NoticeDao {
 				result = new ArrayList<FileReadDto>();
 				do {
 					FileReadDto dto = new FileReadDto(
-							rs.getInt("NOTICE_NO"),rs.getString("FILE_ORIGIN_NAME"),
-							rs.getString("FILE_SAVE_PATH")
+							rs.getInt("NOTICE_NO"),rs.getString("FILE_SAVE_PATH"),
+							rs.getString("FILE_ORIGIN_NAME")
 							);
+					result.add(dto);
 				} while(rs.next());
 			}
 		} catch (SQLException e) {
@@ -72,7 +73,7 @@ public class NoticeDao {
 		List<NoticeListDto> result = null;
 		String sql = "SELECT T2.*"
 				+ "    FROM (SELECT T1.*, ROWNUM RN"
-				+ "    FROM (SELECT NOTICE_NO, NOTICE_SUBJECT, BOARD_DATE, BOARD_READ_NO, NOTICE_TYPE FROM NOTICE ORDER BY NOTICE_NO DESC) T1 ) T2"
+				+ "    FROM (SELECT NOTICE_NO, NOTICE_SUBJECT, BOARD_DATE, BOARD_READ_NO, NOTICE_TYPE FROM NOTICE ORDER BY NOTICE_TYPE ASC, NOTICE_NO DESC) T1 ) T2"
 				+ "    WHERE RN BETWEEN ? and ?"
 			    ;
 		PreparedStatement pstmt = null;
@@ -185,10 +186,10 @@ public class NoticeDao {
 		int result = 0;
 		String sql = "INSERT ALL ";
 		sql+="	INTO NOTICE (NOTICE_NO, NOTICE_SUBJECT, NOTICE_CONTENT, BOARD_DATE, BOARD_READ_NO, NOTICE_TYPE) ";
-		sql+="		VALUES (SEQ_NOTICE_NO.NEXTVAL, ?, ?, SYSTIMESTAMP, DEFAULT, DEFAULT) ";
+		sql+="		VALUES (SEQ_NOTICE_NO.NEXTVAL, ?, ?, SYSTIMESTAMP, DEFAULT, ?) ";
 		if(dto.getFileList()!= null && dto.getFileList().size()>0) {
 			for(FileWriteDto filedto : dto.getFileList()) {
-		sql+="	INTO NOTICE_FILE (NOTICE_NO, FILE_NAME, FILE_SAVE_PATH) ";
+		sql+="	INTO NOTICE_FILE (NOTICE_NO, FILE_SAVE_PATH, FILE_ORIGIN_NAME) ";
 		sql+="		VALUES (SEQ_NOTICE_NO.NEXTVAL, ?, ?) ";
 			}
 		} 
@@ -198,14 +199,18 @@ public class NoticeDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			// ? 처리
-			pstmt.setString(1, dto.getNoticeSubject());
-			pstmt.setString(2, dto.getNoticeContent());
+			int i = 1;
+			pstmt.setString(i++, dto.getNoticeSubject());
+			pstmt.setString(i++, dto.getNoticeContent());
+			pstmt.setInt(i++, dto.getNoticeType());
 			if(dto.getFileList()!= null && dto.getFileList().size()>0) {
 				for(FileWriteDto filedto :dto.getFileList()) {
-					pstmt.setString(3, filedto.getFilePath());
-					pstmt.setString(4, filedto.getOrginalFileName());					
+					System.out.println("dto.getFileList : "+dto.getFileList());
+					pstmt.setString(i++, filedto.getFileSavePath());
+					pstmt.setString(i++, filedto.getFileOriginName());					
 				}
 			}
+			i = 0;
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

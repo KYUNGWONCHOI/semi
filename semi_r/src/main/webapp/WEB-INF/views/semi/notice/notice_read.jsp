@@ -1,199 +1,96 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link href="<%=request.getContextPath()%>/resource/css/common/reset.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/common/page_header.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/common/page_bottom.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/common/common.css"	rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/notice/notice_read.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/notice/notice_list.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/common/page_notice.css" rel="stylesheet">
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Semim Board Write</title>
+<title>Semi Notice Read</title>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-<jsp:include page="/WEB-INF/views/semi/common_function.jsp"/>
-<link href="${pageContext.request.contextPath}/resource/css/notice/notice_read.css" rel="stylesheet">
+<jsp:include page="/WEB-INF/views/semi/common_function.jsp" />
+<%-- [[${sssLogin.memAdmin }]] --%>
 </head>
 <body>
-<h1>Semim Board Write</h1>
-<div class="board grid">
-	<div class="flex">
-		<div>${dto.boardId }</div>
-		<div>${dto.boardWriter }</div>
-		<div>${dto.writeTime }</div>
-		<div>${dto.readCount }</div>
-	</div>
-	<div class="subject">${dto.subject }</div>
-	<div>${dto.content }</div>
-	<c:if test="${not empty dto.filedtolist }">
 	<div>
-		<c:forEach items="${dto.filedtolist }" var="filedto">
-		<div><a href="${pageContext.request.contextPath }/files/${filedto.savedFilePathName}" download="">${filedto.orginalFileName }</a></div>
-		</c:forEach>
+		<%@include file="/WEB-INF/views/semi/common/header.jsp"%>
 	</div>
-	</c:if>
+	<div class="wrap">
+		<section class="flag">
+			<!-- 
+			<aside class="sidebar">
+				<ul>
+					<li class="actlist activetab"><button class="btn notice">공지</button></li>
+					<li class="actlist"><button class="btn open">운영시간</button></li>
+					<li class="actlist">
+						<div class="lesson_detail">
+							<button class="lesson_sort">강습안내</button>
+							<div class="lesson_show">
+								<a href="#" class="lessonbtn lesson_act">일일강습(원데이체험)</a> <a
+									href="#" class="lesson_act">평일</a> <a href="#"
+									class="lesson_act">주말</a>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</aside>
+			 -->
+			<div><button id="back"><img src="#" alt="back"></button></div>
+			<article class="tbl table1" id="ann_notice">
+				<h1>Semi Notice Read</h1>
+				<div class="board grid">
+					<div class="flex">
+						<div>${dto.noticeNo }</div>
+						<div>${dto.noticeSubject }</div>
+						<%-- 
+						<div>${dto.noticeContent }</div>
+						 --%>
+						<div>${dto.boardDate }</div>
+						<div>${dto.boardReadNo }</div>
+					</div>
+				</div>
+				<%-- 
+					<div class="subject">${dto.noticeSubject }</div> 
+				--%>
+				<div>${dto.noticeContent }</div>
+				<c:if test="${not empty dto.fileDtoList }">
+					<div>
+						<c:forEach items="${dto.fileDtoList }" var="filedto">
+							<div>
+								<a
+									href="${pageContext.request.contextPath }/notice_list/${filedto.fileSavePath}" download="">${filedto.fileOriginName }</a>
+							</div>
+						</c:forEach>
+					</div>
+				</c:if>
+			</article>
+		</section>
+	</div>
 	<div>
-		<form id="frm-reply">
-		<input type="hidden" name="boardId" value="${dto.boardId }">
-		<div class="flex">
-			<div>댓글</div>
-			<div><input type="text" name="boardReplyContent" required></div>
-			<div><button type="button" class="btn replay" >댓글달기</button></div>
-		</div>
-		</form>
+		<%@include file="/WEB-INF/views/semi/common/footer.jsp"%>
 	</div>
-	<div class="reply-wrap">
-	<%-- 
-		<c:forEach items="${dto.replydtolist }" var="replydto">
-			<form class="frm-rreply">
-			<input type="hidden" name="boardId" value="${dto.boardId }">
-			<input type="hidden" name="boardReplyId" value="${replydto.boardReplyId }">
-			<input type="hidden" name="boardReplyLevel" value="${replydto.boardReplyLevel }">
-			<input type="hidden" name="boardReplyStep" value="${replydto.boardReplyStep }">
-			<input type="hidden" name="boardReplyRef" value="${replydto.boardReplyRef }">
-			<div  class="boardreply grid">
-				<div>${replydto.boardReplyId }</div>
-				<div>${replydto.boardReplyContent }</div>
-				<div>${replydto.boardReplyWriteTime }</div>
-				<div>${replydto.boardReplyWriter }</div>
-				<div><button type="button" class="btn show rreplycontent">ㄷㄷ작성</button></div>
-				<div class="rreplycontent span" ><input type="text" name="boardReplyContent" ><button type="button" class="btn rreplay" >등록</button> </div>
-			</div>
-			</form>
-		</c:forEach>
-	 --%>
-	</div>
-</div>
-<script>
-$(loadedHandler);
-function loadedHandler(){
-	//event 등록
-	$(".btn.replay").on("click", btnReplyClickHandler);
-	$(".btn.rreplay").on("click", btnRReplyClickHandler);
-
-	//$(".btn.rreplycontent.show").on("click", btnRReplyContentClickHandler);
-	// displayReplyWrap()을수행 ajax
-	$.ajax({
-		url: "${pageContext.request.contextPath }/board/reply/read.ajax"
-		,method:"post"
-		,error : ajaxErrorHandler
-		,data: {boardId:"${dto.boardId }"}
-		,dataType:"json"
-		,success: function(result){
-			console.log(result);
-			displayReplyWrap(result);
-		}
-	});
 	
-}
-function btnRReplyClickHandler(){
-	//Login 페이지로 이동
-	if(checkLogin("로그인되어야 글쓰기가 가능합니다.\n로그인페이지로 이동하시겠습니까?","write")){
-		return;
-	}
-	
-	if($(this).parents(".frm-rreply").find("[name=boardReplyContent]").val().trim().length == 0){
-		alert("입력된 글이 없습니다. 입력 후 글 등록해주세요.");
-		return;
-	}
-	console.log($(this).parents(".frm-rreply").serialize());
-	
-	$.ajax({
-		url: "${pageContext.request.contextPath }/board/reply/write.ajax"
-		,method:"post"
-		,error : ajaxErrorHandler
-		,data: $(this).parents(".frm-rreply").serialize()
-		,dataType:"json"
-		,success: function(result){
-			console.log(result);
-			if(result == "-1"){
-				alert("댓글 작성이 되지 않았습니다. 게시글 목록으로 이동 후 다시 작성해주세요.");
-				location.href="${pageContext.request.contextPath }/board/list";
-				return;
-			}
-			if(result == "0"){
-				alert("댓글 등록에 실패했습니다. 다시 시도해주세요.");
-				return;
-			}
-			displayReplyWrap(result);
-		}
-	});
-}
-function btnReplyClickHandler(){
-	//Login 페이지로 이동
-	if(checkLogin("로그인되어야 글쓰기가 가능합니다.\n로그인페이지로 이동하시겠습니까?","write")){
-		return;
-	}
-	
-	if($("#frm-reply [name=boardReplyContent]").val().trim().length == 0){
-		alert("입력된 글이 없습니다. 입력 후 글 등록해주세요.");
-		return;
-	}
-	console.log($("#frm-reply").serialize());
-	
-	$.ajax({
-		url: "${pageContext.request.contextPath }/board/reply/write.ajax"
-		,method:"post"
-		,error : ajaxErrorHandler
-		,data: $("#frm-reply").serialize()
-		,dataType:"json"
-		,success: function(result){
-			console.log(result);
-			if(result == "-1"){
-				alert("댓글 작성이 되지 않았습니다. 게시글 목록으로 이동 후 다시 작성해주세요.");
-				location.href="${pageContext.request.contextPath }/board/list";
-				return;
-			}
-			if(result == "0"){
-				alert("댓글 등록에 실패했습니다. 다시 시도해주세요.");
-				return;
-			}
-			displayReplyWrap(result);
-		}
-	});
-}
-
-function btnRReplyContentClickHandler(){
-/*
-	$(".btn.rreplycontent.show").each(function(){
-		if($(this).text() == "취소"){
-			$(this).text("ㄷㄷ글");
-		}
-	});
- */	
-	if($(this).text() == "ㄷㄷ글"){
-		$(this).text("취소");	
-	}else {
-		$(this).text("ㄷㄷ글");
-	}
-	//$(".boardreply.grid .rreplycontent.span").show();
-	//$(this).parent().next().show();
-	$(this).parent().next().toggle();
-
-	
-}
-function displayReplyWrap(datalist){
-	console.log("${dto.boardId }");
-	var htmlVal = '';
-	for(var idx in datalist){
-		var replydto = datalist[idx];
-		htmlVal += `
-		<form class="frm-rreply">
-		<input type="hidden" name="boardId" value="${dto.boardId }">
-		<input type="hidden" name="boardReplyId" value="\${replydto.boardReplyId }">
-		<input type="hidden" name="boardReplyLevel" value="\${replydto.boardReplyLevel }">
-		<input type="hidden" name="boardReplyStep" value="\${replydto.boardReplyStep }">
-		<input type="hidden" name="boardReplyRef" value="\${replydto.boardReplyRef }">
-		<div  class="boardreply grid">
-			<div>\${replydto.boardReplyId }</div>
-			<div>\${replydto.boardReplyContent }</div>
-			<div>\${replydto.boardReplyWriteTime }</div>
-			<div>\${replydto.boardReplyWriter }</div>
-			<div><button type="button" class="btn show rreplycontent">ㄷㄷ글</button></div>
-			<div class="rreplycontent span" ><input type="text" name="boardReplyContent" ><button type="button" class="btn rreplay" >등록</button> </div>
-		</div>
-		</form>
-		`;
-	}
-	$(".reply-wrap").html(htmlVal);
-	// html(새로운내용으로덮어쓰면기존event등록이사라짐)
-	// event 다시 등록
-	$(".btn.rreplycontent.show").on("click", btnRReplyContentClickHandler);
-	$(".btn.rreplay").on("click", btnRReplyClickHandler);
-}
-</script>
+	<script>
+	 var tab = $(".sidebar > ul > li button");
+     var chart = $("section > article");
+     
+     $(loadedHandler);
+ 	function loadedHandler() {
+ 		tab.on("click", btnClickHandler);
+ 	}
+ 	
+ 	function btnClickHandler(){
+ 		location.href="${pageContext.request.contextPath}/notice";
+ 	}
+     
+     
+	</script>
+</body>
 </html>

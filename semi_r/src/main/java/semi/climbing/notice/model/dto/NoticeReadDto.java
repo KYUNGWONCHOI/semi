@@ -29,8 +29,8 @@ public class NoticeReadDto {
 		super();
 		this.noticeNo = noticeNo;
 		this.noticeSubject = noticeSubject;
-		noticeContent = noticeContent.replaceAll("\\r?\\n", "<br>");
-		noticeContent = noticeContent.replaceAll(" ", "&nbsp;");
+//		noticeContent = noticeContent.replaceAll("\\r?\\n", "<br>");
+//		noticeContent = noticeContent.replaceAll(" ", "&nbsp;");
 		this.noticeContent = noticeContent;
 		this.boardDate = boardDate;
 		this.boardReadNo = boardReadNo;

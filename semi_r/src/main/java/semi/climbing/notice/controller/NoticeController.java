@@ -33,7 +33,7 @@ public class NoticeController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		-- 한페이지당글수 5 씩
-		int pageSize = 5;
+		int pageSize = 10;
 //		-- 화면하단 나타날 페이지수 5 씩
 		int pageBlockSize = 5;
 //		-- 현재페이지
@@ -49,6 +49,7 @@ public class NoticeController extends HttpServlet {
 				//e.printStackTrace();
 			}
 		}
+
 		System.out.println("onedayList : "+serviceLesson.selectOnedayList());
 		request.setAttribute("mapNotice" , serviceNotice.selectPageList(pageSize, pageBlockSize, currentPageNum));
 		request.setAttribute("listLessonOneday", serviceLesson.selectOnedayList());
