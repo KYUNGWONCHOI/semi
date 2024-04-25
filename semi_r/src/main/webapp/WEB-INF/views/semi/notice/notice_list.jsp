@@ -66,12 +66,7 @@ function loadedHandler(){
 }
 
 function btnWriteNoticeClickHandler(){
-	
-	//Login 페이지로 이동
-	if(checkLogin("로그인되어야 글쓰기가 가능합니다.\n로그인페이지로 이동하시겠습니까?","write")){
-		return;
-	}
-	
+		
 	location.href="${pageContext.request.contextPath}/notice/write";
 }
 </script>

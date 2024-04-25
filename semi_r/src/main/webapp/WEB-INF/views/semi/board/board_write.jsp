@@ -17,6 +17,8 @@
 
 
 <body>
+[["${sssLogin }"]]
+
 <div>
 	<%@include file="/WEB-INF/views/semi/common/header.jsp" %>
 </div>
@@ -28,11 +30,11 @@ ${sssLogin.memId }
 		<label>자유<input type="radio" name="pos" value=1></label>
 		<label>문의<input type="radio" name="pos" value=2></label>
 	</div>
-	<div><input></div>
 	<div><label>제목</label><input type="text" name="subject" required></div>
 	<div><label>내용</label><textarea name="content" required></textarea></div>
 	<div><label>섹터</label><input type="text" name="sector" required></div>
 	<div><label>난이도</label><input type="text" name="level" required></div>
+	<label><input type="hidden" name="memId">${sssLogin.memId }</label>
 	<div><button type="button" class="btn file">파일추가</button></div>	
 	<!-- event click 시 추가됨 -->
 	<div><button type="button" class="btn write" >글쓰기</button></div>
@@ -63,7 +65,11 @@ function btnFileCancleClickHandler(){
 	
 }
 function btnWriteClickHandler(){
-	
+	var memId = ${sssLogin.memId};
+	console.log("@@@@@@memId : "+memId);
+	<%
+		request.setAttribute("memId", "${sssLogin.memId}");
+	%>
 	//Login 페이지로 이동
 
 	console.log($("[name=content]").val().length);  // 사용자 입력값은 value가 진짜임.
@@ -77,11 +83,10 @@ function btnWriteClickHandler(){
 	   alert("빈문자열만 입력할 수 없습니다. 내용을 작성해주세요.");
 	   return;
 	}
-	
 	// 중요!
 	var frm = document.getElementById("frm-write");
 	frm.method="post";  // content 길이 길거라..
-	frm.action = "${pageContext.request.contextPath}/notice/write";
+	frm.action = "${pageContext.request.contextPath}/board/write";
 	frm.enctype="multipart/form-data";  // form 태그 내부에 input type="file"이 있다면
 	frm.submit();	
 }

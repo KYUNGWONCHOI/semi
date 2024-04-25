@@ -31,7 +31,7 @@ public class NoticeWriteController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String prePage = (String)request.getSession().getAttribute("prePage");
-		if(prePage!= null && prePage.equals("write")) {
+		if(prePage!= null &&prePage.equals("write")) {
 			request.getSession().removeAttribute("prePage");
 		}
 		request.getRequestDispatcher("/WEB-INF/views/semi/notice/notice_write.jsp").forward(request, response);

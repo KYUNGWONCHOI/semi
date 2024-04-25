@@ -19,7 +19,7 @@ public class ProblemInsertDto {
 	private String memberId;
 	private Integer boardType;
 	
-	private List<FileWriteDto> fileList;
+	private List<VideoWriteDto> fileList;
 
 	@Override
 	public String toString() {
@@ -29,7 +29,7 @@ public class ProblemInsertDto {
 	}
 
 	public ProblemInsertDto(String probSubject, String probSector, Integer probLevel, String probContent,
-			String memberId, Integer boardType, List<FileWriteDto> fileList) {
+			String memberId, Integer boardType, List<VideoWriteDto> fileList) {
 		super();
 		this.probSubject = probSubject;
 		this.probSector = probSector;
@@ -64,10 +64,14 @@ public class ProblemInsertDto {
 		return boardType;
 	}
 
-	public List<FileWriteDto> getFileList() {
+	public List<VideoWriteDto> getFileList() {
 		return fileList;
 	}
-	
+
+	public void setFileList(List<VideoWriteDto> fileList) {
+		this.fileList = fileList;
+	}
+
 	
 	
 }

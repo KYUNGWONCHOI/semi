@@ -54,8 +54,10 @@ function frmClickHandler(){
 			if(result == 1 ){
 				alert("반갑습니다.");
 				var prePage = "${prePage}";
-				if(prePage == "write"){
+				if(prePage == "writeNotice"){
 					location.href="${pageContext.request.contextPath}/notice/write";
+				}else if(prePage == "writeBoard"){
+					location.href="${pageContext.request.contextPath}/board/write";
 				}else
 				location.href="${pageContext.request.contextPath}/main";
 			}else {

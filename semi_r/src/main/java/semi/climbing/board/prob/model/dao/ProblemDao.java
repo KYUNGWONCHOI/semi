@@ -9,10 +9,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import semi.climbing.board.prob.model.dto.FileWriteDto;
 import semi.climbing.board.prob.model.dto.ProblemDto;
 import semi.climbing.board.prob.model.dto.ProblemInsertDto;
 import semi.climbing.board.prob.model.dto.ProblemListDto;
+import semi.climbing.board.prob.model.dto.VideoWriteDto;
 
 public class ProblemDao {
 
@@ -56,7 +56,7 @@ public class ProblemDao {
 				result = new ArrayList<ProblemListDto>();
 				do {
 					ProblemListDto dto = new ProblemListDto(
-							rs.getString("PROB_SUBJECT"), rs.getString("PROB_SECTOR"), rs.getInt("PROB_LEVEL"), 
+							rs.getInt("BOARD_PROB_NO"),rs.getString("PROB_SUBJECT"), rs.getString("PROB_SECTOR"), rs.getInt("PROB_LEVEL"), 
 							rs.getString("BOARD_PROB_DATE"), rs.getInt("BOARD_PROB_READ_NO"), rs.getString("MEMBER_ID"), rs.getInt("BOARD_TYPE")
 							);
 					result.add(dto);
@@ -87,7 +87,7 @@ public class ProblemDao {
 				result = new ArrayList<ProblemListDto>();
 				do {
 					ProblemListDto dto = new ProblemListDto(
-							rs.getString("PROB_SUBJECT"), rs.getString("PROB_SECTOR"), rs.getInt("PROB_LEVEL"), 
+							rs.getInt("BOARD_PROB_NO"),rs.getString("PROB_SUBJECT"), rs.getString("PROB_SECTOR"), rs.getInt("PROB_LEVEL"), 
 							rs.getString("BOARD_PROB_DATE"), rs.getInt("BOARD_PROB_READ_NO"), rs.getString("MEMBER_ID"), rs.getInt("BOARD_TYPE")
 							);
 					result.add(dto);
@@ -137,7 +137,7 @@ public class ProblemDao {
 			sql+="	INTO BOARD_PROBLEM (BOARD_PROB_NO, PROB_SUBJECT, PROB_SECTOR, PROB_LEVEL, PROB_CONTENT, BOARD_PROB_DATE, BOARD_PROB_READ_NO, MEMBER_ID, BOARD_TYPE ) ";
 			sql+="		VALUES (SEQ_BOARD_PROBLEM.NEXTVAL, ?, ?, ?, ?, DEFAULT, DEFAULT, ?, ?) ";
 			if(dto.getFileList()!= null && dto.getFileList().size()>0) {
-				for(FileWriteDto filedto : dto.getFileList()) {
+				for(VideoWriteDto filedto : dto.getFileList()) {
 			sql+="	INTO BOARD_PROB_VIDEO (BOARD_PROB_NO, VIDEO_SAVE_PATH, VIDEO_NAME) ";
 			sql+="		VALUES (SEQ_BOARD_PROBLEM.NEXTVAL, ?, ?) ";
 				}
@@ -156,10 +156,10 @@ public class ProblemDao {
 				pstmt.setString(i++, dto.getMemberId());
 				pstmt.setInt(i++, dto.getBoardType());
 				if(dto.getFileList()!= null && dto.getFileList().size()>0) {
-					for(FileWriteDto filedto :dto.getFileList()) {
+					for(VideoWriteDto filedto :dto.getFileList()) {
 						System.out.println("dto.getFileList : "+dto.getFileList());
-						pstmt.setString(i++, filedto.getFileSavePath());
-						pstmt.setString(i++, filedto.getFileOriginName());					
+						pstmt.setString(i++, filedto.getVideoName());
+						pstmt.setString(i++, filedto.getVideSavePath());					
 					}
 				}
 				i = 0;

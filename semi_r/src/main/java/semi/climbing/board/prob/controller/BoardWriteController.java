@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import semi.climbing.board.prob.model.dto.FileWriteDto;
 import semi.climbing.board.prob.model.dto.ProblemInsertDto;
+import semi.climbing.board.prob.model.dto.VideoWriteDto;
 import semi.climbing.board.prob.service.ProblemService;
 
 @WebServlet("/board/write")
@@ -31,7 +31,7 @@ public class BoardWriteController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String prePage = (String)request.getSession().getAttribute("prePage");
 		if(prePage!= null && prePage.equals("write")) {
-			request.getSession().removeAttribute("prePage");
+			request.getSession().removeAttribute("prePageBoard");
 		}
 		request.getRequestDispatcher("/WEB-INF/views/semi/board/board_write.jsp").forward(request, response);
 	}
@@ -53,7 +53,7 @@ public class BoardWriteController extends HttpServlet {
 				);
 		/// 중요!!! 이시점에 new MultipartRequest() 하면 file은 uploadPath위치에 저장완료!
 
-		List<FileWriteDto> fileList = new ArrayList<FileWriteDto>();
+		List<VideoWriteDto> fileList = new ArrayList<VideoWriteDto>();
 		Enumeration<?> fileNames = multiReq.getFileNames();
 		while(fileNames.hasMoreElements()) {
 			String name = (String)fileNames.nextElement();   // input type="file" name="xxx", xxx_0, xxx_1
@@ -66,16 +66,19 @@ public class BoardWriteController extends HttpServlet {
 			} else {
 //				System.out.println(f1.length());   // 그 파일의 크기 
 			}
-			FileWriteDto filedto = new FileWriteDto(fileName, orginFileName);
+			VideoWriteDto filedto = new VideoWriteDto(fileName, orginFileName);
 			fileList.add(filedto);			
 		}
+		
 		
 		String subject = multiReq.getParameter("subject");
 		String content = multiReq.getParameter("content");
 		int boardType = Integer.parseInt(multiReq.getParameter("pos"));
 		String sector = multiReq.getParameter("sector");
 		int boardLevel = Integer.parseInt(multiReq.getParameter("level"));
-		String memId = (String)req.getSession().getAttribute("sssLogin.memId");
+		
+		String memId = (String)req.getAttribute("memId");
+				
 		System.out.println("memId : " + memId);
 		ProblemInsertDto dto = new ProblemInsertDto(subject, sector, boardLevel, content, memId, boardType, fileList);
 		int result = service.insert(dto);

@@ -8,6 +8,7 @@
 	글 없음.
 	</c:when>
 	<c:otherwise>
+	<div class="colname">No</div>
 	<div class="colname">Subject</div>
 	<div class="colname">Sector</div>
 	<div class="colname">Level</div>
@@ -15,6 +16,7 @@
 	<div class="colname">ReadNo</div>
 	<div class="colname">Id</div>
 		<c:forEach items="${mapBoardProb.dtolist }" var="vo" varStatus="vs">
+		<div>${vo.boardProbNo }</div>
 		<div>${vo.probSubject }</div>
 		<div>${vo.probSector }</div>
 		<div>${vo.probLevel }</div>
@@ -56,7 +58,7 @@ function loadedHandler(){
 function btnWriteBoardClickHandler(){
 	
 	//Login 페이지로 이동
-	if(checkLogin("로그인되어야 글쓰기가 가능합니다.\n로그인페이지로 이동하시겠습니까?","write")){
+	if(checkLogin("로그인되어야 글쓰기가 가능합니다.\n로그인페이지로 이동하시겠습니까?","writeBoard")){
 		return;
 	}
 	location.href="${pageContext.request.contextPath}/board/write";

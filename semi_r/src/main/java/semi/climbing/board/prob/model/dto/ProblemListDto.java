@@ -9,6 +9,7 @@ public class ProblemListDto {
 //	BOARD_PROB_READ_NO NOT NULL NUMBER        
 //	MEMBER_ID                 NOT NULL VARCHAR2(20)  
 //	PROB_SUBJECT       NOT NULL VARCHAR2(100) 
+	private Integer boardProbNo;
 	private String probSubject;
 	private String probSector;
 	private Integer probLevel;
@@ -18,13 +19,14 @@ public class ProblemListDto {
 	private Integer boardType;
 	@Override
 	public String toString() {
-		return "ProblemListDto [probSubject=" + probSubject + ", probSector=" + probSector + ", probLevel=" + probLevel
-				+ ", boardProbDate=" + boardProbDate + ", boardProbReadNo=" + boardProbReadNo + ", memberId=" + memberId
-				+ ", boardType=" + boardType + "]";
+		return "ProblemListDto [boardProbNo=" + boardProbNo + ", probSubject=" + probSubject + ", probSector="
+				+ probSector + ", probLevel=" + probLevel + ", boardProbDate=" + boardProbDate + ", boardProbReadNo="
+				+ boardProbReadNo + ", memberId=" + memberId + ", boardType=" + boardType + "]";
 	}
-	public ProblemListDto(String probSubject, String probSector, Integer probLevel, String boardProbDate,
-			Integer boardProbReadNo, String memberId, Integer boardType) {
+	public ProblemListDto(Integer boardProbNo, String probSubject, String probSector, Integer probLevel,
+			String boardProbDate, Integer boardProbReadNo, String memberId, Integer boardType) {
 		super();
+		this.boardProbNo = boardProbNo;
 		this.probSubject = probSubject;
 		this.probSector = probSector;
 		this.probLevel = probLevel;
@@ -32,6 +34,9 @@ public class ProblemListDto {
 		this.boardProbReadNo = boardProbReadNo;
 		this.memberId = memberId;
 		this.boardType = boardType;
+	}
+	public Integer getBoardProbNo() {
+		return boardProbNo;
 	}
 	public String getProbSubject() {
 		return probSubject;
@@ -54,6 +59,5 @@ public class ProblemListDto {
 	public Integer getBoardType() {
 		return boardType;
 	}
-	
 	
 }
