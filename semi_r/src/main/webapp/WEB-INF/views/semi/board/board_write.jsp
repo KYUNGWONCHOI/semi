@@ -34,7 +34,7 @@ ${sssLogin.memId }
 	<div><label>내용</label><textarea name="content" required></textarea></div>
 	<div><label>섹터</label><input type="text" name="sector" required></div>
 	<div><label>난이도</label><input type="text" name="level" required></div>
-	<label><input type="hidden" name="memId">${sssLogin.memId }</label>
+	<input type="hidden" name="memId" value="${sssLogin.memId }">
 	<div><button type="button" class="btn file">파일추가</button></div>	
 	<!-- event click 시 추가됨 -->
 	<div><button type="button" class="btn write" >글쓰기</button></div>
@@ -65,11 +65,7 @@ function btnFileCancleClickHandler(){
 	
 }
 function btnWriteClickHandler(){
-	var memId = ${sssLogin.memId};
-	console.log("@@@@@@memId : "+memId);
-	<%
-		request.setAttribute("memId", "${sssLogin.memId}");
-	%>
+	
 	//Login 페이지로 이동
 
 	console.log($("[name=content]").val().length);  // 사용자 입력값은 value가 진짜임.

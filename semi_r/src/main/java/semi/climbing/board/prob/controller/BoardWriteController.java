@@ -77,7 +77,7 @@ public class BoardWriteController extends HttpServlet {
 		String sector = multiReq.getParameter("sector");
 		int boardLevel = Integer.parseInt(multiReq.getParameter("level"));
 		
-		String memId = (String)req.getAttribute("memId");
+		String memId = multiReq.getParameter("memId");
 				
 		System.out.println("memId : " + memId);
 		ProblemInsertDto dto = new ProblemInsertDto(subject, sector, boardLevel, content, memId, boardType, fileList);
