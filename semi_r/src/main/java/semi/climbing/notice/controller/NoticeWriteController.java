@@ -39,6 +39,8 @@ public class NoticeWriteController extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("NoticeWriteController Get-----");
+		
 		System.out.println("/notice/write doPost()");
 		
 		String uploadPath = req.getServletContext().getRealPath("notice_list");
@@ -82,6 +84,7 @@ public class NoticeWriteController extends HttpServlet {
 		NoticeInsertDto dto = new NoticeInsertDto(subject, content, noticeType, fileList);
 		int result = service.insert(dto);
 		resp.sendRedirect(req.getContextPath()+"/notice");
+		System.out.println("-----NoticeWriteController Get");
 	}
 
 }

@@ -10,11 +10,16 @@ function checkLogin(msg,prePage){
 		var result = confirm(msg);
 		if( result ){
 			console.log(prePage);
-			location.href="${pageContext.request.contextPath}/login?aaa="+prePage;
+			location.href="${pageContext.request.contextPath}/login?prePage="+prePage;
 		}
 		return true;
 	}
 	return false;
+}
+function ajaxErrorHandler (request, status, error){
+	alert("code: "+request.status + "\n" 
+			+ "message: " + request.responseText 
+			+ "\n" + "error: "+error);
 }
 
 

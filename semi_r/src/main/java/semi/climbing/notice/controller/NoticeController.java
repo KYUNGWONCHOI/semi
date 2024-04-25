@@ -32,6 +32,8 @@ public class NoticeController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		System.out.println("NoticeListController Post-----");
 //		-- 한페이지당글수 5 씩
 		int pageSize = 10;
 //		-- 화면하단 나타날 페이지수 5 씩
@@ -54,5 +56,7 @@ public class NoticeController extends HttpServlet {
 		request.setAttribute("listLessonWeekday", serviceLesson.selectDayAllList());
 		request.setAttribute("listLessonWeekend", serviceLesson.selectEndAllList());
 		request.getRequestDispatcher("/WEB-INF/views/semi/notice/notice.jsp").forward(request, response);
+
+		System.out.println("-----NoticeListController Post");
 	}
 }

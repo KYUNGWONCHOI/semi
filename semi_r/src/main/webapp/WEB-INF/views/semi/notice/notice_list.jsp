@@ -4,7 +4,7 @@
 <h1>Semi Notice List</h1>
 <div>${sssLogin.memId }</div>
 <div>${sssLogin.memAdmin }</div>
-	
+console.log("notice_list.jsp");
 <div class="notice grid">
 <c:choose>
 	<c:when test="${empty mapNotice.dtolist }">
@@ -18,7 +18,7 @@
 		<c:forEach items="${mapNotice.dtolist }" var="vo" varStatus="vs">
 			<c:if test="${vo.noticeType eq 1 }"> 
 				<div>*</div>				
-				<div><a href="${pageContext.request.contextPath }/notice/read?id=${vo.noticeNo }">${vo.noticeSubject }</a></div>
+				<div><a href="${pageContext.request.contextPath }/notice/read?id=${vo.noticeNo }&readcount=${vo.baordReadNo}">${vo.noticeSubject }</a></div>
 				<div>${vo.boardDate }</div>
 				<div>${vo.baordReadNo }</div>
 			</c:if>
@@ -26,7 +26,7 @@
 		<c:forEach items="${mapNotice.dtolist }" var="vo" varStatus="vs">
 			<c:if test="${vo.noticeType eq 2 }">
 				<div>${vo.noticeNo }</div>
-				<div><a href="${pageContext.request.contextPath }/notice/read?id=${vo.noticeNo }">${vo.noticeSubject }</a></div>
+				<div><a href="${pageContext.request.contextPath }/notice/read?id=${vo.noticeNo }&readcount=${vo.baordReadNo}">${vo.noticeSubject }</a></div>
 				<div>${vo.boardDate }</div>
 				<div>${vo.baordReadNo }</div>
 			</c:if>

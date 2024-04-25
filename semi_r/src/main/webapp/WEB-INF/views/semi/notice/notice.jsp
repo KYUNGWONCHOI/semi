@@ -27,6 +27,7 @@
 </head>
 
 <body>
+console.log("notice.jsp");
 	<div>
 		<%@include file="/WEB-INF/views/semi/common/header.jsp" %>
 	</div>
@@ -72,7 +73,7 @@
 
             </article>
             <article class="tbl table3" id="ann_price">
-                <div class="tbl3">
+                <div class="tbl3 firsttbl3" style="display:block">
                     <div class="class_day">
                         <h1>일일클래스</h1>
                         <div>
@@ -152,10 +153,19 @@
     $(loadedHandler);
 	function loadedHandler() {
 		var tabmenu = "${param.tabmenu}";
+		var endtab = 0;
+		console.log("@@@@@@@@@@@@#@#@#@"+tabmenu);
+		
 		if(tabmenu == 2){
-			var indexNum = 2;
-            $(".sidebar > ul >li").removeClass("activetab");
-            $(".sidebar > ul >li").eq(indexNum).addClass("activetab");
+			$(".sidebar > ul >li").removeClass("activetab");
+            $(".sidebar > ul >li").eq(tabmenu).addClass("activetab");
+            console.log("tabmenu = 2");
+            $(".tbl").hide();
+	        $(".tbl.table3").show();
+		}
+		else{
+			$(".tbl").hide();
+	        $(".tbl.table1").show();
 		}
 		$(".btn.write").on("click", btnWriteClickHandler);
 	}
@@ -170,8 +180,7 @@
         var tab = $(".sidebar > ul > li");
         var chart = $("section > article");
 
-        $(".tbl").hide();
-        $(".tbl.table1").show();
+        
 
         tab.click(function () {
             var target = $(this);
@@ -180,7 +189,8 @@
             chart.eq(indexNum).css("display", "block");
 
             $(".sidebar > ul >li").removeClass("activetab");
-            $(this).addClass("activetab");
+            $(".sidebar > ul >li").eq(indexNum).addClass("activetab");
+            console.log("indexnum : " + indexNum);
         });
        
         $(".lesson_act").each(function (index, item) {

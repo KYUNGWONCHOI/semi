@@ -11,6 +11,7 @@ import java.util.Map;
 import semi.climbing.notice.model.dao.NoticeDao;
 import semi.climbing.notice.model.dto.FileReadDto;
 import semi.climbing.notice.model.dto.NoticeDto;
+import semi.climbing.notice.model.dto.NoticeGetReadNoDto;
 import semi.climbing.notice.model.dto.NoticeInsertDto;
 import semi.climbing.notice.model.dto.NoticeListDto;
 import semi.climbing.notice.model.dto.NoticeReadDto;
@@ -84,7 +85,20 @@ public class NoticeService {
 		close(conn);
 		return result;
 	}
-
+	public int updateReadCount(Integer noticeNo) {
+		int result = 0;
+		Connection conn = getSemiConnection(true);
+		result = dao.updateReadCount(conn, noticeNo);
+		close(conn);
+		return result;
+	}
+	public NoticeGetReadNoDto selectOneReadNo(Integer noticeNo) {
+		NoticeGetReadNoDto result = null;
+		Connection conn = getSemiConnection(true);
+		result = dao.selectOneReadCount(conn, noticeNo);
+		close(conn);
+		return result;
+	}
 	// update
 //	public int update(NoticeDto dto) {
 //		int result = 0;

@@ -29,6 +29,7 @@ public class NoticeListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("NoticeListController Post-----");
 //		String prePage = request.getHeader("Referer");
 //		session.setAttribute("prePageURL", prePage);
 //		-- 한페이지당글수 5 씩
@@ -50,5 +51,7 @@ public class NoticeListController extends HttpServlet {
 		}
 		request.setAttribute("map" , service.selectPageList(pageSize, pageBlockSize, currentPageNum));
 		request.getRequestDispatcher("/WEB-INF/views/semi/notice/notice_list.jsp").forward(request, response);
+
+		System.out.println("-----NoticeListController Post");
 	}
 }

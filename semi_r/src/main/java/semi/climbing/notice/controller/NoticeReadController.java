@@ -29,11 +29,20 @@ public class NoticeReadController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("NoticeReadController Get-----");
 		String noticeIdStr = request.getParameter("id");
+		int noticeReadNo = Integer.parseInt(request.getParameter("readcount"));
 		System.out.println("@@@@@@@@@@@id : "+noticeIdStr);
+		System.out.println("noticeReadNo : " +noticeReadNo);
 		try {
 			int noticeNo = Integer.parseInt(noticeIdStr);
+			int temp = 1;
+			if((temp--) != 0) {
+				int result = service.updateReadCount(noticeNo);
+				System.out.println("get readcount : " + result);
+			}
 			request.setAttribute("dto", service.selectOne(noticeNo));
+			
 			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@"+service.selectOne(noticeNo));
 //			request.setAttribute("fdto", service.selectFileList(noticeNo));
 			request.getRequestDispatcher("/WEB-INF/views/semi/notice/notice_read.jsp").forward(request, response);
@@ -41,5 +50,6 @@ public class NoticeReadController extends HttpServlet {
 			System.out.println("!!! NumberFormatException !!!!!!");
 			response.sendRedirect(request.getContextPath()+"notice/list");
 		}
+		System.out.println("-----NoticeReadController Get");
 	}
 }

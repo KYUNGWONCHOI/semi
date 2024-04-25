@@ -35,8 +35,8 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("#################");
-		//String prePage = request.getParameter("prePage");
-		//request.getSession().setAttribute("prePage", prePage);
+		String prePage = request.getParameter("prePage");
+		request.getSession().setAttribute("prePage", prePage);
 		request.getRequestDispatcher("/WEB-INF/views/semi/login.jsp").forward(request, response);
 	}
 

@@ -12,6 +12,7 @@ import java.util.List;
 import semi.climbing.notice.model.dto.FileReadDto;
 import semi.climbing.notice.model.dto.FileWriteDto;
 import semi.climbing.notice.model.dto.NoticeDto;
+import semi.climbing.notice.model.dto.NoticeGetReadNoDto;
 import semi.climbing.notice.model.dto.NoticeInsertDto;
 import semi.climbing.notice.model.dto.NoticeListDto;
 import semi.climbing.notice.model.dto.NoticeReadDto;
@@ -159,6 +160,7 @@ public class NoticeDao {
 		return result;
 	}
 	
+	
 	// getSequenceNum
 	public int getSequenceNum(Connection conn) {
 		int result = 0;
@@ -220,9 +222,31 @@ public class NoticeDao {
 	}
 	
 	// update - readCount
+	public NoticeGetReadNoDto selectOneReadCount(Connection conn, Integer noticeNo) {
+		NoticeGetReadNoDto result = null;
+		String sql = "SELECT BOARD_READ_NO FROM NOTICE WHERE NOTICE_NO=?";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			// ? 처리
+			pstmt.setInt(1, noticeNo);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = new NoticeGetReadNoDto(	
+						rs.getInt("BOARD_READ_NO")
+						);
+			}			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		close(pstmt);
+		return result;
+	}
+	
 	public int updateReadCount(Connection conn, Integer noticeNo) {
 		int result = 0;
-		String sql = "UPDATE NOTICE SET BOARD_READ_NO=BOARD_READ_NO+1 WHERE NOTICE_NO=?";  //TODO
+		String sql = "UPDATE NOTICE SET BOARD_READ_NO=BOARD_READ_NO+1 WHERE NOTICE_NO=?";
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
