@@ -45,13 +45,13 @@ public class LessonService {
 		return result;
 	}
 	//insert weekday
-//	public int insertWeekday(LessonInsertDto dto) {
-//		int result = 0;
-//		Connection conn = getSemiConnection(true);
-//		result = dao.insertWeekday(conn, dto);
-//		close(conn);
-//		return result;		
-//	}
+	public int insert(LessonInsertDto dto) {
+		int result = 0;
+		Connection conn = getSemiConnection(true);
+		result = dao.insert(conn, dto);
+		close(conn);
+		return result;		
+	}
 	//insert weekend
 //	public int insertWeekend(LessonInsertDto dto) {
 //		int result = 0;

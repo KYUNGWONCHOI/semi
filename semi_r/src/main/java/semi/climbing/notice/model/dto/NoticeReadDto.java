@@ -8,9 +8,7 @@ public class NoticeReadDto {
 //	NOTICE_CONTENT            VARCHAR2(1000) 
 //	BOARD_DATE       NOT NULL TIMESTAMP(6)   
 //	BOARD_READ_NO    NOT NULL NUMBER         
-//	NOTICE_TYPE      NOT NULL NUMBER         
-//	FILE_ORIGIN_NAME          VARCHAR2(255)  
-//	FILE_SAVE_PATH            VARCHAR2(255) 
+//	NOTICE_TYPE      NOT NULL NUMBER
 	private Integer noticeNo;
 	private String noticeSubject;
 	private String noticeContent;

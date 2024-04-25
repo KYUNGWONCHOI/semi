@@ -9,17 +9,13 @@ function checkLogin(msg,prePage){
 	if ( !sslogin ) {
 		var result = confirm(msg);
 		if( result ){
-			location.href="${pageContext.request.contextPath}/login?prePage="+prePage;
+			console.log(prePage);
+			location.href="${pageContext.request.contextPath}/login?aaa="+prePage;
 		}
 		return true;
 	}
 	return false;
 }
 
-function ajaxErrorHandler (request, status, error){
-	alert("code: "+request.status + "\n" 
-			+ "message: " + request.responseText 
-			+ "\n" + "error: "+error);
-}
 
 </script>

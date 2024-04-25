@@ -33,12 +33,13 @@ public class BoardWriteController extends HttpServlet {
 		if(prePage!= null && prePage.equals("write")) {
 			request.getSession().removeAttribute("prePageBoard");
 		}
-		request.getRequestDispatcher("/WEB-INF/views/semi/board/board_write.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/semi/board/board_prob_write.jsp").forward(request, response);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String uploadPath = req.getServletContext().getRealPath("problem_video");
+		System.out.println(uploadPath);
 		File uploadPathFile = new File(uploadPath);
 		if(!uploadPathFile.exists()) {
 			uploadPathFile.mkdirs();

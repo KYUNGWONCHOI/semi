@@ -34,8 +34,9 @@ public class LoginController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String prePage = request.getParameter("prePage");
-		request.getSession().setAttribute("prePage", prePage);
+		System.out.println("#################");
+		//String prePage = request.getParameter("prePage");
+		//request.getSession().setAttribute("prePage", prePage);
 		request.getRequestDispatcher("/WEB-INF/views/semi/login.jsp").forward(request, response);
 	}
 
@@ -65,9 +66,6 @@ public class LoginController extends HttpServlet {
 			request.getSession().setAttribute("sssLogin", memdto);
 			request.setAttribute("loginInfo" , service.loginGetInfo(id));
 			result = 1;
-
-			System.out.println("@@@@@@@resultInfo : " +memdto);
-			System.out.println("@@#!"+service.loginGetInfo(id));
 		}
 		response.getWriter().append(String.valueOf(result));
 	}

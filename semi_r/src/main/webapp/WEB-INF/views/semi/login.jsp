@@ -58,6 +58,8 @@ function frmClickHandler(){
 					location.href="${pageContext.request.contextPath}/notice/write";
 				}else if(prePage == "writeBoard"){
 					location.href="${pageContext.request.contextPath}/board/write";
+				}else if(prePage == "bookOnedayClass"){
+					location.href="${pageContext.request.contextPath}/notice?tabmenu=2";
 				}else
 				location.href="${pageContext.request.contextPath}/main";
 			}else {

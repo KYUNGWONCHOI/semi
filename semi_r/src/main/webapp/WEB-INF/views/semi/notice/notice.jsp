@@ -3,10 +3,11 @@
 <link href="<%=request.getContextPath()%>/resource/css/common/page_announce.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resource/css/common/page_header.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resource/css/common/page_bottom.css" rel="stylesheet">
-<link href="<%=request.getContextPath()%>/resource/css/notice/notice_list.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/common/page_notice.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resource/css/lesson/lesson_oneday_list.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resource/css/lesson/lesson_weekend_list.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resource/css/lesson/lesson_weekday_list.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/notice/notice_list.css" rel="stylesheet">
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -39,9 +40,9 @@
                         <div class="lesson_detail">
                             <button class="lesson_sort">강습안내</button>
                             <div class="lesson_show">
-                                <a href="#" class="lessonbtn lesson_act">일일강습(원데이체험)</a>
-                                <a href="#" class="lesson_act">평일</a>
-                                <a href="#" class="lesson_act">주말</a>
+                                <a class="lessonbtn lesson_act">일일강습(원데이체험)</a>
+                                <a class="lesson_act">평일</a>
+                                <a class="lesson_act">주말</a>
                             </div>
                         </div>
                     </li>
@@ -150,6 +151,12 @@
     <script>
     $(loadedHandler);
 	function loadedHandler() {
+		var tabmenu = "${param.tabmenu}";
+		if(tabmenu == 2){
+			var indexNum = 2;
+            $(".sidebar > ul >li").removeClass("activetab");
+            $(".sidebar > ul >li").eq(indexNum).addClass("activetab");
+		}
 		$(".btn.write").on("click", btnWriteClickHandler);
 	}
 	
@@ -169,7 +176,6 @@
         tab.click(function () {
             var target = $(this);
             var indexNum = target.index();
-            var none = $(this)
             chart.css("display", "none");
             chart.eq(indexNum).css("display", "block");
 

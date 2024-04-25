@@ -12,22 +12,22 @@ public class LessonInsertDto {
 //	LESSON_DURATION          NUMBER       
 //	LESSON_CAPACITY          NUMBER 
 	private String memId;
-	private Integer lessonCapacity;
+	private Integer lessonCode;
 	@Override
 	public String toString() {
-		return "LessonInsertDto [memId=" + memId + ", lessonCapacity=" + lessonCapacity + "]";
+		return "LessonInsertDto [memId=" + memId + ", lessonCode=" + lessonCode + "]";
 	}
-	public LessonInsertDto(String memId, Integer lessonCapacity) {
+	public LessonInsertDto(String memId, Integer lessonCode) {
 		super();
 		this.memId = memId;
-		this.lessonCapacity = lessonCapacity;
+		this.lessonCode = lessonCode;
 	}
 	public String getMemId() {
 		return memId;
 	}
-	public Integer getLessonCapacity() {
-		return lessonCapacity;
+	public Integer getLessonCode() {
+		return lessonCode;
 	}
-	
-	
+
+
 }

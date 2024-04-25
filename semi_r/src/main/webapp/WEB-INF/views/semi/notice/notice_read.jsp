@@ -9,7 +9,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -24,24 +24,6 @@
 	</div>
 	<div class="wrap">
 		<section class="flag">
-			<!-- 
-			<aside class="sidebar">
-				<ul>
-					<li class="actlist activetab"><button class="btn notice">공지</button></li>
-					<li class="actlist"><button class="btn open">운영시간</button></li>
-					<li class="actlist">
-						<div class="lesson_detail">
-							<button class="lesson_sort">강습안내</button>
-							<div class="lesson_show">
-								<a href="#" class="lessonbtn lesson_act">일일강습(원데이체험)</a> <a
-									href="#" class="lesson_act">평일</a> <a href="#"
-									class="lesson_act">주말</a>
-							</div>
-						</div>
-					</li>
-				</ul>
-			</aside>
-			 -->
 			<div><button class="btn back"><img src="#" alt="back"></button></div>
 			<article class="tbl table1" id="ann_notice">
 				<h1>Semi Notice Read</h1>
@@ -56,9 +38,6 @@
 						<div>${dto.boardReadNo }</div>
 					</div>
 				</div>
-				<%-- 
-					<div class="subject">${dto.noticeSubject }</div> 
-				--%>
 				<div>${dto.noticeContent }</div>
 				<c:if test="${not empty dto.fileDtoList }">
 					<div>

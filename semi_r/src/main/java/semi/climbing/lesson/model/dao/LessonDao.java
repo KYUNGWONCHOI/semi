@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import semi.climbing.lesson.model.dto.LessonInsertDto;
 import semi.climbing.lesson.model.dto.LessonListDto;
 import semi.climbing.lesson.model.dto.LessonOnedayDto;
 
@@ -150,29 +151,25 @@ public class LessonDao {
 			close(pstmt);
 			return result;	
 		}
-		//insert - weekday
-//		public int insertWeekday(Connection conn, LessonInsertDto dto) {
-//			int result = 0;
-//			String sql = "INSERT INTO LESSON VALUES (SEQ_LESSON_WEEKDAY, 1, ?, ?, ?, ?, ?, ?, ?)";
-//			PreparedStatement pstmt = null;
-//			try {
-//				pstmt = conn.prepareStatement(sql);
-//				// ? 처리
-//				int i = 1;
-//				pstmt.setInt(1, dto.getLessonLevel());
-//				pstmt.setString(2, dto.getLessonStart());
-//				pstmt.setInt(3, dto.getLessonDuration());
-//				pstmt.setString(4, dto.getLessonEnd());
-//				pstmt.setString(5, dto.getTeacherName());
-//				pstmt.setInt(6, dto.getLessonTime());
-//				pstmt.setString(7, dto.getLessonDay());
-//				result = pstmt.executeUpdate();
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//			close(pstmt);
-//			return result;
-//		}
+		//insert
+		public int insert(Connection conn, LessonInsertDto dto) {
+			int result = 0;
+			String sql = "INSERT INTO MEM_LESSON (ID, LESSON_CODE)\r\n"
+					+ "    VALUES (?, ?);";
+			PreparedStatement pstmt = null;
+			try {
+				pstmt = conn.prepareStatement(sql);
+				// ? 처리
+				int i = 1;
+				pstmt.setString(1, dto.getMemId());
+				pstmt.setInt(2, dto.getLessonCode());
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			close(pstmt);
+			return result;
+		}
 		//insert - weekend
 //		public int insertWeekend(Connection conn, LessonInsertDto dto) {
 //			int result = 0;

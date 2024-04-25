@@ -11,6 +11,9 @@ import semi.climbing.board.prob.model.dto.ProblemDto;
 import semi.climbing.board.prob.model.dto.ProblemInsertDto;
 import semi.climbing.board.prob.model.dto.ProblemListDto;
 import semi.climbing.board.prob.model.dto.ProblemModifyDto;
+import semi.climbing.board.prob.model.dto.ProblemReadDto;
+import semi.climbing.board.prob.model.dto.VideoReadDto;
+import semi.climbing.notice.model.dto.FileReadDto;
 import semi.climbing.notice.model.dto.NoticeListDto;
 
 public class ProblemService {
@@ -53,10 +56,12 @@ public class ProblemService {
 	}
 	
 	//select one
-	public ProblemDto selectOne() {
-		ProblemDto result = null;
+	public ProblemReadDto selectOne(Integer boardNo) {
+		ProblemReadDto result = null;
 		Connection conn = getSemiConnection(true);
-		result = dao.selectOne(conn);
+		result = dao.selectOne(conn, boardNo);
+		List<VideoReadDto> filelist = dao.selectFileList(conn, boardNo);
+		result.setVideoDtoList(filelist);
 		close(conn);
 		return result;
 	}

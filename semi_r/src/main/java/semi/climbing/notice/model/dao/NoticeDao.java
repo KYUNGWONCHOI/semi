@@ -21,7 +21,7 @@ public class NoticeDao {
 	// 파일 읽기
 	public List<FileReadDto> selectFileList(Connection conn, Integer noticeNo) {
 		List<FileReadDto> result = null;
-		String sql = "SELECT NOTICE_NO, FILE_SAVE_PATH, FILE_ORIGIN_NAME FROM NOTICE_FILE WHERE NOTICE_NO=?";
+		String sql = "SELECT NOTICE_NO, FILE_SAVE_PATH, FILE_NAME FROM NOTICE_FILE WHERE NOTICE_NO=?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
@@ -33,7 +33,7 @@ public class NoticeDao {
 				do {
 					FileReadDto dto = new FileReadDto(
 							rs.getInt("NOTICE_NO"),rs.getString("FILE_SAVE_PATH"),
-							rs.getString("FILE_ORIGIN_NAME")
+							rs.getString("FILE_NAME")
 							);
 					result.add(dto);
 				} while(rs.next());
@@ -189,7 +189,7 @@ public class NoticeDao {
 		sql+="		VALUES (SEQ_NOTICE_NO.NEXTVAL, ?, ?, SYSTIMESTAMP, DEFAULT, ?) ";
 		if(dto.getFileList()!= null && dto.getFileList().size()>0) {
 			for(FileWriteDto filedto : dto.getFileList()) {
-		sql+="	INTO NOTICE_FILE (NOTICE_NO, FILE_SAVE_PATH, FILE_ORIGIN_NAME) ";
+		sql+="	INTO NOTICE_FILE (NOTICE_NO, FILE_SAVE_PATH, FILE_NAME) ";
 		sql+="		VALUES (SEQ_NOTICE_NO.NEXTVAL, ?, ?) ";
 			}
 		} 
@@ -207,7 +207,7 @@ public class NoticeDao {
 				for(FileWriteDto filedto :dto.getFileList()) {
 					System.out.println("dto.getFileList : "+dto.getFileList());
 					pstmt.setString(i++, filedto.getFileSavePath());
-					pstmt.setString(i++, filedto.getFileOriginName());					
+					pstmt.setString(i++, filedto.getFileName());					
 				}
 			}
 			i = 0;

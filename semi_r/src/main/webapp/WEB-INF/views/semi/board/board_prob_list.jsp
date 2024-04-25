@@ -17,7 +17,7 @@
 	<div class="colname">Id</div>
 		<c:forEach items="${mapBoardProb.dtolist }" var="vo" varStatus="vs">
 		<div>${vo.boardProbNo }</div>
-		<div>${vo.probSubject }</div>
+		<div><a href="${pageContext.request.contextPath }/board/read?id=${vo.boardProbNo }">${vo.probSubject }</a></div>
 		<div>${vo.probSector }</div>
 		<div>${vo.probLevel }</div>
 		<div>${vo.boardProbDate }</div>

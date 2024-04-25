@@ -48,7 +48,7 @@ public class NoticeController extends HttpServlet {
 				System.out.println("!!!!!!!!!!!!!! NumberFormatException !!!!!!");
 			}
 		}
-
+		
 		request.setAttribute("mapNotice" , serviceNotice.selectPageList(pageSize, pageBlockSize, currentPageNum));
 		request.setAttribute("listLessonOneday", serviceLesson.selectOnedayList());
 		request.setAttribute("listLessonWeekday", serviceLesson.selectDayAllList());

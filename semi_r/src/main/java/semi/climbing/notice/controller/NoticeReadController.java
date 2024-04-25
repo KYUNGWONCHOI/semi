@@ -29,8 +29,8 @@ public class NoticeReadController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		String noticeIdStr = request.getParameter("id");
+		System.out.println("@@@@@@@@@@@id : "+noticeIdStr);
 		try {
 			int noticeNo = Integer.parseInt(noticeIdStr);
 			request.setAttribute("dto", service.selectOne(noticeNo));

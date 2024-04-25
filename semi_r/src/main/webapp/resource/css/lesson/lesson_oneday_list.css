@@ -1,8 +1,8 @@
 @charset "UTF-8";
 .lesson.grid{
 	display:grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-	width: 800px;
+	grid-template-columns: .3fr .5fr 1fr 1fr .5fr .5fr;
+	width: 700px;
 	margin: 0 auto;
 }
 .lesson.grid > div{

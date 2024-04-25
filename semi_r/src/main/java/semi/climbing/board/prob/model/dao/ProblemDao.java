@@ -12,10 +12,39 @@ import java.util.List;
 import semi.climbing.board.prob.model.dto.ProblemDto;
 import semi.climbing.board.prob.model.dto.ProblemInsertDto;
 import semi.climbing.board.prob.model.dto.ProblemListDto;
+import semi.climbing.board.prob.model.dto.ProblemReadDto;
+import semi.climbing.board.prob.model.dto.VideoReadDto;
 import semi.climbing.board.prob.model.dto.VideoWriteDto;
+import semi.climbing.notice.model.dto.FileReadDto;
 
 public class ProblemDao {
 
+	public List<VideoReadDto> selectFileList(Connection conn, Integer boardNo) {
+		List<VideoReadDto> result = null;
+		String sql = "SELECT BOARD_PROB_NO, VIDEO_SAVE_PATH, VIDEO_NAME FROM BOARD_PROB_VIDEO WHERE BOARD_PROB_NO=?";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = new ArrayList<VideoReadDto>();
+				do {
+					VideoReadDto dto = new VideoReadDto(
+							rs.getInt("BOARD_PROB_NO"),rs.getString("VIDEO_SAVE_PATH"),
+							rs.getString("VIDEO_NAME")
+							);
+					result.add(dto);
+				} while(rs.next());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		close(rs);
+		close(pstmt);			
+		return result;
+	}
 	//SELECT TOTAL COUNT
 	public int selectTotalCount(Connection conn) {
 		int result = 0;
@@ -102,19 +131,20 @@ public class ProblemDao {
 	}
 	
 	//SELECT ONE
-		public ProblemDto selectOne(Connection conn){
-			ProblemDto result = null;
-			String sql = "SELECT BOARD_PROB_NO, PROB_SUBJECT, PROB_SECTOR, PROB_LEVEL, PROB_CONTENT, BOARD_PROB_DATE, BOARD_PROB_READ_NO, MEMBER_ID, VIDEO_ORIGIN_NAME, VIDEO_SAVE_PATH\r\n"
-					+ "    , BOARD_TYPE FROM BOARD_PROBLEM";
+		public ProblemReadDto selectOne(Connection conn, Integer boardNo){
+			ProblemReadDto result = null;
+			String sql = " SELECT BOARD_PROB_NO, PROB_SUBJECT, PROB_SECTOR, PROB_LEVEL, PROB_CONTENT, "
+					+" BOARD_PROB_DATE, BOARD_PROB_READ_NO, MEMBER_ID, BOARD_TYPE FROM BOARD_PROBLEM WHERE BOARD_PROB_NO= ? ";
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			try {
 				pstmt = conn.prepareStatement(sql);
 				// ? 처리
+				pstmt.setInt(1, boardNo);
 				rs = pstmt.executeQuery();
 				// ResetSet처리
 				if(rs.next()) {
-					result =  new ProblemDto(	
+					result =  new ProblemReadDto(	
 								rs.getInt("BOARD_PROB_NO"),
 								rs.getString("PROB_SUBJECT"),rs.getString("PROB_SECTOR"),
 								rs.getInt("PROB_LEVEL"),rs.getString("PROB_CONTENT"),
