@@ -12,6 +12,8 @@ import java.util.List;
 import semi.climbing.lesson.model.dto.LessonInsertDto;
 import semi.climbing.lesson.model.dto.LessonListDto;
 import semi.climbing.lesson.model.dto.LessonOnedayDto;
+import semi.climbing.lesson.model.dto.LessonUpdateCapaDto;
+import semi.climbing.notice.model.dto.NoticeGetReadNoDto;
 
 public class LessonDao {
 	
@@ -154,7 +156,7 @@ public class LessonDao {
 		//insert
 		public int insert(Connection conn, LessonInsertDto dto) {
 			int result = 0;
-			String sql = "INSERT INTO MEM_LESSON (ID, LESSON_CODE)\r\n"
+			String sql = "INSERT INTO MEM_LESSON (ID, LESSON_CODE,)\r\n"
 					+ "    VALUES (?, ?);";
 			PreparedStatement pstmt = null;
 			try {
@@ -193,24 +195,38 @@ public class LessonDao {
 //			return result;
 //		}
 		//insert - oneday
-//		public int insertOneday(Connection conn, LessonInsertDto dto) {
-//			int result = 0;
-//			String sql = "INSERT INTO LESSON VALUES (SEQ_LESSON_ONEDAY, ?, ?, ?)";
-//			PreparedStatement pstmt = null;
-//			try {
-//				pstmt = conn.prepareStatement(sql);
-//				// ? 처리
-//				int i = 1;
-//				pstmt.setInt(1, dto.getLessonLevel());
-//				pstmt.setInt(2, dto.getLessonTime());
-//				pstmt.setString(3, dto.getLessonDay());
-//				result = pstmt.executeUpdate();
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//			close(pstmt);
-//			return result;
-//		}
+		public int insertOneday(Connection conn, LessonInsertDto dto) {
+			int result = 0;
+			String sql = " INSERT INTO MEM_LESSON VALUES (?, ?) ";
+			PreparedStatement pstmt = null;
+			try {
+				pstmt = conn.prepareStatement(sql);
+				// ? 처리
+				int i = 1;
+				pstmt.setString(1, dto.getMemId());
+				pstmt.setInt(2, dto.getLessonCode());
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			close(pstmt);
+			return result;
+		}
+		public int updateLessonCapa(Connection conn, Integer lessonNo) {
+			int result = 0;
+			String sql = "UPDATE LESSON SET LESSON_CAPACITY = LESSON_CAPACITY+1 WHERE (LESSON_CODE = ?)";
+			PreparedStatement pstmt = null;
+			try {
+				pstmt = conn.prepareStatement(sql);
+				// ? 처리
+				pstmt.setInt(1, lessonNo);
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			close(pstmt);
+			return result;
+		}
 		// insert oneday
 //		public int insertOneday(Connection conn, String memId, int lessonCode) {
 //			int result = 0;

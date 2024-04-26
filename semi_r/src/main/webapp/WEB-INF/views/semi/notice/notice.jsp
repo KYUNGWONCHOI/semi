@@ -4,6 +4,7 @@
 <link href="<%=request.getContextPath()%>/resource/css/common/page_header.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resource/css/common/page_bottom.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resource/css/common/page_notice.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/lesson/lesson_common.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resource/css/lesson/lesson_oneday_list.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resource/css/lesson/lesson_weekend_list.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resource/css/lesson/lesson_weekday_list.css" rel="stylesheet">
@@ -122,7 +123,6 @@
                         <c:if test="${sssLogin.memAdmin eq 0 }">
 							<div><button type="button" class="btn write" >글쓰기</button></div>
 						</c:if>
-                        <button type="button" class="btn book">예약하기</button>
                     </div>
                 </div>
                 <div class="tbl3">
@@ -138,7 +138,6 @@
                         <c:if test="${sssLogin.memAdmin eq 0 }">
 							<div><button type="button" class="btn write" >글쓰기</button></div>
 						</c:if>
-                        <button type="button" class="btn book">예약하기</button>
                     </div>
                 </div>
             </article>

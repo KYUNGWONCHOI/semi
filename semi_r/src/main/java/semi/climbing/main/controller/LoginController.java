@@ -64,6 +64,7 @@ public class LoginController extends HttpServlet {
 			//성공
 //			request.getSession().setAttribute("sssLogin", id);
 			request.getSession().setAttribute("sssLogin", memdto);
+			System.out.println();
 			request.setAttribute("loginInfo" , service.loginGetInfo(id));
 			result = 1;
 		}

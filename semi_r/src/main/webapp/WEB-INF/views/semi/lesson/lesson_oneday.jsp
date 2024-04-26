@@ -17,12 +17,26 @@
 				<div class="colname">강습 요일</div>
 				<div class="colname">인원</div>
 				<c:forEach items="${listLessonOneday }" var="vo" varStatus="vs">
-					<div><label><input type="radio" name="classNo" value="${vs.count}"></label></div>
+					<c:choose>
+						<c:when test="${vo.lessonCapacity eq 5}">
+							<div><label><input type="radio" name="lessonNo" value="${vo.lessonCode}" disabled></label></div>
+						</c:when>
+						<c:otherwise>
+							<div><label><input type="radio" name="lessonNo" value="${vo.lessonCode}"></label></div>
+						</c:otherwise>
+					</c:choose>
 					<div>${vs.count }</div>
 					<div>체험강습</div>
 					<div>${vo.lessonTime }</div>
 					<div>${vo.lessonDay }</div>
-					<div>${vo.lessonCapacity } / 5</div>
+					<c:choose>
+						<c:when test="${vo.lessonCapacity eq 5}">
+							<div class="ended lesson">마감</div>
+						</c:when>
+						<c:otherwise>
+							<div>${vo.lessonCapacity } / 5</div>
+						</c:otherwise>
+					</c:choose>
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
@@ -36,9 +50,9 @@
 	$(loadedHandler);
 		function loadedHandler(){
 			//event 등록
-			$(".btn.book").on("click", btnBookClickHandler);
+			$(".btn.book").on("click", btnOneBookClickHandler);
 	}
-	function btnBookClickHandler(){
+	function btnOneBookClickHandler(){
 		if(checkLogin("로그인되어야 글쓰기가 가능합니다.\n로그인페이지로 이동하시겠습니까?","bookOnedayClass")){
 			return false;
 		}	
@@ -54,9 +68,8 @@
 				var tabmenu = "${param.tabmenu}";
 				
 			}
-
-		});
-		
+		});		
+		location.href="${pageContext.request.contextPath}/notice?tabmenu=2";
 	}
 
 

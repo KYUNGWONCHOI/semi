@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import semi.climbing.lesson.model.dto.LessonInsertDto;
 import semi.climbing.lesson.service.LessonService;
 import semi.climbing.member.model.dto.MemberDto;
 
@@ -32,21 +33,21 @@ public class LessonController extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		int classNo = Integer.parseInt(req.getParameter("classNo"));
-		System.out.println("**************get ClassNum : " + classNo);
-		String memId = req.getParameter("memId");
-		System.out.println("**************get memId : " + memId);
-		
+		int lessonNo = Integer.parseInt(req.getParameter("lessonNo"));
+//		int lessonCapacity = Integer.parseInt(req.getParameter("lessonCapacity"));
+		System.out.println("**************get lessonNo : " + lessonNo);
+//		System.out.println("**************get lessonCapacity : " + lessonCapacity);
+				
 		MemberDto sssLogin = (MemberDto)req.getSession().getAttribute("sssLogin");
-		if(sssLogin == null) { 
-			resp.sendRedirect(req.getContextPath()+"login");
-			return;
+		String memId =  sssLogin.getMemId();
+		System.out.println("memId : " +memId);
+		LessonInsertDto dto = new LessonInsertDto(memId, lessonNo);
+		int result = service.insertOneday(dto);
+		
+		if(result == 1) {
+			resp.sendRedirect(req.getContextPath()+"/notice?tabmenu=2");
+			System.out.println("update");
+			int update = service.updateLessonCapa(lessonNo);
 		}
-		
-		int result = 1;
-		
-		
-		resp.getWriter().append(String.valueOf(result));
 	}
-
 }
