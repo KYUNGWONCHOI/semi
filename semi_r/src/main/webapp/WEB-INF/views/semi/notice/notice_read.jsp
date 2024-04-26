@@ -71,7 +71,17 @@ console.log("notice_read.jsp");
  		location.href="${pageContext.request.contextPath}/notice";
  	}
  	function btnBackClickHandler(){
- 		location.href = document.referrer;
+ 		
+ 		const referrerUrl = document.referrer;
+ 		var result = referrerUrl.includes("tabmenu");
+ 		console.log(result);
+ 		if(result){
+	 		const idx = referrerUrl.indexOf("?");
+	 		var pageUrlWoQueryString = referrerUrl.substring(0, idx);
+	 		location.href = pageUrlWoQueryString; 			
+ 		}else{
+ 			location.href = referrerUrl;
+ 		}
  	}
      
      

@@ -18,7 +18,7 @@ console.log("notice_list.jsp");
 		<c:forEach items="${mapNotice.dtolist }" var="vo" varStatus="vs">
 			<c:if test="${vo.noticeType eq 1 }"> 
 				<div>*</div>				
-				<div><a href="${pageContext.request.contextPath }/notice/read?id=${vo.noticeNo }&readcount=${vo.baordReadNo}">${vo.noticeSubject }</a></div>
+				<div><a href="${pageContext.request.contextPath }/notice/read?id=${vo.noticeNo }">${vo.noticeSubject }</a></div>
 				<div>${vo.boardDate }</div>
 				<div>${vo.baordReadNo }</div>
 			</c:if>
@@ -26,7 +26,7 @@ console.log("notice_list.jsp");
 		<c:forEach items="${mapNotice.dtolist }" var="vo" varStatus="vs">
 			<c:if test="${vo.noticeType eq 2 }">
 				<div>${vo.noticeNo }</div>
-				<div><a href="${pageContext.request.contextPath }/notice/read?id=${vo.noticeNo }&readcount=${vo.baordReadNo}">${vo.noticeSubject }</a></div>
+				<div><a href="${pageContext.request.contextPath }/notice/read?id=${vo.noticeNo }">${vo.noticeSubject }</a></div>
 				<div>${vo.boardDate }</div>
 				<div>${vo.baordReadNo }</div>
 			</c:if>

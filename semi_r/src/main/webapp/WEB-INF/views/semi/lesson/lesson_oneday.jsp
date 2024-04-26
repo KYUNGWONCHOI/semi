@@ -35,7 +35,6 @@
 
 	$(loadedHandler);
 		function loadedHandler(){
-			
 			//event 등록
 			$(".btn.book").on("click", btnBookClickHandler);
 	}

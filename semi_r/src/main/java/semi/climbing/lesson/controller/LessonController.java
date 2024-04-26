@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import semi.climbing.lesson.service.LessonService;
+import semi.climbing.member.model.dto.MemberDto;
 
 /**
  * Servlet implementation class LessonController
@@ -32,9 +33,15 @@ public class LessonController extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int classNo = Integer.parseInt(req.getParameter("classNo"));
-		System.out.println("get ClassNum : " + classNo);
+		System.out.println("**************get ClassNum : " + classNo);
 		String memId = req.getParameter("memId");
-		System.out.println("get memId : " + memId);
+		System.out.println("**************get memId : " + memId);
+		
+		MemberDto sssLogin = (MemberDto)req.getSession().getAttribute("sssLogin");
+		if(sssLogin == null) { 
+			resp.sendRedirect(req.getContextPath()+"login");
+			return;
+		}
 		
 		int result = 1;
 		

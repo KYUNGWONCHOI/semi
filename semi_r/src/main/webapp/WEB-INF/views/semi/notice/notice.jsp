@@ -27,7 +27,6 @@
 </head>
 
 <body>
-console.log("notice.jsp");
 	<div>
 		<%@include file="/WEB-INF/views/semi/common/header.jsp" %>
 	</div>
@@ -157,11 +156,13 @@ console.log("notice.jsp");
 		console.log("@@@@@@@@@@@@#@#@#@"+tabmenu);
 		
 		if(tabmenu == 2){
+	        //tabmenu = 0;
 			$(".sidebar > ul >li").removeClass("activetab");
             $(".sidebar > ul >li").eq(tabmenu).addClass("activetab");
             console.log("tabmenu = 2");
             $(".tbl").hide();
 	        $(".tbl.table3").show();
+	        tabmenu = endtab;
 		}
 		else{
 			$(".tbl").hide();
@@ -180,7 +181,6 @@ console.log("notice.jsp");
         var tab = $(".sidebar > ul > li");
         var chart = $("section > article");
 
-        
 
         tab.click(function () {
             var target = $(this);
