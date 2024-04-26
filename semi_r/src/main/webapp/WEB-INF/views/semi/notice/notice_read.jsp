@@ -19,7 +19,6 @@
 <%-- [[${sssLogin.memAdmin }]] --%>
 </head>
 <body>
-console.log("notice_read.jsp");
 	<div>
 		<%@include file="/WEB-INF/views/semi/common/header.jsp"%>
 	</div>

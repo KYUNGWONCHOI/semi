@@ -273,14 +273,22 @@ select * from lesson;
 
 commit;
 select * from mem_lesson;
-ALTER TABLE MEM_LESSON DROP COLUMN (LESSON_CAPACITY);
+ALTER TABLE MEM_LESSON DROP (LESSON_CAPACITY);
+select * from lesson where (LESSON_CODE > 99);
+desc lesson;
+UPDATE LESSON SET LESSON_CAPACITY = LESSON_CAPACITY+1 WHERE (LESSON_CODE = 100);
+UPDATE LESSON SET LESSON_CAPACITY = 0 WHERE LESSON_CODE=100;
+COMMIT;
 
+select * from user_tables;
 
-
-
-
-
-
+--REPLY
+--CLOSE_DAY
+--OPENTIME
+--RENT
+--MEMBERSHIP
+desc membership;
+SELECT * FROM MEMBERSHIP;
 
 
 --TODO
