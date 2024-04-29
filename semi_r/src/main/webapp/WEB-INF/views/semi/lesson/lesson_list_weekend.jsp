@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- [[${listLessonOneday }]] --%>
+
 <form id="frm-lessonend">
 	<div class="lessonend grid">
 	<c:choose>

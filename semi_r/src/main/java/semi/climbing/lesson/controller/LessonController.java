@@ -34,9 +34,6 @@ public class LessonController extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int lessonNo = Integer.parseInt(req.getParameter("lessonNo"));
-//		int lessonCapacity = Integer.parseInt(req.getParameter("lessonCapacity"));
-		System.out.println("**************get lessonNo : " + lessonNo);
-//		System.out.println("**************get lessonCapacity : " + lessonCapacity);
 				
 		MemberDto sssLogin = (MemberDto)req.getSession().getAttribute("sssLogin");
 		String memId =  sssLogin.getMemId();

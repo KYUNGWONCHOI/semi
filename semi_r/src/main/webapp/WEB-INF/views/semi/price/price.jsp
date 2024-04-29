@@ -43,9 +43,60 @@
 			</table>
 			<div class="modal membership">
 				<div class="modal_body membership">
-					<h2>모달창 제목</h2>
-					<p>모달창 내용</p>
-					<button type="button" class="btn close-modal">Modal 닫기</button>
+					<h1>신청하기</h1>
+					<div class="memsort grid">
+						<div>
+							<button type="button" class="btn btnmonth">회원권</button>
+						</div>
+						<div>
+							<button type="button" class="btn btnnumber">횟수권</button>
+						</div>
+					</div>
+					<form class="membership frm" id="frm-membership">
+						<div>
+							<div class="memMonth">
+								<h1>회원권</h1>
+								<div class="membership grid ">
+									<div>
+										<label>1개월<input type="radio" name="priceType" value=1></label>
+									</div>
+									<div>
+										<label>3개월<input type="radio" name="priceType" value=3></label>
+									</div>
+								</div>
+							</div>
+							<div class="memNumber">
+								<h1>횟수권</h1>
+								<div class="membership grid">
+									<div>
+										<label>5회<input type="radio" name="priceType" value=2></label>
+									</div>
+									<div>
+										<label>10회<input type="radio" name="priceType" value=4></label>
+									</div>
+								</div>
+							</div>
+							<div class="memLocker">
+								<h1>라커</h1>
+								<div class="membership grid">
+									<div>
+										<label>Y<input type="radio" name="locker" value="Y"></label>
+									</div>
+									<div>
+										<label>N<input type="radio" name="locker" value="N"></label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="memsub membership grid">
+							<div>
+								<button type="button" class="btn submit">신청하기</button>
+							</div>
+							<div>
+								<button type="button" class="btn close-modal">취소</button>
+							</div>
+						</div>
+					</form>
 				</div>
 			</div>
 			<button class="btn membership">신청</button>
@@ -53,19 +104,49 @@
 	</div>
 	<div class="chart2">
 		<div class="pricedetails">
-			<div><h1>일일 이용권</h1>
+			<div>
+				<h1>일일 이용권</h1>
 				<ul>
 					<li>22,000원</li>
 				</ul>
 			</div>
-			<div><h1>장비 대여</h1>
+			<div>
+				<h1>장비 대여</h1>
 				<ul>
 					<li>암벽화 3,000원</li>
 					<li>초크 1,000원</li>
 				</ul>
 			</div>
+			<button class="btn oneday">예약하기</button>
 		</div>
-	<button class="btn oneday">예약하기</button>
+		<div class="modal bookonday">
+			<div class="modal_body bookonday">
+				<form class="bookonday frm" id="frm-bookonday">
+					<div>
+						<div class="wrap-rent">
+							<h1>렌탈</h1>
+							<div><label>일일이용권<input type="checkbox" name="priceType" value=5 checked disabled></label></div>
+							<div class="rentlist grid ">
+								<div>
+									<label>신발<input type="radio" name="rent" value="신발"></label>
+								</div>
+								<div>
+									<label>초크백<input type="radio" name="rent" value="초크백"></label>
+								</div>
+							</div>
+						</div>
+						<div class="memsub bookonday grid">
+							<div>
+								<button type="button" class="btn submitrent">렌탈예약</button>
+							</div>
+							<div>
+								<button type="button" class="btn close-modal">취소</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
 	</div>
 </div>
 
@@ -76,16 +157,58 @@
 		$(".btn.membership").on("click", btnMembershipClickHandler);
 		$(".btn.oneday").on("click", btnOnedayClickHandler);
 		$(".btn.close-modal").on("click", btnCloseModalClickHandler);
+		$(".btn.submit").on("click", btnsubmitClickHandler);
+		$(".btn.btnmonth").on("click", btnbtnmonthClickHandler);
+		$(".btn.btnnumber").on("click", btnbtnnumberClickHandler);
+		$(".btn.submitrent").on("click", btnsubmitrentClickHandler);
+		$(".memNumber").hide();
+		$(".memMonth").hide();
+		$(".memLocker").hide();
 	}
-	
+	function btnsubmitrentClickHandler(){		
+		$(".modal.bookonday").css("display", "none");
+		$.ajax({
+			async : false,
+			url : "${pageContext.request.contextPath }/price",
+			method : "post",
+			data : $("#frm-bookonday").serialize(),
+			error : ajaxErrorHandler,
+			success : function(result) {
+			}
+		});
+	}
+	function btnbtnmonthClickHandler() {
+		$(".memNumber").hide();
+		$(".memMonth").show();
+		$(".memLocker").show();
+	}
+	function btnbtnnumberClickHandler() {
+		$(".memMonth").hide();
+		$(".memNumber").show();
+		$(".memLocker").show();
+	}
+	function btnsubmitClickHandler() {
+		$(".modal.membership").css("display", "none");
+		$.ajax({
+			async : false,
+			url : "${pageContext.request.contextPath }/price",
+			method : "post",
+			data : $("#frm-membership").serialize(),
+			error : ajaxErrorHandler,
+			success : function(result) {
+
+			}
+		});
+	}
+
 	function btnMembershipClickHandler() {
-		$(".modal.membership").css("display","flex");
+		$(".modal.membership").css("display", "flex");
 	}
 	function btnCloseModalClickHandler() {
-		$(".modal").css("display","none");		
+		$(".modal").css("display", "none");
 	}
 	function btnOnedayClickHandler() {
-		location.href="${pageContext.request.contextPath}/main";
+		$(".modal.bookonday").css("display", "flex");
 	}
 
 	$(".pricechart > div").hide();

@@ -4,7 +4,6 @@
 <h1>Semi Notice List</h1>
 <div>${sssLogin.memId }</div>
 <div>${sssLogin.memAdmin }</div>
-console.log("notice_list.jsp");
 <div class="notice grid">
 <c:choose>
 	<c:when test="${empty mapNotice.dtolist }">

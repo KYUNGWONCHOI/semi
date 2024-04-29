@@ -18,7 +18,7 @@ public class LessonDto {
 	private String lessonStart;
 	private String lessonEnd;
 	private String teacherName;
-	private Integer lessonTime;
+	private String lessonTime;
 	private String lessonDay;
 	private Integer lessonCapacity;
 	@Override
@@ -29,7 +29,7 @@ public class LessonDto {
 				+ "]";
 	}
 	public LessonDto(Integer lessonCode, String lessonType, Integer lessonLevel, String lessonStart, String lessonEnd,
-			String teacherName, Integer lessonTime, String lessonDay, Integer lessonCapacity) {
+			String teacherName, String lessonTime, String lessonDay, Integer lessonCapacity) {
 		super();
 		this.lessonCode = lessonCode;
 		this.lessonType = lessonType;
@@ -59,7 +59,7 @@ public class LessonDto {
 	public String getTeacherName() {
 		return teacherName;
 	}
-	public Integer getLessonTime() {
+	public String getLessonTime() {
 		return lessonTime;
 	}
 	public String getLessonDay() {

@@ -35,7 +35,7 @@ public class LessonDao {
 							rs.getInt("LESSON_CODE"),
 							rs.getString("LESSON_TYPE"),rs.getInt("LESSON_LEVEL"),
 							rs.getString("LESSON_START"),rs.getInt("LESSON_DURATION"),rs.getString("LESSON_END"),
-							rs.getString("TEACHER_NAME"),rs.getInt("LESSON_TIME"),
+							rs.getString("TEACHER_NAME"),rs.getString("LESSON_TIME"),
 							rs.getString("LESSON_DAY"),	rs.getInt("LESSON_CAPACITY")
 							);
 					result.add(dto);
@@ -78,7 +78,7 @@ public class LessonDao {
 						LessonListDto dto = new LessonListDto(	
 								rs.getInt("LESSON_CODE"),rs.getString("LESSON_TYPE"),rs.getInt("LESSON_LEVEL"),
 								rs.getString("LESSON_START"),rs.getInt("LESSON_DURATION"),rs.getString("LESSON_END"),
-								rs.getString("TEACHER_NAME"),rs.getInt("LESSON_TIME"),
+								rs.getString("TEACHER_NAME"),rs.getString("LESSON_TIME"),
 								rs.getString("LESSON_DAY"),	rs.getInt("LESSON_CAPACITY")
 								);
 						result.add(dto);
@@ -111,7 +111,7 @@ public class LessonDao {
 								rs.getInt("LESSON_CODE"),
 								rs.getString("LESSON_TYPE"),rs.getInt("LESSON_LEVEL"),
 								rs.getString("LESSON_START"),rs.getInt("LESSON_DURATION"),rs.getString("LESSON_END"),
-								rs.getString("TEACHER_NAME"),rs.getInt("LESSON_TIME"),
+								rs.getString("TEACHER_NAME"),rs.getString("LESSON_TIME"),
 								rs.getString("LESSON_DAY"),	rs.getInt("LESSON_CAPACITY")
 								);
 						result.add(dto);
@@ -140,7 +140,7 @@ public class LessonDao {
 					result = new ArrayList<LessonOnedayDto>();
 					do {
 						LessonOnedayDto dto = new LessonOnedayDto(	
-								rs.getInt("LESSON_CODE"),rs.getInt("LESSON_TIME"),
+								rs.getInt("LESSON_CODE"),rs.getString("LESSON_TIME"),
 								rs.getString("LESSON_DAY"),rs.getInt("LESSON_CAPACITY")
 								);
 						result.add(dto);

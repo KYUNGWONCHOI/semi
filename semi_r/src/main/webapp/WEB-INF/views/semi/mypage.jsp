@@ -19,7 +19,7 @@
 	<div>
 		<%@include file="/WEB-INF/views/semi/common/header.jsp" %>
 	</div>
-[["${sssLogin }"]]
+		[["${sssLogin }"]]
 	<form>
 	
 	</form>
