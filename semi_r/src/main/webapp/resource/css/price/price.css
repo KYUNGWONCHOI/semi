@@ -8,30 +8,6 @@ section {
 }
 
 /* aside */
-.sidebar{
-    float:left;
-    width:200px;
-    /* height: 800px; */
-    border:1px solid black;
-    box-sizing: border-box;
-}
-.sidebar .activetab > button{
-    background-color: brown;
-}
-.actlist{
-    width: 200px;
-    margin: 0 auto;
-    padding: 0;
-    text-align: center;
-}
-.sidebar button{
-    width: 100%;
-    height: 50px;
-    font-size: 20px;
-    text-align: center;
-    background-color: white;
-}
-
 /* article */
 .tbl{
     float:left;

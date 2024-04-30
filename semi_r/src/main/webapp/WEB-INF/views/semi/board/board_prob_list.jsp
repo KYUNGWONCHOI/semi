@@ -29,7 +29,7 @@
 </div>
 <div><button type="button" class="btn writeBoard" >글쓰기</button></div>
 
-<div >
+<div class="boardNum">
 	<ul>
 	<c:if test="${mapBoardProb.startPageNum > 1}">
 		<li><a href="${pageContext.request.contextPath }/board?page=${mapBoardProb.startPageNum-1 }">  &lt;&lt; </a></li>

@@ -62,8 +62,7 @@
     	location.href="${pageContext.request.contextPath}/mypage";
     }
     function btnChargeClickHandler(){
-    	//TODO
-    	//location.href="${pageContext.request.contextPath}/?";
+    	/* location.href="${pageContext.request.contextPath}/price"; */
     }
     function btnLogoutClickHandler(){
     	alert("로그아웃되었습니다.");

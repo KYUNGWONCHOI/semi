@@ -3,13 +3,13 @@
 
 	<footer>
         <div>
-            <hr>
+            <hr id="divLine">
             <div class="wrap-bottom">
                 <ul>
-                    <li><span class="con">사업자명</span></li>
-                    <li><span class="con">위치</span></li>
-                    <li><span class="con">전화번호</span></li>
-                    <li><span class="con">이메일</span></li>
+                    <li><span class="con">회사명 더클라임(주) 대표 MMM</span></li>
+                    <li><span class="con">서울특별시 강남구 남부순환로 XXXX 지하X층, MMMM</span></li>
+                    <li><span class="con">02-000-0000</span></li>
+                    <li><span class="con">EMAIL@mail.com</span></li>
                 </ul>
             </div>
         </div>

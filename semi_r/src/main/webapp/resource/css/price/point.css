@@ -9,7 +9,20 @@
 	grid-template-columns: 2fr 2fr 2fr 2fr;
 }
 .point.grid > div{
-	display : flex;
+	display : grid;
 	border : 1px solid black;
 	text-align: center;
+	box-sizing: border-box;
+}
+.point.grid > button{
+	padding: 0;
+	margin: 0;
+}
+.confirm{
+	width: 70px;
+	margin: 0 463px;
+}
+.confirmbtn{
+	clear:both;
+	width: 996px;
 }

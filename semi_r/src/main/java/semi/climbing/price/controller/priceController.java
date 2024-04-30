@@ -8,21 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import semi.climbing.member.model.dto.MemberDto;
+import semi.climbing.price.model.dto.PointChargeDto;
 import semi.climbing.price.model.dto.RegisterInfoDto;
 import semi.climbing.price.service.PriceService;
 
-/**
- * Servlet implementation class priceController
- */
 @WebServlet("/price")
-public class priceController extends HttpServlet {
+public class PriceController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private PriceService service = new PriceService();
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public priceController() {
+    public PriceController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,6 +33,7 @@ public class priceController extends HttpServlet {
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		MemberDto sssLogin = (MemberDto)req.getSession().getAttribute("sssLogin");
 		int priceType = Integer.parseInt(req.getParameter("priceType"));
 		int price = 0;
 		int useHistory = 0;
@@ -68,19 +67,19 @@ public class priceController extends HttpServlet {
 		default:
 			break;
 		}	
-	
-		String memLocker = req.getParameter("locker");
-		MemberDto sssLogin = (MemberDto)req.getSession().getAttribute("sssLogin");
+		int memPoint = sssLogin.getMemPoint();
+		String memLocker = req.getParameter("locker");		
 		String memId =  sssLogin.getMemId();
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@priceType : " +priceType);
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@price : " +price);
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@memLocker : " +memLocker);
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@memId : " +memId);
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@duration : " +duration);
-		
-		RegisterInfoDto dto = new RegisterInfoDto(memId, priceType, memLocker, price, useHistory, duration);
-		int result = service.insert(dto);	
-		
-		
+		int cResult = 0;
+		if(memPoint >= price) {
+			RegisterInfoDto dto = new RegisterInfoDto(memId, priceType, memLocker, price, useHistory, duration);
+			PointChargeDto pointDto = new PointChargeDto(memId, (-price));
+			int result = service.insert(dto);	
+			int pointresult = service.updatePoint(pointDto);
+			cResult=1;
+		}else {
+			cResult=0;
+		}
+		req.setAttribute("cResult", cResult);
 	}
 }

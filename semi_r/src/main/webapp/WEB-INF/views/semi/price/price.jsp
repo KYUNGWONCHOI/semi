@@ -140,7 +140,7 @@
 						</div>
 						<div class="memsub bookonday grid">
 							<div>
-								<button type="button" class="btn submitrent">렌탈예약</button>
+								<button type="button" class="btn submitrent">예약</button>
 							</div>
 							<div>
 								<button type="button" class="btn close-modal">취소</button>
@@ -156,6 +156,7 @@
 
 <script>
 	$(loadedHandler);
+	var radiobox = $("input[type='radio']");
 	function loadedHandler() {
 		$(".btn.membership").on("click", btnMembershipClickHandler);
 		$(".btn.oneday").on("click", btnOnedayClickHandler);
@@ -168,7 +169,8 @@
 		$(".memMonth").hide();
 		$(".memLocker").hide();
 	}
-	function btnsubmitrentClickHandler(){		
+	function btnsubmitrentClickHandler(){			
+		radiobox.prop("checked",false);
 		$(".modal.bookonday").css("display", "none");
 		$.ajax({
 			async : false,
@@ -208,6 +210,7 @@
 		$(".modal.membership").css("display", "flex");
 	}
 	function btnCloseModalClickHandler() {
+		radiobox.prop("checked",false);
 		$(".modal").css("display", "none");
 	}
 	function btnOnedayClickHandler() {

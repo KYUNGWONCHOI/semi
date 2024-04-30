@@ -1,12 +1,19 @@
 .wrap-bottom{
 	width: 1200px;
-	height: 200px;
+	height: 100px;
 	margin: 0 auto;
+	background-color: rgb(220,220,220);
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
 }
-.con{
+.wrap-bottom > ul> .con{
     display: block;
     margin: 0 auto;
 }
-hr{
+#divLine{
 	width: 1200px;
+}
+.wrap-bottom > ul{
+	margin: 0 auto;
+	width: 400px;
 }

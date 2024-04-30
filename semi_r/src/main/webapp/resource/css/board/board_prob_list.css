@@ -7,12 +7,12 @@
 	display : flex;
 	border : 1px solid black;
 }
+.colname{
+	background-color: skyblue;
+}
 ul {
 list-style-type:none;
 }
 ul > li {
 display: inline-block;
-}
-.colname{
-	background-color: skyblue;
 }

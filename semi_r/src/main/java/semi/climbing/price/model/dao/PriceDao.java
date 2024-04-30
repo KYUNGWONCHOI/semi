@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import semi.climbing.price.model.dto.PointChargeDto;
 import semi.climbing.price.model.dto.RegisterInfoDto;
 
 
@@ -54,5 +55,21 @@ public class PriceDao {
 		}
 		close(pstmt);
 		return result;
-	}	
+	}
+	public int updatePoint(Connection conn, PointChargeDto dto) {
+		int result = 0;
+		String sql = " UPDATE MEMBER SET POINT = POINT + ? WHERE ID=? ";
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, dto.getPoint());
+			pstmt.setString(2, dto.getId());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		close(pstmt);
+		System.out.println("dao result : " + result);
+		return result;
+	}
 }

@@ -36,7 +36,7 @@
 </c:if>
 
 
-<div >
+<div class="boardNum">
 	<ul>
 	<c:if test="${mapNotice.startPageNum > 1}">
 		<li><a href="${pageContext.request.contextPath }/notice?page=${mapNotice.startPageNum-1 }"> &lt;&lt; </a></li>

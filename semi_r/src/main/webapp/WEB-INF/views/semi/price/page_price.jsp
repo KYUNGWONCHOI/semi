@@ -2,13 +2,13 @@
 <link href="<%=request.getContextPath()%>/resource/css/common/common.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resource/css/common/page_header.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resource/css/common/page_bottom.css" rel="stylesheet">
-
 <link href="<%=request.getContextPath()%>/resource/css/price/price.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resource/css/price/point.css" rel="stylesheet">
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,37 +45,36 @@
 			<div>
 				<%@include file="/WEB-INF/views/semi/common/footer.jsp"%>
 			</div>
+		</section>
+	</div>
 
-			<script>
-        var tab = $(".sidebar > ul > li");
-        var chart = $("section > article");
+	<script>
+		var tab = $(".sidebar > ul > li");
+		var chart = $("section > article");
 
-        $(".tbl").hide();
-        $(".tbl.table1").show();
+		$(".tbl").hide();
+		$(".tbl.table1").show();
 
-        tab.click(function () {
-            var target = $(this);
-            var indexNum = target.index();
-            var none = $(this)
-            chart.css("display", "none");
-            chart.eq(indexNum).css("display", "block");
+		tab.click(function() {
+			var target = $(this);
+			var indexNum = target.index();
+			var none = $(this)
+			chart.css("display", "none");
+			chart.eq(indexNum).css("display", "block");
 
-            $(".sidebar > ul >li").removeClass("activetab");
-            $(this).addClass("activetab");
-        });
+			$(".sidebar > ul >li").removeClass("activetab");
+			$(this).addClass("activetab");
+		});
 
-        $(".lesson_act").each(function (index, item) {
-            $(this).on("click", function() {
-                $(".tbl3").css("display", "none");
-                $(".tbl3").eq(index).css("display", "block");
-                console.log(index);
-                $(".lesson_sort").css("background-color","brown");
+		$(".lesson_act").each(function(index, item) {
+			$(this).on("click", function() {
+				$(".tbl3").css("display", "none");
+				$(".tbl3").eq(index).css("display", "block");
+				console.log(index);
+				$(".lesson_sort").css("background-color", "brown");
 
-            })   
-        });
-
-        /*  */
-
-    </script>
+			})
+		});
+	</script>
 </body>
 </html>
