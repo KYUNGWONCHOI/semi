@@ -15,6 +15,9 @@
 <html>
 
 <head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Lugrasimo&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <jsp:include page="/WEB-INF/views/semi/common_function.jsp"/>

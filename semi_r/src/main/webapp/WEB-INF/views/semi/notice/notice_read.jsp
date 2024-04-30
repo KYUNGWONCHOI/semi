@@ -13,7 +13,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Semi Notice Read</title>
+<title>공지 글 쓰기</title>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <jsp:include page="/WEB-INF/views/semi/common_function.jsp" />
 <%-- [[${sssLogin.memAdmin }]] --%>

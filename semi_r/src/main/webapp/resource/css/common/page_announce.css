@@ -15,36 +15,6 @@ section {
     padding: 0;
     overflow: hidden;
 }
-button:hover{
-    background-color: blue;
-}
-
-
-/* aside */
-.sidebar{
-    float:left;
-    width:200px;
-    /* height: 800px; */
-    border:1px solid black;
-    box-sizing: border-box;
-}
-.sidebar .activetab > button{
-	/* border: 1px solid #503396; */
-    background-color: brown;
-}
-.actlist{
-    width: 200px;
-    margin: 0 auto;
-    padding: 0;
-    text-align: center;
-}
-.sidebar button{
-    width: 100%;
-    height: 50px;
-    font-size: 20px;
-    text-align: center;
-    background-color: white;
-}
 
 /* article */
 .tbl{
@@ -61,8 +31,9 @@ button:hover{
 #ann_openhour > .openhour_con > ul > li{
     list-style-type: circle;
 }
-#openhour_gap{
+.openhour_gap{
     margin-top: 20px;
+    margin-left: 20px;
 }
 #ann_openhour .img_gym{
     display: inline-block;
@@ -72,11 +43,10 @@ button:hover{
 #ann_openhour .openhour_con{
     float: left;
     width: 250px;
-    padding: 0 30px;  
-
+    padding: 0 10px;
 }
 #ann_openhour .loc_map{
-    float: left;
+    float: right;
 }
 .ann_price{
     clear: both;
@@ -87,6 +57,9 @@ button:hover{
 }
 .lesson_detail:hover .lesson_show{
     display: block;
+}
+.lesson_sort:hover{
+	background-color: gray;
 }
 .lesson_show{
     display: none;
@@ -99,6 +72,7 @@ button:hover{
     display: block;
     border: 1px solid black;
     background-color: aquamarine;
+    box-sizing: border-box;
 }
 .tbl3{
     display:none;
@@ -121,4 +95,14 @@ button:hover{
     border: 1px;
     border-style: dashed;
     border-color: gray;    
+}
+.openhour_con > ul{
+	padding-left: 15px;
+}
+.openhour_con > ul > li{
+	list-style: circle;
+	display: list-item;
+}
+.openhour_con > h1{
+	font-size: 20px;
 }

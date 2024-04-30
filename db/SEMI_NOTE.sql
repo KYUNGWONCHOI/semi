@@ -352,6 +352,27 @@ desc member;
 desc pay_history;
 --TODO
 select * from member;
+
+desc pay_history;
+--PAY_DATE    NOT NULL DATE         
+--USE_HISTORY          NUMBER       
+--END_DATE             DATE         
+--ID          NOT NULL VARCHAR2(20) 
+--PRICE_TYPE  NOT NULL NUMBER
+desc rent;
+--RENT_ITEM   NOT NULL NUMBER 
+--SHOE_SIZE            NUMBER 
+--SHOE_COUNT           NUMBER 
+--CHALK_COUNT          NUMBER 
+--PAY_DATE    NOT NULL DATE
+INSERT ALL
+    INTO PAY_HISTORY () VALUES ()
+    INTO RENT () VALUES ()
+    SELECT * FROM DUAL
+;
+select * from member;
+
+
 desc member;
 --ID        NOT NULL VARCHAR2(20) 
 --PWD       NOT NULL VARCHAR2(20) 

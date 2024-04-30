@@ -2,13 +2,32 @@
     float: left;
     width: 200px;
     border: 1px solid black;
+    border-right: 0;
+    box-sizing: border-box;
+    background-color: white;
+    height: 730px;
+    font-weight: 500;
+    color: black;
+    font-size:20px;
 }
 .content{
     float: left;
-    width:600px;
+    width: 1000px;
+    height: 730px;
     margin: 0 auto;
+    box-sizing: border-box;
 }
 .img1{
-    width: 600px;
-    height: 430px;
+    width: 100%;
+    height: 720px;
+}
+.sub0{
+	color:blue;
+	font-size:30px;
+	font-weight: 700;
+}
+.sub1{
+	color: aqua;
+	font-size:24px;
+	font-weight: 700;
 }

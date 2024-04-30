@@ -35,9 +35,9 @@ public class NoticeController extends HttpServlet {
 		
 		System.out.println("NoticeListController Post-----");
 //		-- 한페이지당글수 5 씩
-		int pageSize = 10;
+		int pageSize = 5;
 //		-- 화면하단 나타날 페이지수 5 씩
-		int pageBlockSize = 5;
+		int pageBlockSize = 3;
 //		-- 현재페이지
 		int currentPageNum = 1;  // 기본1
 		// 페이지지정하고 들어왔다면... 현재페이지를 그값으로 설정함

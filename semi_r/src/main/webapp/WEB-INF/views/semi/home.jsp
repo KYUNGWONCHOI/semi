@@ -5,8 +5,15 @@
 	<div class="wrap">
         <article class="desc">
             <div>
-                <span>볼더링(영어: bouldering)이란 암벽 등반의 한 장르로 로프 없이 바위 덩어리(boulder)를 오르는 행위다. 
-                    안전을 위해서 크래쉬 패드(Crash pad, bouldering pad라고도 함)를 바닥에 깔아놓고 하는 것이 보통이다.</span>
+            	<div class="sub0">볼더링이란..</div>
+            	<div class="sub1">어떤 날씨에도</div>
+            	<div>: 계절, 날씨, 시간 모든것으로부터 자유롭습니다.</div>
+            	<div class="sub1">누구나</div>
+            	<div>: 별도의 안정장비 필요없이, 안전 교육을 받은 후 누구나 시도 할 수 있습니다.</div>
+            	<div class="sub1">근력향상</div>         
+            	<div>: 몸의 중심근육이 동시에 자극을 받아 전신근력 증대에 효과적입니다.</div>             
+            	<div class="sub1">스트레스 해소</div>          
+            	<div>: 스트레스 해소를 돕는 노르에피네프린의 분비가 활발해져 일상의 스트레스를 줄일 수 있습니다.</div>             
             </div>
         </article>
         <section class="content">

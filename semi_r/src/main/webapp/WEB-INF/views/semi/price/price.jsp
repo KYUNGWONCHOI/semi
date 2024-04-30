@@ -128,10 +128,13 @@
 							<div><label>일일이용권<input type="checkbox" name="priceType" value=5 checked disabled></label></div>
 							<div class="rentlist grid ">
 								<div>
-									<label>신발<input type="radio" name="rent" value="신발"></label>
+									<label>신발<input type="radio" name="rent" value=1></label>
 								</div>
 								<div>
-									<label>초크백<input type="radio" name="rent" value="초크백"></label>
+									<label>초크백<input type="radio" name="rent" value=2></label>
+								</div>
+								<div>
+									<label>안함<input type="radio" name="rent" value=3></label>
 								</div>
 							</div>
 						</div>

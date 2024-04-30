@@ -1,8 +1,9 @@
 <link href="<%=request.getContextPath()%>/resource/css/common/reset.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resource/css/common/common.css" rel="stylesheet">
-<link href="<%=request.getContextPath()%>/resource/css/common/page_announce.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resource/css/common/page_header.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resource/css/common/page_bottom.css" rel="stylesheet">
+
+<link href="<%=request.getContextPath()%>/resource/css/common/page_announce.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resource/css/common/page_notice.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resource/css/lesson/lesson_common.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resource/css/lesson/lesson_oneday_list.css" rel="stylesheet">
@@ -19,7 +20,9 @@
 <head>
     <meta charset="UTF-8">
     <title>공지사항</title>
-   
+  	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Lugrasimo&display=swap" rel="stylesheet">
 
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <jsp:include page="/WEB-INF/views/semi/common_function.jsp"/>
@@ -55,20 +58,20 @@
             <article class="tbl table2" id="ann_openhour">
                 <img class="img_gym" src="/semi/resource/img/img2_gangnam.jpg" alt="gym">
                 <div class="openhour_con">
-                    <h1>오시는 길</h1>
+                    <h1 class="openhour_gap">오시는 길</h1>
                     <ul>
                         <li>서울특별시 강남구 테헤란로8길 21 강남화인빌딩 지하 1층</li>
                         <li>강남역 1번 출구 도보 4분 거리</li>
                     </ul>
-                    <h1 id="openhour_gap">운영안내</h1>
+                    <h1 class="openhour_gap">운영안내</h1>
                     <ul>
-                        <li>평일</li>
-                        <li>토요일</li>
-                        <li>주말 & 공휴일</li>
+                        <li>평일(Weekday) : 07:00~24:00</li>
+                        <li>토요일(Saturday) : 08:00~22:00</li>
+                        <li>일요일 & 공휴일(Sunday & Holiday) : 08:00~20:00</li>
                     </ul>
                 </div>
                 <div class="loc_map">
-                    <img src="/semi/resource/img/img1.jpg" alt="map">
+                    <img src="/semi/resource/img/map.PNG" alt="map">
                 </div>
 
             </article>
@@ -194,10 +197,10 @@
        
         $(".lesson_act").each(function (index, item) {
             $(this).on("click", function() {
+            	
                 $(".tbl3").css("display", "none");
                 $(".tbl3").eq(index).css("display", "block");
                 console.log(index);
-                $(".lesson_sort").css("background-color","brown");
                })   
         });
     </script>

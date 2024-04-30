@@ -1,7 +1,8 @@
 <link href="<%=request.getContextPath()%>/resource/css/common/reset.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resource/css/common/common.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resource/css/common/page_header.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resource/css/common/page_bottom.css" rel="stylesheet">
-<link href="<%=request.getContextPath()%>/resource/css/common/common.css" rel="stylesheet">
+
 <link href="<%=request.getContextPath()%>/resource/css/price/price.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resource/css/price/point.css" rel="stylesheet">
 
@@ -14,7 +15,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>price</title>
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Lugrasimo&display=swap" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <jsp:include page="/WEB-INF/views/semi/common_function.jsp" />
 
