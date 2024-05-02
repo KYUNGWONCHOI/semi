@@ -8,12 +8,14 @@ import java.sql.SQLException;
 
 import semi.climbing.price.model.dto.PointChargeDto;
 import semi.climbing.price.model.dto.RegisterInfoDto;
+import semi.climbing.price.model.dto.RentUpdateDto;
 
 
 public class PriceDao {
 
 	public int insert(Connection conn, RegisterInfoDto dto) {
 		int result = 0;
+		System.out.println("DAO");
 		String sql = "INSERT ALL\r\n"
 				+ "    INTO PAY_HISTORY (PAY_DATE, ID, PRICE_TYPE, USE_HISTORY, END_DATE) VALUES (SYSTIMESTAMP, ?, ?, ?, ADD_MONTHS(SYSTIMESTAMP, ?))\r\n"
 				+ "    INTO MEMBERSHIP (PAY_DATE, MEM_LOCKER) VALUES(SYSTIMESTAMP, ?)\r\n"
@@ -70,6 +72,11 @@ public class PriceDao {
 		}
 		close(pstmt);
 		System.out.println("dao result : " + result);
+		return result;
+	}
+	public int updateRent(Connection conn, RentUpdateDto dto) {
+		int result = 0;
+//		String sql = 
 		return result;
 	}
 }

@@ -39,7 +39,8 @@ public class LessonController extends HttpServlet {
 		String memId =  sssLogin.getMemId();
 		System.out.println("memId : " +memId);
 		LessonInsertDto dto = new LessonInsertDto(memId, lessonNo);
-		int result = service.insertOneday(dto);
+		int result = 0;
+		result = service.insertOneday(dto);
 		
 		if(result == 1) {
 			resp.sendRedirect(req.getContextPath()+"/notice?tabmenu=2");

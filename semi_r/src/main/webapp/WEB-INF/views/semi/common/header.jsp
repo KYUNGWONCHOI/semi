@@ -62,7 +62,7 @@
     	location.href="${pageContext.request.contextPath}/mypage";
     }
     function btnChargeClickHandler(){
-    	/* location.href="${pageContext.request.contextPath}/price"; */
+    	location.href="${pageContext.request.contextPath }/charge";
     }
     function btnLogoutClickHandler(){
     	alert("로그아웃되었습니다.");

@@ -21,6 +21,7 @@ public class RegisterInfoDto {
 		this.price = price;
 		this.useHistory = useHistory;
 		this.duration = duration;
+		System.out.println("DTO");
 	}
 	public String getId() {
 		return id;

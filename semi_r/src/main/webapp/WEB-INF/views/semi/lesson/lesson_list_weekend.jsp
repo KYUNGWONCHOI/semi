@@ -75,7 +75,7 @@
 				
 			}
 		});		
-		location.href="${pageContext.request.contextPath}/notice?tabmenu=2";
+		location.href="${pageContext.request.contextPath}/notice?tabmenu=4";
 	}
 
 

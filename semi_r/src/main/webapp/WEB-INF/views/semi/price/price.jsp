@@ -126,7 +126,7 @@
 						<div class="wrap-rent">
 							<h1>렌탈</h1>
 							<div><label>일일이용권<input type="checkbox" name="priceType" value=5 checked disabled></label></div>
-							<div class="rentlist grid ">
+							<div class="rentlist grid">
 								<div>
 									<label>신발<input type="radio" name="rent" value=1></label>
 								</div>
@@ -137,10 +137,11 @@
 									<label>안함<input type="radio" name="rent" value=3></label>
 								</div>
 							</div>
+								<div class="size"><label>신발 사이즈 : <input class="sizeS" type="number" min="210" max="300" step="5" name="shoesize" value=""></label></div>
 						</div>
 						<div class="memsub bookonday grid">
 							<div>
-								<button type="button" class="btn submitrent">예약</button>
+								<button type="button" class="btn submit">예약</button>
 							</div>
 							<div>
 								<button type="button" class="btn close-modal">취소</button>
@@ -156,32 +157,21 @@
 
 <script>
 	$(loadedHandler);
-	var radiobox = $("input[type='radio']");
+	var radiobox = $(".pricechart input[type='radio']");
+	var rentCheck = $(".rentlist input[type='radio']");
 	function loadedHandler() {
+		$(".size").hide();
 		$(".btn.membership").on("click", btnMembershipClickHandler);
 		$(".btn.oneday").on("click", btnOnedayClickHandler);
 		$(".btn.close-modal").on("click", btnCloseModalClickHandler);
 		$(".btn.submit").on("click", btnsubmitClickHandler);
 		$(".btn.btnmonth").on("click", btnbtnmonthClickHandler);
 		$(".btn.btnnumber").on("click", btnbtnnumberClickHandler);
-		$(".btn.submitrent").on("click", btnsubmitrentClickHandler);
+		rentCheck.on("click", checkedrentHandler);
 		$(".memNumber").hide();
 		$(".memMonth").hide();
 		$(".memLocker").hide();
-	}
-	function btnsubmitrentClickHandler(){			
-		radiobox.prop("checked",false);
-		$(".modal.bookonday").css("display", "none");
-		$.ajax({
-			async : false,
-			url : "${pageContext.request.contextPath }/price",
-			method : "post",
-			data : $("#frm-bookonday").serialize(),
-			error : ajaxErrorHandler,
-			success : function(result) {
-			}
-		});
-	}
+	}	
 	function btnbtnmonthClickHandler() {
 		$(".memNumber").hide();
 		$(".memMonth").show();
@@ -194,6 +184,7 @@
 	}
 	function btnsubmitClickHandler() {
 		$(".modal.membership").css("display", "none");
+		$(".modal.bookonday").css("display", "none");
 		$.ajax({
 			async : false,
 			url : "${pageContext.request.contextPath }/price",
@@ -204,6 +195,10 @@
 
 			}
 		});
+		radiobox.prop("checked",false);
+		$(".memNumber").hide();
+		$(".memMonth").hide();
+		$(".memLocker").hide();
 	}
 
 	function btnMembershipClickHandler() {
@@ -216,7 +211,15 @@
 	function btnOnedayClickHandler() {
 		$(".modal.bookonday").css("display", "flex");
 	}
-
+	function checkedrentHandler(){
+		var indexNum = $(this).val();
+		console.log(indexNum);
+		if(indexNum == 1){
+			$(".size").show();			
+		}else {
+			$(".size").hide();
+		}
+	}
 	$(".pricechart > div").hide();
 	$(".pricechart > div").eq(0).show();
 

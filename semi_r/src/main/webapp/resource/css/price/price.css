@@ -114,7 +114,7 @@ table{
 }
 .bookonday.grid{
 	display:grid;
-	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr;
 	width: 200px;
 	margin: 10px auto;
 }
@@ -123,4 +123,17 @@ table{
 	border : 1px solid black;
 	margin-bottom: 20px;
 	margin-right: 10px;	
+}
+.rentlist.grid{
+	display:grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	width: 300px;
+	margin: 10px auto;
+}
+.rentlist.grid{
+	display : grid;
+}
+.sizeS{
+	width: 130px;
+	font-size: 18px;
 }

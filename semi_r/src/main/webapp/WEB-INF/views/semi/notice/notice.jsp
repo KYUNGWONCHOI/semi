@@ -161,11 +161,29 @@
 	        //tabmenu = 0;
 			$(".sidebar > ul >li").removeClass("activetab");
             $(".sidebar > ul >li").eq(tabmenu).addClass("activetab");
-            console.log("tabmenu = 2");
+            console.log(tabmenu);
             $(".tbl").hide();
 	        $(".tbl.table3").show();
 	        tabmenu = endtab;
-		}
+		}else if(tabmenu == 3){
+			$(".sidebar > ul >li").removeClass("activetab");
+            $(".sidebar > ul >li").eq(2).addClass("activetab");
+            console.log(tabmenu);
+            tabmenu = endtab;
+            $(".tbl").hide();
+	        $(".tbl.table3").show();
+            $(".tbl3").css("display", "none");
+            $(".tbl3").eq(1).css("display", "block");
+		}else if(tabmenu == 4){
+			$(".sidebar > ul >li").removeClass("activetab");
+            $(".sidebar > ul >li").eq(2).addClass("activetab");
+            console.log(tabmenu);
+            tabmenu = endtab;
+            $(".tbl").hide();
+	        $(".tbl.table3").show();
+            $(".tbl3").css("display", "none");
+            $(".tbl3").eq(2).css("display", "block");
+		} 
 		else{
 			$(".tbl").hide();
 	        $(".tbl.table1").show();
@@ -196,8 +214,7 @@
         });
        
         $(".lesson_act").each(function (index, item) {
-            $(this).on("click", function() {
-            	
+            $(this).on("click", function() {            	
                 $(".tbl3").css("display", "none");
                 $(".tbl3").eq(index).css("display", "block");
                 console.log(index);

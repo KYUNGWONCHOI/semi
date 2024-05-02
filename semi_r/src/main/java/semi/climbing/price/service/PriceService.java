@@ -11,6 +11,7 @@ public class PriceService {
 	private PriceDao dao = new PriceDao();
 	
 	public int insert(RegisterInfoDto dto) {
+		System.out.println("SERVICE");
 		int result = 0;
 		Connection conn = getSemiConnection(true);
 		result = dao.insert(conn, dto);

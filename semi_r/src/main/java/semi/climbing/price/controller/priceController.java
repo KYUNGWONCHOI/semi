@@ -37,7 +37,7 @@ public class PriceController extends HttpServlet {
 		int priceType = Integer.parseInt(req.getParameter("priceType"));
 		int price = 0;
 		int useHistory = 0;
-		int duration = 0;
+		int duration = 0;		
 		switch (priceType) {
 		case 1:
 			price = 130000;
@@ -70,6 +70,10 @@ public class PriceController extends HttpServlet {
 		int memPoint = sssLogin.getMemPoint();
 		String memLocker = req.getParameter("locker");		
 		String memId =  sssLogin.getMemId();
+		System.out.println(memPoint);
+		System.out.println(memLocker);
+		System.out.println(memId);
+		int rent = Integer.parseInt(req.getParameter("rent"));
 		int cResult = 0;
 		if(memPoint >= price) {
 			RegisterInfoDto dto = new RegisterInfoDto(memId, priceType, memLocker, price, useHistory, duration);
